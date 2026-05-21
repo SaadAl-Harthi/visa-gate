@@ -60,7 +60,7 @@ const visaTypes: VisaType[] = [
     title: "تأشيرة أمريكا السياحية",
     icon: "🇺🇸",
     subtitle: "للسياحة والزيارة وحضور الفعاليات.",
-    price: "يحدد لاحقًا",
+    price: "900 ريال ",
     duration: "من 5 إلى 15 يوم عمل وقد تزيد حسب السفارة",
     requirements: touristRequirements,
     notes: commonNotes,
