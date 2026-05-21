@@ -179,6 +179,20 @@ className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-transl
     خدمات التأشيرات السياحية والدراسية لكندا
   </p>
 </a>
+<a
+  href="/uae"
+  className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
+>
+  <h4 className="text-3xl mb-4">🇦🇪</h4>
+
+  <h5 className="text-2xl font-semibold mb-2">
+    الإمارات
+  </h5>
+
+  <p className="text-gray-600">
+    تأشيرة إلكترونية لمقيمي دول الخليج
+  </p>
+</a>
 
         </div>
       </section>

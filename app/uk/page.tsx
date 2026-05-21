@@ -80,38 +80,37 @@ export default function UKPage() {
 
       {/* Info Cards */}
       <section className="px-5 md:px-8 py-16">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+  <div className="max-w-6xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-gray-50 rounded-3xl p-6 text-center">
+        <p className="text-gray-500 mb-2">الصلاحية</p>
+        <h3 className="text-2xl font-bold">سنتين</h3>
+      </div>
 
-          <div className="bg-gray-50 rounded-3xl p-6 text-center">
-            <p className="text-gray-500 mb-2">الصلاحية</p>
-            <h3 className="text-2xl font-bold">
-              سنتين
-            </h3>
-          </div>
+      <div className="bg-gray-50 rounded-3xl p-6 text-center">
+        <p className="text-gray-500 mb-2">مدة الإقامة</p>
+        <h3 className="text-2xl font-bold">6 أشهر</h3>
+      </div>
 
-          <div className="bg-gray-50 rounded-3xl p-6 text-center">
-            <p className="text-gray-500 mb-2">مدة الإقامة</p>
-            <h3 className="text-2xl font-bold">
-              6 أشهر
-            </h3>
-          </div>
+      <div className="bg-gray-50 rounded-3xl p-6 text-center">
+        <p className="text-gray-500 mb-2">نوع التقديم</p>
+        <h3 className="text-2xl font-bold">إلكتروني</h3>
+      </div>
 
-          <div className="bg-gray-50 rounded-3xl p-6 text-center">
-            <p className="text-gray-500 mb-2">نوع التقديم</p>
-            <h3 className="text-2xl font-bold">
-              إلكتروني
-            </h3>
-          </div>
+      <div className="bg-gray-50 rounded-3xl p-6 text-center">
+        <p className="text-gray-500 mb-2">البصمة</p>
+        <h3 className="text-2xl font-bold">غير مطلوبة</h3>
+      </div>
+    </div>
 
-          <div className="bg-gray-50 rounded-3xl p-6 text-center">
-            <p className="text-gray-500 mb-2">البصمة</p>
-            <h3 className="text-2xl font-bold">
-              غير مطلوبة
-            </h3>
-          </div>
-
-        </div>
-      </section>
+    <div className="flex justify-center mt-6">
+      <div className="bg-gray-50 rounded-3xl p-6 text-center w-full md:w-72">
+        <p className="text-gray-500 mb-2">السعر</p>
+        <h3 className="text-2xl font-bold text-orange-500">يحدد لاحقًا</h3>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Requirements */}
       <section className="px-5 md:px-8 pb-16 md:pb-24">
