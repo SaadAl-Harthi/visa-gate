@@ -520,7 +520,7 @@ className="py-24 px-8 bg-white">
    <button
   onClick={goPrev}
   className="
-  absolute md:right-20
+  absolute md:left-[-20px]
   bottom-[-70px] md:bottom-auto
   right-[55%] md:top-1/2
   md:-translate-y-1/2
@@ -533,12 +533,13 @@ className="py-24 px-8 bg-white">
   ‹
 </button>
 
- <button
-  onClick={goNext}
+<button
+  onClick={goPrev}
   className="
-  absolute md:left-20
+  absolute
   bottom-[-70px] md:bottom-auto
-  left-[55%] md:top-1/2
+  right-[55%] md:right-[-24px]
+  md:top-1/2
   md:-translate-y-1/2
   z-20
   bg-white/80 hover:bg-orange-500 hover:text-white
