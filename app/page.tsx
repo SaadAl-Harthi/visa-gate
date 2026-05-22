@@ -9,6 +9,7 @@ export default function Home() {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [visaType, setVisaType] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const sendToWhatsApp = () => {
     const message = `
@@ -27,39 +28,148 @@ export default function Home() {
 
   return (
 <main className="bg-white text-black">
-      {/* Navbar */}
-<nav className="flex items-center justify-between px-8 py-3 fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/80 shadow-sm">
-<img
-  src="/logo.png"
-  alt="Visa Gate"
-className="h-12 md:h-24 w-auto"
-/>
-<div className="hidden md:flex gap-12 text-xl font-semibold">
-    <a href="#reviews" className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full">
-    التقييمات
-  </a>
+{/* Navbar */}
+<nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm">
+  <div className="max-w-[1400px] mx-auto px-8 py-4 flex items-center justify-between">
 
-  <a href="#steps" className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full">
-    الخطوات
-  </a>
+    {/* Logo */}
+    <a href="#home" className="flex items-center">
+      <img
+        src="/logo.png"
+        alt="رحلتنا للتأشيرات"
+        className="h-12 md:h-16 w-auto"
+      />
+    </a>
 
-  <a href="#countries" className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full">
-    الوجهات
-  </a>
+    {/* Desktop Menu */}
+    <div className="hidden md:flex items-center gap-14 text-[17px] font-semibold">
 
-  <a href="#home" className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full">
-    الرئيسية
-  </a>
-</div>
+      <a
+        href="#reviews"
+        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
+      >
+        التقييمات
+      </a>
+
+      <a
+        href="#contact"
+        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
+      >
+        ابدأ طلبك
+      </a>
+
+      <a
+        href="#countries"
+        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
+      >
+        الوجهات
+      </a>
+
+      <a
+        href="#home"
+        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
+      >
+        الرئيسية
+      </a>
+
+    </div>
+
+    {/* Desktop WhatsApp */}
+    <a
+      href="https://wa.me/966552525141"
+      target="_blank"
+      className="hidden md:flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-full font-bold transition duration-300 hover:scale-105 shadow-xl"
+    >
+      واتساب
+    </a>
+
+    {/* Mobile Menu Button */}
+    <button
+      onClick={() => setMenuOpen(true)}
+      className="md:hidden text-3xl font-bold"
+    >
+      ☰
+    </button>
+  </div>
+</nav>
+
+{/* Mobile Sidebar */}
+{menuOpen && (
+  <div className="fixed inset-0 z-[999] md:hidden">
+
+    {/* Overlay */}
+    <div
+      onClick={() => setMenuOpen(false)}
+      className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+    ></div>
+
+    {/* Sidebar */}
+    <div className="absolute top-0 right-0 h-full w-72 bg-white shadow-2xl p-6">
+
+      {/* Top */}
+      <div className="flex items-center justify-between mb-10">
+
+        <img
+          src="/logo.png"
+          alt="رحلتنا للتأشيرات"
+          className="h-12 w-auto"
+        />
+
+        <button
+          onClick={() => setMenuOpen(false)}
+          className="text-3xl"
+        >
+          ×
+        </button>
+      </div>
+
+      {/* Links */}
+      <div className="flex flex-col gap-6 text-lg font-bold text-right">
+
+        <a
+          onClick={() => setMenuOpen(false)}
+          href="#home"
+          className="hover:text-orange-500 transition"
+        >
+          الرئيسية
+        </a>
+
+        <a
+          onClick={() => setMenuOpen(false)}
+          href="#countries"
+          className="hover:text-orange-500 transition"
+        >
+          الوجهات
+        </a>
+
+        <a
+          onClick={() => setMenuOpen(false)}
+          href="#contact"
+          className="hover:text-orange-500 transition"
+        >
+          ابدأ طلبك
+        </a>
+
+        <a
+          onClick={() => setMenuOpen(false)}
+          href="#reviews"
+          className="hover:text-orange-500 transition"
+        >
+          التقييمات
+        </a>
+
         <a
           href="https://wa.me/966552525141"
           target="_blank"
-          className="bg-orange-500 text-white px-5 py-2 rounded-full hover:bg-orange-600 transition"
+          className="bg-orange-500 hover:bg-orange-600 text-white text-center px-6 py-3 rounded-full transition mt-4"
         >
           واتساب
         </a>
-      </nav>
 
+      </div>
+    </div>
+  </div>
+)}
       {/* Hero Section */}
 <section
   id="home"
@@ -193,10 +303,7 @@ className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-transl
     تأشيرة إلكترونية لمقيمي دول الخليج
   </p>
 </a>
-
-        </div>
-      </section>
-      <a
+<a
   href="/australia"
   className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
 >
@@ -210,6 +317,10 @@ className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-transl
     تأشيرات سياحية ودراسية إلكترونية
   </p>
 </a>
+
+        </div>
+      </section>
+ 
 {/* Why Choose Us */}
 <section className="bg-gray-50 py-24 px-8">
 
