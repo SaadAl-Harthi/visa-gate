@@ -118,6 +118,30 @@ export default function CanadaPage() {
 
   return (
     <main dir="rtl" className="bg-white text-black">
+
+<div className="absolute top-6 right-5 md:right-8 z-20">
+  <a
+    href="/"
+    className="
+    flex items-center gap-3
+    bg-white/70 backdrop-blur-xl
+    border border-orange-100
+    hover:border-orange-300
+    hover:bg-white
+    text-gray-700 hover:text-orange-500
+    px-5 md:px-7
+    py-3 md:py-4
+    rounded-full
+    shadow-[0_8px_30px_rgb(0,0,0,0.05)]
+    transition-all duration-300
+    text-sm md:text-base
+    font-medium
+  "
+  >
+    <span className="text-xl">→</span>
+    الرئيسية
+  </a>
+</div>
       {/* Hero */}
       <section className="px-5 md:px-8 py-20 md:py-28 text-center bg-gradient-to-b from-orange-100 via-orange-50 to-white">
         <div className="max-w-5xl mx-auto">

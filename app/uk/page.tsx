@@ -59,6 +59,24 @@ export default function UKPage() {
   return (
     <main dir="rtl" className="bg-white text-black">
 
+<div className="px-5 md:px-8 pt-6">
+  <a
+    href="/"
+    className="
+    inline-flex items-center gap-2
+    bg-white/70 backdrop-blur-md
+    border border-gray-100
+    hover:border-orange-200
+    hover:bg-orange-50
+    text-gray-700 hover:text-orange-500
+    px-5 py-3 rounded-full
+    shadow-sm transition duration-300
+  "
+  >
+    الرئيسية
+    <span className="text-lg">→</span>
+  </a>
+</div>
       {/* Hero */}
       <section className="px-5 md:px-8 py-20 md:py-28 text-center bg-gradient-to-b from-orange-100 via-orange-50 to-white">
         <div className="max-w-5xl mx-auto">
