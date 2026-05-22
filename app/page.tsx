@@ -743,6 +743,7 @@ dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
         <p>التصنيف: منظم رحلات سياحية</p>
       </div>
     </div>
+    
 
     <div className="flex justify-center items-center gap-4 mt-8 mb-10 flex-wrap">
       <a href="https://instagram.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-orange-500 transition px-5 py-3 rounded-full whitespace-nowrap">Instagram</a>
@@ -751,6 +752,23 @@ dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
       <a href="https://linkedin.com/company/studyrace" target="_blank" className="bg-white/10 hover:bg-blue-600 transition px-5 py-3 rounded-full whitespace-nowrap">LinkedIn</a>
       <a href="https://x.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-white hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">X</a>
     </div>
+    <div className="flex justify-center gap-6 mb-8 flex-wrap text-gray-300">
+
+  <a
+    href="/terms"
+    className="hover:text-orange-400 transition"
+  >
+    الشروط والأحكام
+  </a>
+
+  <a
+    href="/privacy"
+    className="hover:text-orange-400 transition"
+  >
+    سياسة الخصوصية
+  </a>
+
+</div>
 
     <div className="max-w-6xl mx-auto rounded-3xl overflow-hidden border border-zinc-800 mt-10">
       <iframe
@@ -761,6 +779,7 @@ dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
+      
     </div>
 
     <p className="text-gray-500 mt-8 text-sm">
