@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
@@ -10,6 +10,73 @@ export default function Home() {
   const [country, setCountry] = useState("");
   const [visaType, setVisaType] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const [reviewIndex, setReviewIndex] = useState(0);
+
+  const reviews = [
+    {
+      name: "أحمد الزهراني",
+      text: "تعامل راقي وسرعة في إنهاء الإجراءات، أنصح فيهم جدًا."
+    },
+
+    {
+      name: "نورة القحطاني",
+      text: "ساعدوني في تجهيز ملف التأشيرة ومتابعة الموعد بالكامل."
+    },
+
+    {
+      name: "خالد العرابي",
+      text: "تجربة ممتازة وتواصل سريع عبر الواتساب طوال فترة التقديم."
+    },
+
+    {
+      name: "عبدالله العتيبي",
+      text: "التقديم كان مرتب وسريع جدًا، وتمت مساعدتي خطوة بخطوة."
+    },
+
+    {
+      name: "سارة باخشب",
+      text: "أفضل تجربة تعامل في التأشيرات، خصوصًا سرعة الرد والمتابعة."
+    },
+
+    {
+      name: "تركي الشمراني",
+      text: "تم استخراج التأشيرة بكل احترافية وسهولة."
+    },
+
+    {
+      name: "محمد الذيابي",
+      text: "شرح واضح ومتابعة ممتازة حتى بعد التقديم."
+    },
+
+    {
+      name: "رغد مستور",
+      text: "خدمة ممتازة وتعامل راقي جدًا وأنصح فيهم."
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setReviewIndex((prev) => (prev + 1) % reviews.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [reviews.length]);
+
+const previousReview =
+  reviews[(reviewIndex - 1 + reviews.length) % reviews.length];
+
+const currentReview = reviews[reviewIndex];
+
+const nextReview = reviews[(reviewIndex + 1) % reviews.length];
+
+const goNext = () => {
+  setReviewIndex((prev) => (prev + 1) % reviews.length);
+};
+
+const goPrev = () => {
+  setReviewIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+};
 
   const sendToWhatsApp = () => {
     const message = `
@@ -27,22 +94,23 @@ export default function Home() {
   };
 
   return (
-<main className="bg-white text-black">
-{/* Navbar */}
-<nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm">
-  <div className="max-w-[1400px] mx-auto px-8 py-4 flex items-center justify-between">
+    <main className="bg-white text-black">
+{/* Floating Navbar */}
+<nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50">
+
+  <div className="bg-white/80 backdrop-blur-2xl border border-white/40 shadow-2xl rounded-3xl px-6 md:px-10 py-4 flex items-center justify-between">
 
     {/* Logo */}
     <a href="#home" className="flex items-center">
       <img
         src="/logo.png"
-        alt="رحلتنا للتأشيرات"
-        className="h-12 md:h-16 w-auto"
+        alt="رحلتنا لإستخراج التأشيرات"
+        className="h-12 md:h-16 w-auto transition duration-300"
       />
     </a>
 
     {/* Desktop Menu */}
-    <div className="hidden md:flex items-center gap-14 text-[17px] font-semibold">
+    <div className="hidden md:flex items-center gap-20 text-[19px] font-semibold">
 
       <a
         href="#reviews"
@@ -78,7 +146,7 @@ export default function Home() {
     <a
       href="https://wa.me/966552525141"
       target="_blank"
-      className="hidden md:flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-full font-bold transition duration-300 hover:scale-105 shadow-xl"
+      className="hidden md:flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-2xl font-bold transition duration-300 hover:scale-105 shadow-xl"
     >
       واتساب
     </a>
@@ -90,6 +158,7 @@ export default function Home() {
     >
       ☰
     </button>
+
   </div>
 </nav>
 
@@ -100,7 +169,7 @@ export default function Home() {
     {/* Overlay */}
     <div
       onClick={() => setMenuOpen(false)}
-      className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+      className="absolute inset-0 bg-black/50 backdrop-blur-sm"
     ></div>
 
     {/* Sidebar */}
@@ -121,6 +190,7 @@ export default function Home() {
         >
           ×
         </button>
+
       </div>
 
       {/* Links */}
@@ -129,39 +199,43 @@ export default function Home() {
         <a
           onClick={() => setMenuOpen(false)}
           href="#home"
-          className="hover:text-orange-500 transition"
+          className="hover:text-orange-500 transition flex items-center justify-between"
         >
-          الرئيسية
+          <span>الرئيسية</span>
+          <span>🏠</span>
         </a>
 
         <a
           onClick={() => setMenuOpen(false)}
           href="#countries"
-          className="hover:text-orange-500 transition"
+          className="hover:text-orange-500 transition flex items-center justify-between"
         >
-          الوجهات
+          <span>الوجهات</span>
+          <span>🌍</span>
         </a>
 
         <a
           onClick={() => setMenuOpen(false)}
           href="#contact"
-          className="hover:text-orange-500 transition"
+          className="hover:text-orange-500 transition flex items-center justify-between"
         >
-          ابدأ طلبك
+          <span>ابدأ طلبك</span>
+          <span>🛂</span>
         </a>
 
         <a
           onClick={() => setMenuOpen(false)}
           href="#reviews"
-          className="hover:text-orange-500 transition"
+          className="hover:text-orange-500 transition flex items-center justify-between"
         >
-          التقييمات
+          <span>التقييمات</span>
+          <span>⭐</span>
         </a>
 
         <a
           href="https://wa.me/966552525141"
           target="_blank"
-          className="bg-orange-500 hover:bg-orange-600 text-white text-center px-6 py-3 rounded-full transition mt-4"
+          className="bg-orange-500 hover:bg-orange-600 text-white text-center px-6 py-3 rounded-2xl transition mt-4"
         >
           واتساب
         </a>
@@ -241,14 +315,24 @@ className="bg-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-
 <section id="countries"
        className="px-8 pb-24">
         <h3 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          الوجهات الأكثر طلبًا
+          التأشيرات الأكثر طلبًا
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-
+<div
+  className="
+  flex md:grid
+  md:grid-cols-2 lg:grid-cols-3
+  gap-5 md:gap-8
+  overflow-x-auto
+  md:overflow-visible
+  snap-x snap-mandatory
+  pb-4
+  scrollbar-hide
+"
+>
 <a
   href="/uk"
-  className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
+  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
 >            <h4 className="text-3xl mb-4">🇬🇧</h4>
             <h5 className="text-2xl font-semibold mb-2">بريطانيا</h5>
             <p className="text-gray-600">
@@ -258,7 +342,7 @@ className="bg-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-
 
 <a
   href="/usa"
-  className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
+  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
 >            <h4 className="text-3xl mb-4">🇺🇸</h4>
             <h5 className="text-2xl font-semibold mb-2">أمريكا</h5>
             <p className="text-gray-600">
@@ -268,7 +352,7 @@ className="bg-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-
 
 <a
   href="/schengen"
-className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block">
+className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block">
               <h4 className="text-3xl mb-4">🇪🇺</h4>
             <h5 className="text-2xl font-semibold mb-2">شنغن</h5>
             <p className="text-gray-600">
@@ -277,7 +361,7 @@ className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-transl
           </a>
 <a
   href="/canada"
-  className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
+  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
 >
   <h4 className="text-3xl mb-4">🇨🇦</h4>
 
@@ -291,7 +375,7 @@ className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-transl
 </a>
 <a
   href="/uae"
-  className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
+  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
 >
   <h4 className="text-3xl mb-4">🇦🇪</h4>
 
@@ -305,7 +389,7 @@ className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-transl
 </a>
 <a
   href="/australia"
-  className="border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
+  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
 >
   <h4 className="text-3xl mb-4">🇦🇺</h4>
 
@@ -408,43 +492,48 @@ className="py-24 px-8 bg-white">
 
 </section>
 {/* Testimonials */}
-<section id="reviews" 
-className="px-5 md:px-8 py-16 md:py-24 bg-gray-50">
+<section id="reviews" className="bg-gray-50 py-16 md:py-24 px-5 md:px-8 overflow-hidden">
   <h3 className="text-3xl md:text-4xl font-bold text-center mb-16">
     آراء عملائنا
   </h3>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+  <div className="relative max-w-5xl mx-auto h-[340px] flex items-center justify-center">
 
-    <div className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-2xl transition duration-300 text-center">
-      <div className="text-yellow-400 text-2xl mb-4">
-        ★★★★★
-      </div>
-      <h4 className="text-xl font-bold mb-2">عبدالله الحربي</h4>
-      <p className="text-gray-600">
-        استخراج التأشيرة كان سريع جدًا والخدمة ممتازة.
-      </p>
+    {/* Previous */}
+    <div className="hidden md:block absolute right-0 w-[320px] h-[230px] bg-white border border-gray-100 rounded-3xl p-8 text-center opacity-40 scale-90 blur-[1px] transition duration-500">
+      <h4 className="font-bold text-xl mb-3">{previousReview.name}</h4>
+      <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
+      <p className="text-gray-600 leading-8">{previousReview.text}</p>
     </div>
 
-    <div className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-2xl transition duration-300 text-center">
-      <div className="text-yellow-400 text-2xl mb-4">
-        ★★★★★
-      </div>
-      <h4 className="text-xl font-bold mb-2">تركي العتيبي</h4>
-      <p className="text-gray-600">
-        أفضل تعامل وتجهيز ملف مرتب وسريع.
-      </p>
+    {/* Current */}
+    <div className="relative z-10 w-full md:w-[420px] h-[280px] bg-white border border-orange-100 rounded-3xl p-8 text-center shadow-2xl transition duration-500">
+      <h4 className="font-bold text-2xl mb-3">{currentReview.name}</h4>
+      <div className="text-yellow-400 text-3xl mb-5">★★★★★</div>
+      <p className="text-gray-600 leading-8">{currentReview.text}</p>
     </div>
 
-    <div className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-2xl transition duration-300 text-center">
-      <div className="text-yellow-400 text-2xl mb-4">
-        ★★★★★
-      </div>
-      <h4 className="text-xl font-bold mb-2">محمد القحطاني</h4>
-      <p className="text-gray-600">
-        ساعدوني بكل خطوات التأشيرة حتى صدورها.
-      </p>
+    {/* Next */}
+    <div className="hidden md:block absolute left-0 w-[320px] h-[230px] bg-white border border-gray-100 rounded-3xl p-8 text-center opacity-40 scale-90 blur-[1px] transition duration-500">
+      <h4 className="font-bold text-xl mb-3">{nextReview.name}</h4>
+      <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
+      <p className="text-gray-600 leading-8">{nextReview.text}</p>
     </div>
+
+    {/* Arrows */}
+    <button
+      onClick={goPrev}
+      className="absolute right-2 md:right-20 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-orange-500 hover:text-white border border-gray-100 w-12 h-12 rounded-full shadow-lg transition"
+    >
+      ›
+    </button>
+
+    <button
+      onClick={goNext}
+      className="absolute left-2 md:left-20 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-orange-500 hover:text-white border border-gray-100 w-12 h-12 rounded-full shadow-lg transition"
+    >
+      ‹
+    </button>
 
   </div>
 </section>
