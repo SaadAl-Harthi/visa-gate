@@ -95,6 +95,37 @@ const goPrev = () => {
 
   return (
     <main className="bg-white text-black">
+
+    <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      name: "رحلتنا لإستخراج التأشيرات",
+      alternateName: "Study Race",
+      url: "https://visa-gate.vercel.app",
+      logo: "https://visa-gate.vercel.app/logo.png",
+      telephone: "+966552525141",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "مكتب 102 - الدور الأول - برج الحميضي، طريق المدينة، حي السلامة",
+        addressLocality: "جدة",
+        addressCountry: "SA",
+      },
+      areaServed: "SA",
+      description:
+        "خدمات استخراج التأشيرات السياحية والدراسية وتجهيز المتطلبات وحجز المواعيد.",
+      sameAs: [
+        "https://instagram.com/studyrace1",
+        "https://snapchat.com/add/studyrace1",
+        "https://tiktok.com/@studyrace1",
+        "https://linkedin.com/company/studyrace",
+        "https://x.com/studyrace1",
+      ],
+    }),
+  }}
+/>
 {/* Floating Navbar */}
 <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50">
 
