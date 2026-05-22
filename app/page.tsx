@@ -538,7 +538,7 @@ className="py-24 px-8 bg-white">
   w-12 h-12 rounded-full shadow-lg transition
 "
 >
-  ›
+  ‹
 </button>
 
  <button
@@ -554,7 +554,7 @@ className="py-24 px-8 bg-white">
   w-12 h-12 rounded-full shadow-lg transition
 "
 >
-  ‹
+  ›
 </button>
 
   </div>
