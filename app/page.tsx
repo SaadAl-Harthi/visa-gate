@@ -317,17 +317,21 @@ className="bg-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-
         <h3 className="text-3xl md:text-4xl font-bold text-center mb-12">
           التأشيرات الأكثر طلبًا
         </h3>
+        <p className="text-center text-gray-400 mt-3 mb-8 md:hidden animate-pulse">
+  اسحب لعرض المزيد ←
+</p>
 
 <div
-  className="
-  flex md:grid
-  md:grid-cols-2 lg:grid-cols-3
-  gap-5 md:gap-8
-  overflow-x-auto
-  md:overflow-visible
-  snap-x snap-mandatory
-  pb-4
-  scrollbar-hide
+className="
+flex flex-row-reverse md:grid
+md:grid-cols-2 lg:grid-cols-3
+gap-5 md:gap-8
+overflow-x-auto
+md:overflow-visible
+snap-x snap-mandatory
+scroll-smooth
+pb-4
+scrollbar-hide
 "
 >
 <a
