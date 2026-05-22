@@ -12,11 +12,48 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "رحلتنا للتأشيرات | استخراج التأشيرات السياحية والدراسية",
+
   description:
     "خدمات استخراج التأشيرات السياحية والدراسية لجميع الوجهات العالمية مع تجهيز المتطلبات والمتابعة عبر واتساب.",
+
+  openGraph: {
+    title: "رحلتنا للتأشيرات",
+
+    description:
+      "خدمات استخراج التأشيرات السياحية والدراسية لجميع الوجهات العالمية.",
+
+    url: "https://visa-gate.vercel.app",
+
+    siteName: "رحلتنا للتأشيرات",
+
+    images: [
+      {
+        url: "https://visa-gate.vercel.app/og-image-v2.png",
+        width: 1200,
+        height: 630,
+        alt: "رحلتنا للتأشيرات",
+      },
+    ],
+
+    locale: "ar_SA",
+
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title: "رحلتنا للتأشيرات",
+
+    description:
+      "خدمات استخراج التأشيرات السياحية والدراسية لجميع الوجهات العالمية.",
+
+    images: ["https://visa-gate.vercel.app/og-image-v2.png"],
+  },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,3 +68,4 @@ export default function RootLayout({
     </html>
   );
 }
+
