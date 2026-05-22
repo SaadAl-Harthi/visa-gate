@@ -17,7 +17,9 @@ export const metadata: Metadata = {
 
   description:
     "خدمات استخراج التأشيرات السياحية والدراسية لجميع الوجهات العالمية مع تجهيز المتطلبات والمتابعة عبر واتساب.",
-
+verification: {
+  google: "a_FZgceeVsU7gRvj0J29ggKAgPKRCYnGg9n1Hxi8Lvo",
+},
   openGraph: {
     title: "رحلتنا للتأشيرات",
 
