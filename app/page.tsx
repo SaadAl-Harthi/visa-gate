@@ -199,37 +199,29 @@ const goPrev = () => {
         <a
           onClick={() => setMenuOpen(false)}
           href="#home"
-          className="hover:text-orange-500 transition flex items-center justify-between"
-        >
+className="hover:text-orange-500 transition text-right"        >
           <span>الرئيسية</span>
-          <span>🏠</span>
         </a>
 
         <a
           onClick={() => setMenuOpen(false)}
           href="#countries"
-          className="hover:text-orange-500 transition flex items-center justify-between"
-        >
+className="hover:text-orange-500 transition text-right"        >
           <span>الوجهات</span>
-          <span>🌍</span>
         </a>
 
         <a
           onClick={() => setMenuOpen(false)}
           href="#contact"
-          className="hover:text-orange-500 transition flex items-center justify-between"
-        >
+className="hover:text-orange-500 transition text-right"        >
           <span>ابدأ طلبك</span>
-          <span>🛂</span>
         </a>
 
         <a
           onClick={() => setMenuOpen(false)}
           href="#reviews"
-          className="hover:text-orange-500 transition flex items-center justify-between"
-        >
+className="hover:text-orange-500 transition text-right"        >
           <span>التقييمات</span>
-          <span>⭐</span>
         </a>
 
         <a
