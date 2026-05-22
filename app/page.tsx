@@ -521,19 +521,37 @@ className="py-24 px-8 bg-white">
     </div>
 
     {/* Arrows */}
-    <button
-      onClick={goPrev}
-      className="absolute right-2 md:right-20 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-orange-500 hover:text-white border border-gray-100 w-12 h-12 rounded-full shadow-lg transition"
-    >
-      ›
-    </button>
+   <button
+  onClick={goPrev}
+  className="
+  absolute md:right-20
+  bottom-[-70px] md:bottom-auto
+  right-[55%] md:top-1/2
+  md:-translate-y-1/2
+  z-20
+  bg-white/80 hover:bg-orange-500 hover:text-white
+  border border-gray-100
+  w-12 h-12 rounded-full shadow-lg transition
+"
+>
+  ›
+</button>
 
-    <button
-      onClick={goNext}
-      className="absolute left-2 md:left-20 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-orange-500 hover:text-white border border-gray-100 w-12 h-12 rounded-full shadow-lg transition"
-    >
-      ‹
-    </button>
+ <button
+  onClick={goNext}
+  className="
+  absolute md:left-20
+  bottom-[-70px] md:bottom-auto
+  left-[55%] md:top-1/2
+  md:-translate-y-1/2
+  z-20
+  bg-white/80 hover:bg-orange-500 hover:text-white
+  border border-gray-100
+  w-12 h-12 rounded-full shadow-lg transition
+"
+>
+  ‹
+</button>
 
   </div>
 </section>
