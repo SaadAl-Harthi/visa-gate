@@ -180,7 +180,7 @@ const goPrev = () => {
 
         <img
           src="/logo.png"
-          alt="رحلتنا للتأشيرات"
+          alt="رحلتنا لإستخراج التأشيرات"
           className="h-12 w-auto"
         />
 
@@ -244,7 +244,7 @@ className="min-h-[90vh] flex flex-col items-center justify-center text-center px
       "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop')",
   }}
 >
-<h2 className="text-3xl md:text-4xl md:text-6xl font-bold mb-6 leading-tight text-white bg-black/40 px-6 py-3 rounded-2xl backdrop-blur-sm">  رحلتنا لاستخراج التأشيرات
+<h2 className="text-3xl md:text-4xl md:text-6xl font-bold mb-6 leading-tight text-white bg-black/40 px-6 py-3 rounded-2xl backdrop-blur-sm">  رحلتنا لإستخراج التأشيرات
 </h2>
 <p  className="text-white text-xl max-w-2xl mb-10 bg-black/30 px-5 py-3 rounded-2xl backdrop-blur-sm">بوابتك لاستخراج التأشيرات السياحية والدراسية بأسرع وأسهل طريقة        </p>
 
@@ -405,7 +405,7 @@ className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl
 <section className="bg-gray-50 py-24 px-8">
 
   <h3 className="text-3xl md:text-4xl font-bold text-center mb-14">
-    لماذا تختار رحلتنا للتأشيرات؟
+    لماذا تختار رحلتنا لإستخراج التأشيرات؟
   </h3>
 
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -570,7 +570,7 @@ dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
   <div className="w-16 h-1 bg-orange-500 rounded-full mb-6"></div>
 
   <p className="text-gray-600 leading-8">
-    رحلتنا للتأشيرات هي منصة متخصصة في خدمات التأشيرات السياحية والدراسية، نساعد عملاءنا في تسهيل إجراءات السفر واستخراج التأشيرات لجميع الوجهات العالمية باحترافية وموثوقية.
+    رحلتنا لإستخراج التأشيرات هي منصة متخصصة في خدمات التأشيرات السياحية والدراسية، نساعد عملاءنا في تسهيل إجراءات السفر واستخراج التأشيرات لجميع الوجهات العالمية باحترافية وموثوقية.
   </p>
 
 </div>
@@ -722,7 +722,7 @@ dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
 {/* Footer */}
 <footer className="bg-black text-white py-14 px-8">
   <div className="max-w-6xl mx-auto text-center">
-    <h3 className="text-3xl font-bold mb-4">رحلتنا للتأشيرات</h3>
+    <h3 className="text-3xl font-bold mb-4">رحلتنا لإستخراج التأشيرات</h3>
 
     <p className="text-gray-400 mb-10">
       خدمات التأشيرات السياحية والدراسية لجميع الوجهات العالمية.
