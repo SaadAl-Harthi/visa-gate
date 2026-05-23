@@ -288,52 +288,38 @@ className="bg-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-
         </a>
       </section>
 {/* Stats */}
-<section dir="rtl" className="bg-gradient-to-r from-zinc-900 to-black text-white py-10 px-8">
+<section className="bg-gradient-to-r from-zinc-900 to-black text-white py-8 overflow-hidden">
+  <div className="flex w-[200%] animate-[statsLoop_22s_linear_infinite]">
+    
+    {[1, 2].map((set) => (
+      <div
+        key={set}
+        dir="rtl"
+        className="w-1/2 flex items-center justify-around shrink-0"
+      >
+        <div className="text-center">
+          <h3 className="text-4xl font-bold text-orange-400 mb-2">+1200</h3>
+          <p className="text-gray-300">عميل</p>
+        </div>
 
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto text-center">
+        <div className="text-center">
+          <h3 className="text-4xl font-bold text-orange-400 mb-2">+40</h3>
+          <p className="text-gray-300">وجهة</p>
+        </div>
 
-    <div>
-      <h3 className="text-4xl font-bold text-orange-400 mb-2">
-        +1200
-      </h3>
+        <div className="text-center">
+          <h3 className="text-4xl font-bold text-orange-400 mb-2">99%</h3>
+          <p className="text-gray-300">نسبة رضا العملاء</p>
+        </div>
 
-      <p className="text-gray-300">
-        عميل
-      </p>
-    </div>
-
-    <div>
-      <h3 className="text-4xl font-bold text-orange-400 mb-2">
-        +40
-      </h3>
-
-      <p className="text-gray-300">
-        وجهة
-      </p>
-    </div>
-
-    <div>
-      <h3 className="text-4xl font-bold text-orange-400 mb-2">
-        99%
-      </h3>
-
-      <p className="text-gray-300">
-        نسبة رضا العملاء
-      </p>
-    </div>
-
-    <div>
-      <h3 className="text-4xl font-bold text-orange-400 mb-2">
-        24/7
-      </h3>
-
-      <p className="text-gray-300">
-        دعم مستمر
-      </p>
-    </div>
+        <div className="text-center">
+          <h3 className="text-4xl font-bold text-orange-400 mb-2">24/7</h3>
+          <p className="text-gray-300">دعم مستمر</p>
+        </div>
+      </div>
+    ))}
 
   </div>
-
 </section>
       {/* Countries */}
 <section id="countries"
