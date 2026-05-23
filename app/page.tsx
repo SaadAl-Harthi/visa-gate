@@ -275,8 +275,9 @@ className="min-h-[90vh] flex flex-col items-center justify-center text-center px
       "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop')",
   }}
 >
-<h2 className="text-3xl md:text-4xl md:text-6xl font-bold mb-6 leading-tight text-white bg-black/40 px-6 py-3 rounded-2xl backdrop-blur-sm">  رحلتنا لإستخراج التأشيرات
-</h2>
+<h1 className="text-3xl md:text-4xl md:text-6xl font-bold mb-6 leading-tight text-white bg-black/40 px-6 py-3 rounded-2xl backdrop-blur-sm">
+  رحلتنا لإستخراج التأشيرات
+</h1>
 <p  className="text-white text-xl max-w-2xl mb-10 bg-black/30 px-5 py-3 rounded-2xl backdrop-blur-sm">بوابتك لاستخراج التأشيرات السياحية والدراسية بأسرع وأسهل طريقة        </p>
 
         <a
