@@ -1,7 +1,17 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+import {
+  Headphones,
+  ShieldCheck,
+  Award,
+  FileText,
+  Users,
+  MessageCircle,
+  Globe2,
+} from "lucide-react";
 
 export default function Home() {
 
@@ -126,298 +136,452 @@ const goPrev = () => {
     }),
   }}
 />
-{/* Floating Navbar */}
-<nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50">
+{/* Premium Hero */}
+<section
+  id="home"
+  dir="rtl"
+  className="relative min-h-screen overflow-hidden bg-[#f8efe3] text-[#101b32]"
+>
+  {/* Background */}
+  <div className="absolute inset-0">
+    <img
+      src="/hero-bg.png"
+      alt="رحلتنا لاستخراج التأشيرات"
+      className="h-full w-full object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-l from-white/90 via-white/55 to-white/10" />
+    <div className="absolute inset-0 bg-gradient-to-t from-[#07142c]/70 via-transparent to-transparent" />
+  </div>
 
-  <div className="bg-white/80 backdrop-blur-2xl border border-white/40 shadow-2xl rounded-3xl px-6 md:px-10 py-4 flex items-center justify-between">
+{/* Navbar */}
+<motion.header
+  initial={{ y: -40, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.7 }}
+  className="fixed top-3 md:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-7xl"
+>
+  <nav className="relative flex items-center justify-between rounded-[32px] border border-white/60 bg-white/90 px-5 py-4 shadow-2xl shadow-black/10 backdrop-blur-2xl md:px-12 md:py-5">
 
-    {/* Logo */}
-    <a href="#home" className="flex items-center">
-      <img
-        src="/logo.png"
-        alt="رحلتنا لإستخراج التأشيرات"
-        className="h-12 md:h-16 w-auto transition duration-300"
-      />
-    </a>
-
-    {/* Desktop Menu */}
-    <div className="hidden md:flex items-center gap-20 text-[19px] font-semibold">
-
-      <a
-        href="#reviews"
-        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
-      >
-        التقييمات
-      </a>
-
-      <a
-        href="#contact"
-        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
-      >
-        ابدأ طلبك
-      </a>
-
-      <a
-        href="#countries"
-        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
-      >
-        الوجهات
-      </a>
-
-      <a
-        href="#home"
-        className="relative hover:text-orange-500 transition duration-300 after:absolute after:-bottom-2 after:right-0 after:w-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
-      >
-        الرئيسية
-      </a>
-
-    </div>
-
-    {/* Desktop WhatsApp */}
-    <a
-      href="https://wa.me/966552525141"
-      target="_blank"
-      className="hidden md:flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-2xl font-bold transition duration-300 hover:scale-105 shadow-xl"
-    >
-      واتساب
-    </a>
-
-    {/* Mobile Menu Button */}
+    {/* Mobile Menu Button - Right */}
     <button
-      onClick={() => setMenuOpen(true)}
-      className="md:hidden text-3xl font-bold"
+      onClick={() => setMenuOpen(!menuOpen)}
+      className="md:hidden text-3xl font-bold text-slate-900"
     >
       ☰
     </button>
 
-  </div>
-</nav>
+    {/* Desktop WhatsApp - Left */}
+    <a
+      href="https://wa.me/966552525141"
+      target="_blank"
+      className="hidden md:flex items-center gap-2 rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 px-8 py-4 text-base font-bold text-white shadow-lg shadow-orange-500/30 transition hover:scale-105"
+    >
+      <MessageCircle size={22} />
+      واتساب
+    </a>
 
-{/* Mobile Sidebar */}
-{menuOpen && (
-  <div className="fixed inset-0 z-[999] md:hidden">
-
-    {/* Overlay */}
-    <div
-      onClick={() => setMenuOpen(false)}
-      className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-    ></div>
-
-    {/* Sidebar */}
-    <div className="absolute top-0 right-0 h-full w-72 bg-white shadow-2xl p-6">
-
-      {/* Top */}
-      <div className="flex items-center justify-between mb-10">
-
-        <img
-          src="/logo.png"
-          alt="رحلتنا لإستخراج التأشيرات"
-          className="h-12 w-auto"
-        />
-
-        <button
-          onClick={() => setMenuOpen(false)}
-          className="text-3xl"
+    {/* Desktop Links */}
+    <div className="hidden items-center gap-14 text-[19px] font-bold text-slate-800 lg:flex">
+      {[
+        ["الرئيسية", "#home"],
+        ["الوجهات", "#countries"],
+        ["ابدأ طلبك", "#contact"],
+        ["التقييمات", "#reviews"],
+        ["من نحن", "#about"],
+      ].map(([label, href], index) => (
+        <a
+          key={label}
+          href={href}
+          className={`relative transition duration-300 hover:text-orange-500 after:absolute after:-bottom-3 after:right-0 after:h-[2px] after:w-0 after:rounded-full after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full ${
+            index === 0 ? "text-orange-500 after:w-full" : ""
+          }`}
         >
-          ×
-        </button>
-
-      </div>
-
-      {/* Links */}
-      <div className="flex flex-col gap-6 text-lg font-bold text-right">
-
-        <a
-          onClick={() => setMenuOpen(false)}
-          href="#home"
-className="hover:text-orange-500 transition text-right"        >
-          <span>الرئيسية</span>
+          {label}
         </a>
-
-        <a
-          onClick={() => setMenuOpen(false)}
-          href="#countries"
-className="hover:text-orange-500 transition text-right"        >
-          <span>الوجهات</span>
-        </a>
-
-        <a
-          onClick={() => setMenuOpen(false)}
-          href="#contact"
-className="hover:text-orange-500 transition text-right"        >
-          <span>ابدأ طلبك</span>
-        </a>
-
-        <a
-          onClick={() => setMenuOpen(false)}
-          href="#reviews"
-className="hover:text-orange-500 transition text-right"        >
-          <span>التقييمات</span>
-        </a>
-
-        <a
-          href="https://wa.me/966552525141"
-          target="_blank"
-          className="bg-orange-500 hover:bg-orange-600 text-white text-center px-6 py-3 rounded-2xl transition mt-4"
-        >
-          واتساب
-        </a>
-
-      </div>
+      ))}
     </div>
-  </div>
-)}
-      {/* Hero Section */}
-<section
-  id="home"
-className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 py-32 pt-32 bg-cover bg-center relative"  style={{
-    backgroundImage:
-      "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop')",
-  }}
->
-<h1 className="text-3xl md:text-4xl md:text-6xl font-bold mb-6 leading-tight text-white bg-black/40 px-6 py-3 rounded-2xl backdrop-blur-sm">
-  رحلتنا لإستخراج التأشيرات
-</h1>
-<p  className="text-white text-xl max-w-2xl mb-10 bg-black/30 px-5 py-3 rounded-2xl backdrop-blur-sm">بوابتك لاستخراج التأشيرات السياحية والدراسية بأسرع وأسهل طريقة        </p>
 
+    {/* Logo - Left visually */}
+    <a href="#home" className="mr-auto md:mr-0">
+      <img
+        src="/logo.png"
+        alt="رحلتنا للتأشيرات"
+        className="h-9 w-auto md:h-16"
+      />
+    </a>
+  </nav>
+
+  {/* Mobile Menu */}
+  {menuOpen && (
+    <div className="md:hidden mt-4 rounded-3xl bg-white/95 backdrop-blur-xl shadow-2xl p-6 flex flex-col gap-5 text-right text-lg font-bold">
+      <a href="#home" onClick={() => setMenuOpen(false)}>
+        الرئيسية
+      </a>
+
+      <a href="#countries" onClick={() => setMenuOpen(false)}>
+        الوجهات
+      </a>
+
+      <a href="#contact" onClick={() => setMenuOpen(false)}>
+        ابدأ طلبك
+      </a>
+
+      <a href="#reviews" onClick={() => setMenuOpen(false)}>
+        التقييمات
+      </a>
+
+      <a href="#about" onClick={() => setMenuOpen(false)}>
+        من نحن
+      </a>
+
+      <a
+        href="https://wa.me/966552525141"
+        target="_blank"
+        className="bg-orange-500 text-white rounded-2xl py-4 text-center mt-2"
+      >
+        واتساب
+      </a>
+    </div>
+  )}
+</motion.header>
+
+  {/* Content */}
+  <div className="relative z-10 mx-auto flex min-h-[calc(100vh-140px)] w-[92%] max-w-7xl items-center pb-16 pt-36 md:pb-64 md:pt-44">
+    <motion.div
+      initial={{ opacity: 0, x: 60 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+className="mr-0 ml-auto w-full max-w-2xl text-center md:text-right"
+    >
+      <h1 className="text-5xl font-black leading-tight md:text-7xl">
+        <span className="block text-orange-500">رحلتنا</span>
+        <span className="block text-[#101b32]">
+          لاستخراج التأشيرات
+        </span>
+      </h1>
+
+      <p className="mt-6 text-xl font-medium leading-relaxed text-slate-800 md:text-2xl">
+        بوابتك لاستخراج التأشيرات السياحية والدراسية
+        <br />
+        بأسرع وأسهل طريقة
+      </p>
+
+      <div className="mt-8 flex flex-wrap justify-center gap-4 md:justify-start">
+        {[
+          ["إجراءات احترافية", Award],
+          ["دعم متخصص 24/7", Headphones],
+          ["نسبة نجاح مرتفعة", ShieldCheck],
+        ].map(([text, Icon]: any) => (
+          <div
+            key={text}
+            className="flex items-center gap-3 rounded-2xl border border-orange-200/70 bg-white/50 px-5 py-3 text-sm font-bold text-slate-800 shadow-sm backdrop-blur-xl"
+          >
+            <Icon className="text-orange-500" size={22} />
+            {text}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-9">
         <a
-          href="https://wa.me/966552525141"
-          target="_blank"
-className="bg-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-lg hover:bg-orange-600 hover:scale-105 transition duration-300"        >
+          href="#contact"
+          className="inline-block rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 px-16 py-5 text-lg font-bold text-white shadow-xl shadow-orange-500/30 transition hover:scale-105"
+        >
           ابدأ طلبك الآن
         </a>
-      </section>
-{/* Stats */}
-<section className="bg-gradient-to-r from-zinc-900 to-black text-white py-8 overflow-hidden">
-  <div className="flex w-[200%] animate-[statsLoop_22s_linear_infinite]">
-    
-    {[1, 2].map((set) => (
-      <div
-        key={set}
-        dir="rtl"
-        className="w-1/2 flex items-center justify-around shrink-0"
-      >
-        <div className="text-center">
-          <h3 className="text-4xl font-bold text-orange-400 mb-2">+1200</h3>
-          <p className="text-gray-300">عميل</p>
-        </div>
-
-        <div className="text-center">
-          <h3 className="text-4xl font-bold text-orange-400 mb-2">+40</h3>
-          <p className="text-gray-300">وجهة</p>
-        </div>
-
-        <div className="text-center">
-          <h3 className="text-4xl font-bold text-orange-400 mb-2">99%</h3>
-          <p className="text-gray-300">نسبة رضا العملاء</p>
-        </div>
-
-        <div className="text-center">
-          <h3 className="text-4xl font-bold text-orange-400 mb-2">24/7</h3>
-          <p className="text-gray-300">دعم مستمر</p>
-        </div>
       </div>
-    ))}
+    </motion.div>
+  </div>
+
+  {/* Floating Stats */}
+  <motion.div
+    initial={{ y: 60, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ delay: 0.3, duration: 0.8 }}
+className="
+relative md:absolute
+-mt-20 md:mt-0
+bottom-auto md:bottom-28
+left-auto md:left-1/2
+z-20
+w-[92%] max-w-7xl
+mx-auto md:-translate-x-1/2
+rounded-t-[30px]
+border border-white/60
+bg-white/90
+px-6 md:px-8
+py-8
+shadow-2xl shadow-black/15
+backdrop-blur-2xl
+"  >
+    <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:divide-x md:divide-x-reverse md:divide-slate-200">
+      {[
+        { icon: ShieldCheck, value: "99%", label: "نسبة نجاح عالية" },
+        { icon: Headphones, value: "24/7", label: "دعم على مدار الساعة" },
+        { icon: FileText, value: "1200+", label: "طلب مكتمل بنجاح" },
+        { icon: Users, value: "40+", label: "وجهة متاحة" },
+      ].map((item) => (
+        <div key={item.value} className="flex items-center justify-center gap-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-orange-500 shadow-lg">
+            <item.icon size={30} />
+          </div>
+
+          <div>
+            <div className="text-2xl font-black md:text-4xl">
+              {item.value}
+            </div>
+            <div className="text-xs md:text-sm text-slate-700">
+              {item.label}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </motion.div>
+
+  {/* Bottom Trust Bar */}
+  <div className="
+relative md:absolute
+bottom-auto md:bottom-6
+left-auto md:left-1/2
+z-20
+w-[92%] max-w-7xl
+mx-auto md:-translate-x-1/2
+rounded-b-[30px]
+bg-[#0d1b3d]
+px-6 py-8
+text-white
+shadow-2xl
+">
+    <div className="grid gap-5 text-center text-base font-semibold md:grid-cols-3 md:text-lg">
+      {[
+        ["خبرة في مجال التأشيرات", Award],
+        ["خدمات لوجهات متعددة", Globe2],
+        ["نضمن لك تجربة واضحة", ShieldCheck],
+      ].map(([text, Icon]: any) => (
+        <div key={text} className="flex items-center justify-center gap-3 text-white/90">
+          <Icon className="text-white/45" />
+          <span>{text}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* Countries */}
+<section
+  id="countries"
+  dir="rtl"
+  className="relative px-5 md:px-8 pt-10 pb-24 overflow-hidden bg-gradient-to-b from-white via-orange-50/30 to-white"
+>
+  <div className="max-w-7xl mx-auto">
+
+    {/* Heading */}
+    <div className="text-center mb-14">
+
+      <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-orange-100 bg-white shadow-sm text-orange-500 font-bold mb-5">
+        <span>✈️</span>
+        وجهاتنا الأكثر طلبًا
+      </div>
+
+      <h3 className="text-4xl md:text-6xl font-black mb-5 text-[#101b32]">
+        التأشيرات <span className="text-orange-500">الأكثر طلبًا</span>
+      </h3>
+
+      <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-8">
+        اختر وجهتك، وفريق رحلتنا يتولى تجهيز ملفك ومتابعة طلبك خطوة بخطوة.
+      </p>
+
+    </div>
+
+    {/* Desktop Cards */}
+    <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+
+      {[
+        {
+          href: "/uk",
+          flag: "🇬🇧",
+          title: "بريطانيا",
+          desc: "تأشيرات سياحية ودراسية مع تجهيز كامل للملف",
+          image:
+            "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/usa",
+          flag: "🇺🇸",
+          title: "أمريكا",
+          desc: "مساعدتك في تعبئة النماذج وحجز المواعيد",
+          image:
+            "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/schengen",
+          flag: "🇪🇺",
+          title: "شنغن",
+          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
+          image:
+            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/uae",
+          flag: "🇦🇪",
+          title: "الإمارات",
+          desc: "تأشيرة إلكترونية لمقيمي دول الخليج",
+          image:
+            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/canada",
+          flag: "🇨🇦",
+          title: "كندا",
+          desc: "خدمات التأشيرات السياحية والدراسية لكندا",
+          image:
+            "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/australia",
+          flag: "🇦🇺",
+          title: "أستراليا",
+          desc: "تأشيرات سياحية ودراسية إلكترونية",
+          image:
+            "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=800&auto=format&fit=crop",
+        },
+      ].map((country) => (
+        <a
+          key={country.title}
+          href={country.href}
+          className="group relative overflow-hidden rounded-[34px] bg-white border border-orange-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center"
+        >
+          <div className="relative h-44 overflow-hidden rounded-b-[46px]">
+            <img
+              src={country.image}
+              alt={country.title}
+              className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+            <div className="absolute top-4 right-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center text-3xl">
+              {country.flag}
+            </div>
+          </div>
+
+          <div className="p-6">
+            <h4 className="text-2xl font-black text-[#101b32] mb-3">
+              {country.title}
+            </h4>
+
+            <p className="text-gray-500 text-sm leading-7 min-h-[56px]">
+              {country.desc}
+            </p>
+
+            <div className="mt-5 flex items-center justify-center gap-2 text-orange-500 font-bold">
+              <span>ابدأ الطلب الآن</span>
+              <span className="h-8 w-8 rounded-full border border-orange-200 bg-orange-50 flex items-center justify-center">
+                ←
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+
+    </div>
+
+    {/* Mobile Cards */}
+    <div className="md:hidden space-y-4">
+
+      {[
+        {
+          href: "/uk",
+          flag: "🇬🇧",
+          title: "بريطانيا",
+          desc: "تأشيرات سياحية ودراسية مع تجهيز كامل للملف",
+          image:
+            "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/usa",
+          flag: "🇺🇸",
+          title: "أمريكا",
+          desc: "مساعدتك في تعبئة النماذج وحجز المواعيد",
+          image:
+            "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/schengen",
+          flag: "🇪🇺",
+          title: "شنغن",
+          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
+          image:
+            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/canada",
+          flag: "🇨🇦",
+          title: "كندا",
+          desc: "خدمات التأشيرات السياحية والدراسية لكندا",
+          image:
+            "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/uae",
+          flag: "🇦🇪",
+          title: "الإمارات",
+          desc: "تأشيرة إلكترونية لمقيمي دول الخليج",
+          image:
+            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop",
+        },
+        {
+          href: "/australia",
+          flag: "🇦🇺",
+          title: "أستراليا",
+          desc: "تأشيرات سياحية ودراسية إلكترونية",
+          image:
+            "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=800&auto=format&fit=crop",
+        },
+      ].map((country) => (
+        <a
+          key={country.title}
+          href={country.href}
+          className="group flex items-center justify-between rounded-[28px] bg-white border border-orange-100 shadow-lg overflow-hidden active:scale-[0.98] transition"
+        >
+          <div className="flex-1 p-5 text-right">
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="text-xl font-black text-[#101b32]">
+                {country.title}
+              </h4>
+              <span className="text-orange-500 text-sm">✹</span>
+            </div>
+
+            <p className="text-gray-500 text-sm leading-6">
+              {country.desc}
+            </p>
+          </div>
+
+          <div className="relative h-28 w-36 shrink-0 overflow-hidden rounded-r-[28px]">
+            <img
+              src={country.image}
+              alt={country.title}
+              className="h-full w-full object-cover"
+            />
+
+            <div className="absolute top-3 right-3 h-10 w-10 rounded-full bg-white shadow-md flex items-center justify-center text-2xl">
+              {country.flag}
+            </div>
+          </div>
+
+          <div className="pr-4 pl-2">
+            <span className="h-11 w-11 rounded-full border border-orange-100 bg-orange-50 text-orange-500 flex items-center justify-center text-2xl">
+              ←
+            </span>
+          </div>
+        </a>
+      ))}
+
+    </div>
 
   </div>
 </section>
-      {/* Countries */}
-<section id="countries"
-       className="px-8 pb-24">
-        <h3 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          التأشيرات الأكثر طلبًا
-        </h3>
-        <p className="text-center text-gray-400 mt-3 mb-8 md:hidden animate-pulse">
-  اسحب لعرض المزيد ←
-</p>
-
-<div
-className="
-flex flex-row-reverse md:grid
-md:grid-cols-2 lg:grid-cols-3
-gap-5 md:gap-8
-overflow-x-auto
-md:overflow-visible
-snap-x snap-mandatory
-scroll-smooth
-pb-4
-scrollbar-hide
-"
->
-<a
-  href="/uk"
-  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
->            <h4 className="text-3xl mb-4">🇬🇧</h4>
-            <h5 className="text-2xl font-semibold mb-2">بريطانيا</h5>
-            <p className="text-gray-600">
-              تأشيرات سياحية ودراسية مع تجهيز كامل للملف
-            </p>
-          </a>
-
-<a
-  href="/usa"
-  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
->            <h4 className="text-3xl mb-4">🇺🇸</h4>
-            <h5 className="text-2xl font-semibold mb-2">أمريكا</h5>
-            <p className="text-gray-600">
-              مساعدتك في تعبئة النماذج وحجز المواعيد
-            </p>
-          </a>
-
-<a
-  href="/schengen"
-className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block">
-              <h4 className="text-3xl mb-4">🇪🇺</h4>
-            <h5 className="text-2xl font-semibold mb-2">شنغن</h5>
-            <p className="text-gray-600">
-              استخراج تأشيرات الشنغن لجميع الدول الأوروبية
-            </p>
-          </a>
-<a
-  href="/canada"
-  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
->
-  <h4 className="text-3xl mb-4">🇨🇦</h4>
-
-  <h5 className="text-2xl font-semibold mb-2">
-    كندا
-  </h5>
-
-  <p className="text-gray-600">
-    خدمات التأشيرات السياحية والدراسية لكندا
-  </p>
-</a>
-<a
-  href="/uae"
-  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
->
-  <h4 className="text-3xl mb-4">🇦🇪</h4>
-
-  <h5 className="text-2xl font-semibold mb-2">
-    الإمارات
-  </h5>
-
-  <p className="text-gray-600">
-    تأشيرة إلكترونية لمقيمي دول الخليج
-  </p>
-</a>
-<a
-  href="/australia"
-  className="min-w-[85%] md:min-w-0 snap-center border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 text-center block"
->
-  <h4 className="text-3xl mb-4">🇦🇺</h4>
-
-  <h5 className="text-2xl font-semibold mb-2">
-    أستراليا
-  </h5>
-
-  <p className="text-gray-600">
-    تأشيرات سياحية ودراسية إلكترونية
-  </p>
-</a>
-
-        </div>
-      </section>
  
 {/* Why Choose Us */}
 <section className="bg-gray-50 py-24 px-8">
