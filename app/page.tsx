@@ -317,7 +317,7 @@ backdrop-blur-2xl
     <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:divide-x md:divide-x-reverse md:divide-slate-200">
       {[
         { icon: ShieldCheck, value: "99%", label: "نسبة نجاح عالية" },
-        { icon: Headphones, value: "24/7", label: "دعم على مدار الساعة" },
+        { icon: Headphones, value: "24/7", label: "دعم كامل" },
         { icon: FileText, value: "1200+", label: "طلب مكتمل بنجاح" },
         { icon: Users, value: "40+", label: "وجهة متاحة" },
       ].map((item) => (
@@ -372,9 +372,19 @@ shadow-2xl
 <section
   id="countries"
   dir="rtl"
-  className="relative px-5 md:px-8 pt-10 pb-24 overflow-hidden bg-gradient-to-b from-white via-orange-50/30 to-white"
+  className="relative px-5 md:px-8 pt-10 pb-24 overflow-hidden bg-white"
 >
-  <div className="max-w-7xl mx-auto">
+
+  {/* Background Effects */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-0 right-[-120px] w-[420px] h-[420px] bg-orange-200/25 blur-3xl rounded-full" />
+    
+    <div className="absolute bottom-0 left-[-120px] w-[420px] h-[420px] bg-blue-200/20 blur-3xl rounded-full" />
+
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,130,0,0.08),transparent_45%)]" />
+  </div>
+
+  <div className="relative z-10 max-w-7xl mx-auto">
 
     {/* Heading */}
     <div className="text-center mb-14">
