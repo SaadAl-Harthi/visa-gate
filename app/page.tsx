@@ -954,44 +954,77 @@ src="/why-clean-bg.png"
   </div>
 </section>
 {/* FAQ */}
-<section dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
-  <h3 className="text-3xl md:text-4xl font-bold text-center mb-16">
-    الأسئلة الشائعة
-  </h3>
-
-<div className="max-w-4xl mx-auto space-y-6 text-right">
-    <div className="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300">
-      <h4 className="text-xl font-bold mb-3">
-        كم تستغرق مدة استخراج التأشيرة؟
-      </h4>
-
-      <p className="text-gray-600">
-        تختلف المدة حسب الدولة ونوع التأشيرة، ويتم توضيح المدة المتوقعة قبل بدء الطلب.
-      </p>
-    </div>
-
-    <div className="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300">
-      <h4 className="text-xl font-bold mb-3">
-        هل تساعدون في تجهيز الملف؟
-      </h4>
-
-      <p className="text-gray-600">
-        نعم، نساعدك في مراجعة وتجهيز جميع المستندات المطلوبة للتقديم.
-      </p>
-    </div>
-
-    <div className="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300">
-      <h4 className="text-xl font-bold mb-3">
-        هل يتم حجز المواعيد؟
-      </h4>
-
-      <p className="text-gray-600">
-        نعم، نوفر خدمة حجز المواعيد والتقديم على التأشيرات حسب المتطلبات.
-      </p>
-    </div>
-
+<section
+  id="faq"
+  dir="rtl"
+  className="relative px-5 md:px-8 py-24 overflow-hidden bg-gradient-to-b from-white via-orange-50/20 to-white"
+>
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-0 left-[-120px] w-[380px] h-[380px] bg-orange-100/30 blur-3xl rounded-full" />
+    <div className="absolute bottom-0 right-[-120px] w-[380px] h-[380px] bg-blue-100/20 blur-3xl rounded-full" />
   </div>
 
+  <div className="relative z-10 max-w-5xl mx-auto">
+    
+    {/* Heading */}
+    <div className="text-center mb-16">
+      <span className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-white px-5 py-2 text-sm font-bold text-orange-500 shadow-sm">
+        ✈️ استفسارات العملاء
+      </span>
+
+      <h2 className="mt-6 text-4xl md:text-6xl font-black text-[#101b32]">
+        الأسئلة <span className="text-orange-500">الشائعة</span>
+      </h2>
+
+      <p className="mt-5 text-lg leading-8 text-gray-500 max-w-2xl mx-auto">
+        كل ما تحتاج معرفته قبل البدء في استخراج التأشيرة.
+      </p>
+
+      <div className="w-16 h-1 bg-orange-500 rounded-full mx-auto mt-6" />
+    </div>
+
+    {/* FAQ Cards */}
+    <div className="space-y-6">
+      {[
+        {
+          q: "كم تستغرق مدة استخراج التأشيرة؟",
+          a: "تختلف المدة حسب الدولة ونوع التأشيرة، ويتم توضيح المدة المتوقعة قبل بدء الطلب.",
+        },
+        {
+          q: "هل تساعدون في تجهيز الملف؟",
+          a: "نعم، نساعدك في مراجعة وتجهيز جميع المستندات المطلوبة للتقديم.",
+        },
+        {
+          q: "هل يتم حجز المواعيد؟",
+          a: "نعم، نوفر خدمة حجز المواعيد والتقديم على التأشيرات حسب المتطلبات.",
+        },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="group rounded-[30px] border border-orange-100 bg-white/80 p-7 shadow-lg backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
+        >
+          <div className="flex items-start gap-5">
+            
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-b from-orange-500 to-orange-400 text-xl font-black text-white shadow-lg">
+              ?
+            </div>
+
+            <div className="flex-1">
+              <h3 className="text-xl md:text-2xl font-black text-[#101b32] mb-3">
+                {item.q}
+              </h3>
+
+              <p className="leading-8 text-gray-500 text-base md:text-lg">
+                {item.a}
+              </p>
+
+              <div className="mt-5 h-1 w-12 rounded-full bg-orange-400 transition-all duration-500 group-hover:w-24" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 </section>
 {/* Contact Form */}
 <section id="contact"
