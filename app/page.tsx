@@ -671,47 +671,49 @@ shadow-2xl
 
     </div>
 
-    {/* Mobile */}
-    <div className="md:hidden space-y-8">
+   {/* Mobile */}
+<div className="md:hidden relative mt-10 space-y-10">
+  <div className="absolute top-6 bottom-6 right-[58px] w-px bg-orange-200" />
 
-      {[
-        {
-          title: "سرعة الإنجاز",
-          text: "نساعدك في تجهيز طلبك بأسرع وقت مع متابعة مستمرة لحالة طلبك.",
-          icon: "⏱️",
-        },
-        {
-          title: "متابعة كاملة",
-          text: "نتابع معك جميع خطوات التقديم حتى إصدار التأشيرة.",
-          icon: "📋",
-        },
-        {
-          title: "دعم عبر واتساب",
-          text: "تواصل مباشر وسريع للإجابة على جميع استفساراتك في أي وقت.",
-          icon: "🎧",
-        },
-      ].map((item) => (
-        <div
-          key={item.title}
-          className="flex items-center gap-5 bg-white/75 backdrop-blur-xl rounded-3xl p-5 shadow-lg border border-orange-100"
-        >
-          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white shadow-lg text-4xl">
-            {item.icon}
-          </div>
+  {[
+    {
+      title: "سرعة الإنجاز",
+      text: "نساعدك في تجهيز طلبك بأسرع وقت مع متابعة مستمرة لحالة طلبك.",
+      icon: Zap,
+    },
+    {
+      title: "متابعة كاملة",
+      text: "نتابع معك جميع خطوات التقديم حتى إصدار التأشيرة.",
+      icon: ClipboardCheck,
+    },
+    {
+      title: "دعم عبر واتساب",
+      text: "تواصل مباشر وسريع للإجابة على جميع استفساراتك في أي وقت.",
+      icon: Headphones,
+    },
+  ].map((item) => {
+    const Icon = item.icon;
 
-          <div>
-            <h3 className="text-xl font-black text-[#101b32] mb-2">
-              {item.title}
-            </h3>
-
-            <p className="text-gray-500 text-sm leading-7">
-              {item.text}
-            </p>
-          </div>
+    return (
+      <div key={item.title} className="relative flex items-center gap-5">
+        <div className="z-10 flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-white shadow-xl border border-orange-100">
+          <Icon size={42} className="text-orange-500" />
         </div>
-      ))}
 
-    </div>
+        <div className="text-right">
+          <h3 className="text-xl font-black text-[#101b32] mb-2">
+            {item.title}
+          </h3>
+
+          <p className="text-gray-500 text-sm leading-7">
+            {item.text}
+          </p>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
 
   </div>
 </section>
