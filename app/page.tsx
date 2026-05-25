@@ -14,6 +14,7 @@ import {
   Users,
   MessageCircle,
   Globe2,
+    BadgeCheck,
 } from "lucide-react";
 
 export default function Home() {
@@ -411,6 +412,14 @@ shadow-2xl
     <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
 
       {[
+          {
+          href: "/schengen",
+          flag: "🇪🇺",
+          title: "شنغن",
+          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
+          image:
+            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
+        },
         {
           href: "/uk",
           flag: "🇬🇧",
@@ -426,14 +435,6 @@ shadow-2xl
           desc: "مساعدتك في تعبئة النماذج وحجز المواعيد",
           image:
             "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/schengen",
-          flag: "🇪🇺",
-          title: "شنغن",
-          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
-          image:
-            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
         },
         {
           href: "/uae",
@@ -504,6 +505,14 @@ shadow-2xl
     <div className="md:hidden space-y-4">
 
       {[
+          {
+          href: "/schengen",
+          flag: "🇪🇺",
+          title: "شنغن",
+          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
+          image:
+            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
+        },
         {
           href: "/uk",
           flag: "🇬🇧",
@@ -519,14 +528,6 @@ shadow-2xl
           desc: "مساعدتك في تعبئة النماذج وحجز المواعيد",
           image:
             "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/schengen",
-          flag: "🇪🇺",
-          title: "شنغن",
-          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
-          image:
-            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
         },
         {
           href: "/canada",
@@ -718,48 +719,102 @@ shadow-2xl
   </div>
 </section>
 {/* Steps */}
-<section id="steps" 
-className="py-24 px-8 bg-white">
-
-  <h3 className="text-3xl md:text-4xl font-bold text-center mb-14">
-    خطوات استخراج التأشيرة
-  </h3>
-
-<div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto text-center" dir="rtl">
-    <div className="border rounded-3xl p-8 hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-      <div className="text-4xl mb-4">1</div>
-      <h4 className="text-xl font-bold mb-3">تواصل معنا</h4>
-      <p className="text-gray-600">
-        نحدد نوع التأشيرة المناسبة لك.
-      </p>
-    </div>
-
-    <div className="border rounded-3xl p-8 hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-      <div className="text-4xl mb-4">2</div>
-      <h4 className="text-xl font-bold mb-3">تجهيز المتطلبات</h4>
-      <p className="text-gray-600">
-        نراجع المستندات ونوضح النواقص.
-      </p>
-    </div>
-
-    <div className="border rounded-3xl p-8 hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-      <div className="text-4xl mb-4">3</div>
-      <h4 className="text-xl font-bold mb-3">تقديم الطلب</h4>
-      <p className="text-gray-600">
-        نساعدك في تعبئة النماذج وحجز الموعد.
-      </p>
-    </div>
-
-    <div className="border rounded-3xl p-8 hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-      <div className="text-4xl mb-4">4</div>
-      <h4 className="text-xl font-bold mb-3">متابعة التأشيرة</h4>
-      <p className="text-gray-600">
-        نتابع معك حتى صدور القرار.
-      </p>
-    </div>
-
+<section
+  id="steps"
+  dir="rtl"
+  className="relative overflow-hidden px-5 md:px-8 py-24 bg-white"
+>
+  {/* Background */}
+  <div className="absolute inset-0">
+    <img
+src="/why-clean-bg.png"
+      alt="خطوات استخراج التأشيرة"
+      className="w-full h-full object-cover opacity-80"
+    />
+    <div className="absolute inset-0 bg-white/45" />
   </div>
 
+  <div className="relative z-10 max-w-7xl mx-auto">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-6xl font-black text-[#101b32] mb-5">
+        خطوات استخراج التأشيرة
+      </h2>
+
+      <p className="text-gray-500 text-lg md:text-xl leading-9">
+        عملية سهلة وبسيطة في أربع خطوات لإنجاز طلب التأشيرة بنجاح
+      </p>
+
+      <div className="w-16 h-1 bg-orange-500 rounded-full mx-auto mt-6" />
+    </div>
+
+  <div className="grid gap-8 md:grid-cols-4">
+  {[
+    {
+      number: "1",
+      title: "تواصل معنا",
+      text: "نحدد نوع التأشيرة المناسبة لك ونجيب على جميع استفساراتك.",
+      icon: Headphones,
+    },
+    {
+      number: "2",
+      title: "تجهيز المتطلبات",
+      text: "نراجع المستندات ونتأكد من جاهزية ملفك بالكامل.",
+      icon: ClipboardCheck,
+    },
+    {
+      number: "3",
+      title: "تقديم الطلب",
+      text: "نساعدك في تعبئة النماذج وحجز الموعد المناسب.",
+      icon: FileText,
+    },
+    {
+      number: "4",
+      title: "متابعة التأشيرة",
+      text: "نتابع حالة الطلب معك حتى صدور القرار النهائي.",
+      icon: BadgeCheck,
+    },
+  ].map((step) => {
+    const Icon = step.icon;
+
+    return (
+      <div
+        key={step.number}
+        className="group relative overflow-hidden rounded-[34px] border border-orange-100 bg-white/80 px-7 pt-16 pb-10 text-center shadow-xl backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+      >
+        {/* Number */}
+        <div className="absolute top-5 right-5 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-lg font-black text-white shadow-lg">
+          {step.number}
+        </div>
+
+        {/* Icon */}
+        <div className="mx-auto mb-8 flex h-28 w-28 items-center justify-center rounded-full border border-orange-100 bg-gradient-to-b from-white to-orange-50 shadow-lg transition duration-500 group-hover:scale-110">
+          <Icon
+            size={50}
+            className="text-orange-500"
+            strokeWidth={1.8}
+          />
+        </div>
+
+        {/* Title */}
+        <h3 className="mb-4 text-2xl font-black text-[#101b32]">
+          {step.title}
+        </h3>
+
+        {/* Text */}
+        <p className="leading-8 text-gray-500">
+          {step.text}
+        </p>
+
+        {/* Bottom Line */}
+        <div className="mx-auto mt-8 h-1 w-14 rounded-full bg-orange-400 transition-all duration-500 group-hover:w-24" />
+
+        {/* Glow */}
+        <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-gradient-to-t from-orange-50/40 to-transparent pointer-events-none" />
+      </div>
+    );
+  })}
+</div>
+  </div>
 </section>
 {/* Testimonials */}
 <section id="reviews" className="bg-gray-50 py-16 md:py-24 px-5 md:px-8 overflow-hidden">
