@@ -15,6 +15,8 @@ import {
   MessageCircle,
   Globe2,
     BadgeCheck,
+    Rocket,
+Target,
 } from "lucide-react";
 
 export default function Home() {
@@ -874,65 +876,82 @@ src="/why-clean-bg.png"
 
   </div>
 </section>
-{/* About Us */}
-<section id="about"
-dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
-
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-
-    <div className="bg-white border border-gray-100 rounded-3xl p-10 text-right hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300">
-
-  <div className="text-5xl mb-6">
-    🌍
+{/* About */}
+<section
+  id="about"
+  dir="rtl"
+  className="relative px-5 md:px-8 py-24 overflow-hidden bg-white"
+>
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-0 right-[-120px] w-[420px] h-[420px] bg-orange-200/20 blur-3xl rounded-full" />
+    <div className="absolute bottom-0 left-[-120px] w-[420px] h-[420px] bg-blue-200/15 blur-3xl rounded-full" />
   </div>
 
-  <h3 className="text-3xl font-bold mb-4 text-orange-500">
-    من نحن
-  </h3>
+  <div className="relative z-10 max-w-7xl mx-auto">
+    <div className="text-center mb-14">
+      <h2 className="text-4xl md:text-6xl font-black text-[#101b32] mb-5">
+        من نحن في <span className="text-orange-500">رحلتنا؟</span>
+      </h2>
 
-  <div className="w-16 h-1 bg-orange-500 rounded-full mb-6"></div>
+      <p className="text-gray-500 text-lg md:text-xl leading-9 max-w-3xl mx-auto">
+        نساعدك في استخراج التأشيرات السياحية والدراسية بطريقة واضحة، منظمة، ومتابعة مستمرة حتى اكتمال طلبك.
+      </p>
 
-  <p className="text-gray-600 leading-8">
-    رحلتنا لإستخراج التأشيرات هي منصة متخصصة في خدمات التأشيرات السياحية والدراسية، نساعد عملاءنا في تسهيل إجراءات السفر واستخراج التأشيرات لجميع الوجهات العالمية باحترافية وموثوقية.
-  </p>
+      <div className="w-16 h-1 bg-orange-500 rounded-full mx-auto mt-6" />
+    </div>
 
-</div>
-    <div className="bg-white border border-gray-100 rounded-3xl p-10 text-right hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+    <div className="grid gap-6 md:grid-cols-3">
+      {[
+        {
+          label: "من نحن",
+          title: "خبرة في خدمات التأشيرات",
+          text: "فريق متخصص يساعدك في فهم المتطلبات وتجهيز ملفك حسب وجهتك.",
+          icon: Globe2,
+        },
+        {
+          label: "رسالتنا",
+          title: "تجربة سهلة وواضحة",
+          text: "نختصر عليك التعقيد ونرشدك خطوة بخطوة من البداية حتى التقديم.",
+          icon: Rocket,
+        },
+        {
+          label: "هدفنا",
+          title: "ثقة ونتائج أفضل",
+          text: "نركز على رفع جودة الطلب وتقليل الأخطاء قبل إرسال الملف.",
+          icon: Target,
+        },
+      ].map((item) => {
+        const Icon = item.icon;
 
-  <div className="text-5xl mb-6">
-    🚀
+        return (
+          <div
+            key={item.label}
+            className="group rounded-[34px] border border-orange-100 bg-white/80 p-8 shadow-lg backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <div className="mb-6 flex items-center justify-between">
+              <span className="rounded-full bg-orange-50 px-4 py-2 text-sm font-bold text-orange-500">
+                {item.label}
+              </span>
+
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-white to-orange-50 text-orange-500 shadow-md">
+                <Icon size={32} strokeWidth={1.8} />
+              </div>
+            </div>
+
+            <h3 className="mb-4 text-2xl font-black text-[#101b32]">
+              {item.title}
+            </h3>
+
+            <p className="leading-8 text-gray-500">
+              {item.text}
+            </p>
+
+            <div className="mt-7 h-1 w-12 rounded-full bg-orange-400 transition-all duration-500 group-hover:w-24" />
+          </div>
+        );
+      })}
+    </div>
   </div>
-
-  <h3 className="text-3xl font-bold mb-4 text-orange-500">
-    رسالتنا
-  </h3>
-
-  <div className="w-16 h-1 bg-orange-500 rounded-full mb-6"></div>
-
-  <p className="text-gray-600 leading-8">
-    نسعى لتقديم تجربة سهلة وسريعة في خدمات التأشيرات من خلال المتابعة الدقيقة، والدعم المستمر، وتوفير حلول موثوقة تناسب احتياجات عملائنا.
-  </p>
-
-</div>
-    <div className="bg-white border border-gray-100 rounded-3xl p-10 text-right hover:shadow-2xl hover:-translate-y-2 transition duration-300">
-
-  <div className="text-5xl mb-6">
-    🎯
-  </div>
-
-  <h3 className="text-3xl font-bold mb-4 text-orange-500">
-    هدفنا
-  </h3>
-
-  <div className="w-16 h-1 bg-orange-500 rounded-full mb-6"></div>
-
-  <p className="text-gray-600 leading-8">
-    أن نكون الخيار الأول في خدمات التأشيرات والسفر عبر تقديم تجربة احترافية، وبناء ثقة طويلة المدى مع عملائنا داخل المملكة وخارجها.
-  </p>
-
-</div>
-  </div>
-
 </section>
 {/* FAQ */}
 <section dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-white">
