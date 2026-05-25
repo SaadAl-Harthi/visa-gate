@@ -1027,72 +1027,112 @@ src="/why-clean-bg.png"
   </div>
 </section>
 {/* Contact Form */}
-<section id="contact"
- dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-gray-50">
-
-  <h3 className="text-3xl md:text-4xl font-bold text-center mb-16">
-    ابدأ طلبك الآن
-  </h3>
-
-  <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 shadow-sm">
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-
-<input
-  type="text"
-  placeholder="الاسم الكامل"
-  value={name}
-  onChange={(e) => setName(e.target.value)}
-  className="border rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition duration-300"
-/>
-
-<input
-  type="text"
-  placeholder="رقم الجوال"
-  value={phone}
-  onChange={(e) => setPhone(e.target.value)}
-  className="border rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition duration-300"
-/>
-
-<select
-  value={country}
-  onChange={(e) => setCountry(e.target.value)}
-  className="border rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition duration-300"
+<section
+  id="contact"
+  dir="rtl"
+  className="relative px-5 md:px-8 py-24 overflow-hidden bg-white"
 >
-  <option value="">اختر الدولة</option>
-  <option>🇬🇧 بريطانيا</option>
-  <option>🇺🇸 أمريكا</option>
-  <option>🇨🇦 كندا</option>
-  <option>🇪🇺 شنغن</option>
-  <option>🇦🇪 الإمارات</option>
-  <option>🇦🇺 أستراليا</option>
-</select>
-
-<select
-  value={visaType}
-  onChange={(e) => setVisaType(e.target.value)}
-  className="border rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition duration-300"
->
-  <option value="">نوع التأشيرة</option>
-  <option>تأشيرة سياحية</option>
-  <option>تأشيرة دراسية</option>
-</select>
-
-    </div>
-
-    <button
-  onClick={sendToWhatsApp}
-
-      className="w-full mt-8 bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl text-lg font-bold transition duration-300 hover:scale-[1.02] hover:shadow-2xl"
-    >
-      إرسال الطلب
-    </button>
-    <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-  املأ النموذج التالي وسيتم التواصل معك بأسرع وقت لمساعدتك في استخراج التأشيرة المناسبة.
-</p>
-
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-0 right-[-120px] w-[420px] h-[420px] bg-orange-200/20 blur-3xl rounded-full" />
+    <div className="absolute bottom-0 left-[-120px] w-[420px] h-[420px] bg-blue-200/15 blur-3xl rounded-full" />
   </div>
 
+  <div className="relative z-10 max-w-6xl mx-auto">
+    <div className="text-center mb-14">
+      <span className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-white px-5 py-2 text-sm font-bold text-orange-500 shadow-sm">
+        🚀 ابدأ الآن
+      </span>
+
+      <h2 className="mt-6 text-4xl md:text-6xl font-black text-[#101b32]">
+        ابدأ <span className="text-orange-500">طلبك الآن</span>
+      </h2>
+
+      <p className="mt-5 text-lg leading-8 text-gray-500 max-w-2xl mx-auto">
+        املأ البيانات التالية وسيتم تحويلك للواتساب لإكمال طلب التأشيرة مع فريق رحلتنا.
+      </p>
+
+      <div className="w-16 h-1 bg-orange-500 rounded-full mx-auto mt-6" />
+    </div>
+
+    <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] items-stretch">
+      <div className="rounded-[34px] bg-[#101b32] order-2 lg:order-1 p-8 md:p-10 text-white shadow-2xl">
+        <h3 className="text-3xl font-black mb-5">
+          ماذا يحدث بعد الإرسال؟
+        </h3>
+
+        <div className="space-y-5">
+          {[
+            "نستقبل بياناتك مباشرة عبر الواتساب.",
+            "نراجع نوع التأشيرة والوجهة المناسبة.",
+            "نوضح لك المتطلبات والخطوات التالية.",
+            "نبدأ معك تجهيز الطلب خطوة بخطوة.",
+          ].map((item, index) => (
+            <div key={item} className="flex items-start gap-4">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white font-black">
+                {index + 1}
+              </span>
+              <p className="leading-8 text-white/85">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-[34px] border border-orange-100 order-1 lg:order-2 bg-white/85 p-6 md:p-8 shadow-2xl backdrop-blur-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <input
+            type="text"
+            placeholder="الاسم الكامل"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border border-orange-100 bg-orange-50/30 rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition duration-300"
+          />
+
+          <input
+            type="text"
+            placeholder="رقم الجوال"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="border border-orange-100 bg-orange-50/30 rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition duration-300"
+          />
+
+          <select
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            className="border border-orange-100 bg-orange-50/30 rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition duration-300"
+          >
+            <option value="">اختر الدولة</option>
+            <option>🇬🇧 بريطانيا</option>
+            <option>🇺🇸 أمريكا</option>
+            <option>🇨🇦 كندا</option>
+            <option>🇪🇺 شنغن</option>
+            <option>🇦🇪 الإمارات</option>
+            <option>🇦🇺 أستراليا</option>
+          </select>
+
+          <select
+            value={visaType}
+            onChange={(e) => setVisaType(e.target.value)}
+            className="border border-orange-100 bg-orange-50/30 rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition duration-300"
+          >
+            <option value="">نوع التأشيرة</option>
+            <option>تأشيرة سياحية</option>
+            <option>تأشيرة دراسية</option>
+          </select>
+        </div>
+
+        <button
+          onClick={sendToWhatsApp}
+          className="w-full mt-8 bg-gradient-to-l from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-white py-5 rounded-2xl text-lg font-black transition duration-300 hover:scale-[1.02] hover:shadow-2xl shadow-orange-500/20"
+        >
+          إرسال الطلب عبر واتساب
+        </button>
+
+        <p className="text-center text-gray-500 text-sm mt-5">
+          لن يتم إرسال أي طلب بدون مراجعتك للبيانات عبر الواتساب.
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
 {/* Footer */}
 <footer className="bg-black text-white py-14 px-8">
