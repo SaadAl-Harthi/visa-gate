@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
+import {
+  ClipboardCheck,
+  Zap,
+} from "lucide-react";
 import {
   Headphones,
   ShieldCheck,
@@ -593,47 +596,124 @@ shadow-2xl
   </div>
 </section>
  
-{/* Why Choose Us */}
-<section className="bg-gray-50 py-24 px-8">
+{/* Why Us */}
+<section
+  id="about"
+  dir="rtl"
+  className="relative overflow-hidden px-5 md:px-8 py-24 bg-white"
+>
+  {/* Background */}
+  <div className="absolute inset-0">
+    <img
+      src="/why-bg.png"
+      alt="لماذا تختار رحلتنا"
+      className="w-full h-full object-cover opacity-90"
+    />
+    <div className="absolute inset-0 bg-white/35" />
+  </div>
 
-  <h3 className="text-3xl md:text-4xl font-bold text-center mb-14">
-    لماذا تختار رحلتنا لإستخراج التأشيرات؟
-  </h3>
+  <div className="relative z-10 max-w-7xl mx-auto">
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+    {/* Heading */}
+    <div className="text-center mb-16">
+      
 
-    <div className="bg-white rounded-3xl p-8 shadow-sm text-center hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-      <h4 className="text-2xl font-semibold mb-4">
-        سرعة الإنجاز
-      </h4>
+      <h2 className="text-4xl md:text-6xl font-black text-[#101b32] mb-5">
+        لماذا تختار <span className="text-orange-500">رحلتنا؟</span>
+      </h2>
 
-      <p className="text-gray-600">
-        نساعدك في تجهيز طلبك بأسرع وقت مع متابعة مستمرة
+      <p className="text-gray-500 text-lg md:text-xl leading-9 max-w-3xl mx-auto">
+        نجمع بين الخبرة والاحترافية لنقدم لك تجربة استخراج تأشيرة سهلة وآمنة وموثوقة من البداية حتى استلام التأشيرة.
       </p>
+
+      <div className="w-16 h-1 bg-orange-500 rounded-full mx-auto mt-6" />
     </div>
 
-    <div className="bg-white rounded-3xl p-8 shadow-sm text-center hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-      <h4 className="text-2xl font-semibold mb-4">
-        متابعة كاملة
-      </h4>
+    {/* Desktop */}
+    <div className="hidden md:grid grid-cols-3 gap-10 text-center">
 
-      <p className="text-gray-600">
-        نتابع معك جميع خطوات التقديم حتى إصدار التأشيرة
+      {[
+  {
+    title: "سرعة الإنجاز",
+    text: "نساعدك في تجهيز طلبك بأسرع وقت مع متابعة مستمرة لحالة طلبك.",
+    icon: Zap,
+  },
+  {
+    title: "متابعة كاملة",
+    text: "نتابع معك جميع خطوات التقديم حتى إصدار التأشيرة.",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "دعم عبر واتساب",
+    text: "تواصل مباشر وسريع للإجابة على جميع استفساراتك في أي وقت.",
+    icon: Headphones,
+  },
+].map((item) => {
+  const Icon = item.icon;
+
+  return (
+    <div key={item.title} className="relative px-8">
+
+      <div className="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full bg-white shadow-xl border border-orange-100">
+        <Icon size={48} className="text-orange-500" />
+      </div>
+
+      <h3 className="text-2xl font-black text-[#101b32] mb-4">
+        {item.title}
+      </h3>
+
+      <p className="text-gray-500 leading-8">
+        {item.text}
       </p>
     </div>
+  );
+})}
 
-    <div className="bg-white rounded-3xl p-8 shadow-sm text-center hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-      <h4 className="text-2xl font-semibold mb-4">
-        دعم عبر واتساب
-      </h4>
+    </div>
 
-      <p className="text-gray-600">
-        تواصل مباشر وسريع للإجابة على جميع استفساراتك
-      </p>
+    {/* Mobile */}
+    <div className="md:hidden space-y-8">
+
+      {[
+        {
+          title: "سرعة الإنجاز",
+          text: "نساعدك في تجهيز طلبك بأسرع وقت مع متابعة مستمرة لحالة طلبك.",
+          icon: "⏱️",
+        },
+        {
+          title: "متابعة كاملة",
+          text: "نتابع معك جميع خطوات التقديم حتى إصدار التأشيرة.",
+          icon: "📋",
+        },
+        {
+          title: "دعم عبر واتساب",
+          text: "تواصل مباشر وسريع للإجابة على جميع استفساراتك في أي وقت.",
+          icon: "🎧",
+        },
+      ].map((item) => (
+        <div
+          key={item.title}
+          className="flex items-center gap-5 bg-white/75 backdrop-blur-xl rounded-3xl p-5 shadow-lg border border-orange-100"
+        >
+          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white shadow-lg text-4xl">
+            {item.icon}
+          </div>
+
+          <div>
+            <h3 className="text-xl font-black text-[#101b32] mb-2">
+              {item.title}
+            </h3>
+
+            <p className="text-gray-500 text-sm leading-7">
+              {item.text}
+            </p>
+          </div>
+        </div>
+      ))}
+
     </div>
 
   </div>
-
 </section>
 {/* Steps */}
 <section id="steps" 
