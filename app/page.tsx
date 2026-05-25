@@ -317,7 +317,7 @@ backdrop-blur-2xl
     <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:divide-x md:divide-x-reverse md:divide-slate-200">
       {[
         { icon: ShieldCheck, value: "99%", label: "نسبة نجاح عالية" },
-        { icon: Headphones, value: "24/7", label: "دعم كامل" },
+        { icon: Headphones, value: "24/7", label: "دعم متخصص" },
         { icon: FileText, value: "1200+", label: "طلب مكتمل بنجاح" },
         { icon: Users, value: "40+", label: "وجهة متاحة" },
       ].map((item) => (
