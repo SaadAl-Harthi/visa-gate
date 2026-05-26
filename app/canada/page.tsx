@@ -60,11 +60,13 @@ const visaTypes: VisaType[] = [
       },
       {
         question: "كم مدة استخراج التأشيرة؟",
-        answer: "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
+        answer:
+          "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
       },
       {
         question: "هل يجب توفير كشف حساب؟",
-        answer: "نعم، يتطلب ملف التأشيرة كشف حساب لمدة 6 أشهر باللغة الإنجليزية وبرصيد لا يقل عن 15,000 ريال.",
+        answer:
+          "نعم، يتطلب ملف التأشيرة كشف حساب لمدة 6 أشهر باللغة الإنجليزية وبرصيد لا يقل عن 15,000 ريال.",
       },
     ],
   },
@@ -80,7 +82,8 @@ const visaTypes: VisaType[] = [
     faqs: [
       {
         question: "هل قبول المعهد مطلوب؟",
-        answer: "نعم، قبول المعهد أو جهة الدراسة مطلوب ضمن ملف التأشيرة الدراسية.",
+        answer:
+          "نعم، قبول المعهد أو جهة الدراسة مطلوب ضمن ملف التأشيرة الدراسية.",
       },
       {
         question: "هل البصمة مطلوبة؟",
@@ -92,7 +95,8 @@ const visaTypes: VisaType[] = [
       },
       {
         question: "كم مدة استخراج التأشيرة؟",
-        answer: "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
+        answer:
+          "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
       },
     ],
   },
@@ -108,7 +112,7 @@ export default function CanadaPage() {
 نوع التأشيرة: ${selectedVisa.title}
 المدة: ${selectedVisa.duration}
 السعر: ${selectedVisa.price}
-    `;
+`;
 
     window.open(
       `https://wa.me/966552525141?text=${encodeURIComponent(message)}`,
@@ -117,141 +121,157 @@ export default function CanadaPage() {
   };
 
   return (
-    <main dir="rtl" className="bg-white text-black">
-
-<div className="absolute top-6 right-5 md:right-8 z-20">
-  <a
-    href="/"
-    className="
-    flex items-center gap-3
-    bg-white/70 backdrop-blur-xl
-    border border-orange-100
-    hover:border-orange-300
-    hover:bg-white
-    text-gray-700 hover:text-orange-500
-    px-5 md:px-7
-    py-3 md:py-4
-    rounded-full
-    shadow-[0_8px_30px_rgb(0,0,0,0.05)]
-    transition-all duration-300
-    text-sm md:text-base
-    font-medium
-  "
-  >
-    <span className="text-xl">→</span>
-    الرئيسية
-  </a>
-</div>
+    <main dir="rtl" className="bg-white text-black overflow-hidden">
       {/* Hero */}
-      <section className="px-5 md:px-8 py-20 md:py-28 text-center bg-gradient-to-b from-orange-100 via-orange-50 to-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-6xl mb-6">🇨🇦</div>
+      <section className="relative overflow-hidden px-5 md:px-8 pt-24 pb-20 bg-white">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-[-120px] h-[420px] w-[420px] rounded-full bg-orange-200/25 blur-3xl" />
+          <div className="absolute bottom-0 left-[-120px] h-[420px] w-[420px] rounded-full bg-blue-200/10 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,130,0,0.08),transparent_45%)]" />
+        </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            تأشيرة كندا
+        <a
+          href="/"
+          className="absolute right-5 top-6 z-20 inline-flex items-center gap-3 rounded-full border border-orange-100 bg-white/80 px-5 py-3 text-sm font-bold text-[#101b32] shadow-xl backdrop-blur-xl transition hover:text-orange-500 md:right-8 md:px-7 md:py-4 md:text-base"
+        >
+          <span>→</span>
+          الرئيسية
+        </a>
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          
+
+          <h1 className="mb-6 text-4xl font-black text-[#101b32] md:text-7xl">
+            تأشيرة <span className="text-orange-500">كندا</span>
           </h1>
 
-          <p className="text-gray-600 text-lg md:text-xl leading-9 max-w-3xl mx-auto">
-            اختر نوع التأشيرة المطلوبة، واطّلع على المتطلبات والملاحظات المهمة
-            قبل بدء طلب التأشيرة.
+          <p className="mx-auto max-w-3xl text-lg leading-9 text-gray-500 md:text-2xl">
+            اختر نوع التأشيرة المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.
           </p>
+
+          <div className="mx-auto mt-14 max-w-5xl rounded-[32px] border border-orange-100 bg-white/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.06)] backdrop-blur-xl md:p-12">
+            <div className="flex flex-col items-center gap-8 md:flex-row">
+              <div className="flex h-[110px] min-w-[110px] items-center justify-center rounded-[30px] bg-gradient-to-br from-orange-500 to-orange-400 text-5xl shadow-[0_15px_40px_rgba(249,115,22,0.35)]">
+                🇨🇦
+              </div>
+
+              <div className="flex-1 text-center md:text-right">
+                <h2 className="mb-5 text-3xl font-black text-[#101b32] md:text-4xl">
+                  عن تأشيرة كندا
+                </h2>
+
+                <p className="text-lg leading-9 text-gray-600">
+                  نساعدك في تجهيز ملف تأشيرة كندا سواء للسياحة أو الدراسة، مع مراجعة المستندات وتوضيح المتطلبات حسب نوع التأشيرة.
+                </p>
+
+                <div className="mt-6 rounded-2xl border border-orange-100 bg-orange-50 px-5 py-4 text-sm leading-8 text-orange-700 md:text-base">
+                  تختلف المتطلبات ومدة المعالجة حسب نوع التأشيرة وحالة مقدم الطلب.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="px-5 md:px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <aside className="bg-white border rounded-3xl p-6 shadow-sm h-fit">
-            <h2 className="text-2xl font-bold mb-6">اختر نوع التأشيرة</h2>
+      {/* Content */}
+      <section className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-3">
+          {/* Selector */}
+          <aside className="h-fit rounded-[34px] border border-orange-100 bg-white/90 p-6 shadow-xl backdrop-blur-xl">
+            <h2 className="mb-6 text-2xl font-black text-[#101b32]">
+              اختر نوع التأشيرة
+            </h2>
 
             <div className="space-y-3">
               {visaTypes.map((visa) => (
                 <button
                   key={visa.id}
                   onClick={() => setSelectedVisa(visa)}
-                  className={`w-full text-right p-5 rounded-2xl border transition duration-300 hover:-translate-y-1 ${
+                  className={`w-full rounded-2xl border p-5 text-right transition duration-300 hover:-translate-y-1 ${
                     selectedVisa.id === visa.id
                       ? "border-orange-500 bg-orange-50 text-orange-600 shadow-md"
-                      : "border-gray-200 hover:border-orange-300"
+                      : "border-orange-100 bg-white hover:border-orange-300 hover:shadow-lg"
                   }`}
                 >
-                  <div className="text-3xl mb-2">{visa.icon}</div>
-                  <h3 className="font-bold text-lg">{visa.title}</h3>
-                  <p className="text-sm text-gray-500 mt-2">{visa.subtitle}</p>
+                  <div className="mb-2 text-3xl">{visa.icon}</div>
+                  <h3 className="text-lg font-black">{visa.title}</h3>
+                  <p className="mt-2 text-sm text-gray-500">{visa.subtitle}</p>
                 </button>
               ))}
             </div>
           </aside>
 
-          <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white border rounded-3xl p-6 md:p-8 shadow-sm">
-              <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+          {/* Details */}
+          <div className="lg:col-span-2">
+            <div className="rounded-[34px] border border-orange-100 bg-white/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
+              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center">
                 <div className="text-6xl">{selectedVisa.icon}</div>
 
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">
+                  <h2 className="text-3xl font-black text-[#101b32] md:text-4xl">
                     {selectedVisa.title}
                   </h2>
 
-                  <p className="text-green-600 mt-2">
+                  <p className="mt-2 font-bold text-green-600">
                     الحالة: متاحة للتقديم
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                <div className="bg-gray-50 rounded-2xl p-5">
-                  <p className="text-gray-500 mb-2">نوع التأشيرة</p>
-                  <h3 className="text-xl font-bold">
+              <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-5">
+                  <p className="mb-2 text-gray-500">نوع التأشيرة</p>
+                  <h3 className="text-xl font-black">
                     {selectedVisa.id === "tourist" ? "سياحية" : "دراسية"}
                   </h3>
                 </div>
 
-                <div className="bg-gray-50 rounded-2xl p-5">
-                  <p className="text-gray-500 mb-2">السعر</p>
-                  <h3 className="text-xl font-bold text-orange-500">
+                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-5">
+                  <p className="mb-2 text-gray-500">السعر</p>
+                  <h3 className="text-xl font-black text-orange-500">
                     {selectedVisa.price}
                   </h3>
                 </div>
 
-                <div className="bg-gray-50 rounded-2xl p-5">
-                  <p className="text-gray-500 mb-2">المدة</p>
-                  <h3 className="text-xl font-bold">
+                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-5">
+                  <p className="mb-2 text-gray-500">المدة</p>
+                  <h3 className="text-xl font-black">
                     {selectedVisa.duration}
                   </h3>
                 </div>
               </div>
 
-              <div className="bg-orange-50 border border-orange-100 rounded-3xl p-5 mb-10">
-                <h3 className="text-xl font-bold mb-2">ملاحظة قبل التقديم</h3>
-                <p className="text-gray-700 leading-8">
-                  المتطلبات التالية خاصة بالتقديم على {selectedVisa.title}،
-                  وقد تختلف حسب حالة مقدم الطلب أو تحديثات السفارة الكندية.
+              <div className="mb-10 rounded-3xl border border-orange-100 bg-orange-50 p-5">
+                <h3 className="mb-2 text-xl font-black">ملاحظة قبل التقديم</h3>
+                <p className="leading-8 text-gray-700">
+                  المتطلبات التالية خاصة بالتقديم على {selectedVisa.title}، وقد تختلف حسب حالة مقدم الطلب أو تحديثات السفارة الكندية.
                 </p>
               </div>
 
-              <h3 className="text-2xl font-bold mb-5">
+              <h3 className="mb-5 text-2xl font-black text-[#101b32]">
                 المتطلبات المطلوبة للتقديم
               </h3>
 
-              <ul className="space-y-3 mb-10">
+              <ul className="mb-10 space-y-3">
                 {selectedVisa.requirements.map((item) => (
                   <li
                     key={item}
-                    className="bg-gray-50 rounded-2xl p-4 leading-8 border border-gray-100"
+                    className="rounded-2xl border border-orange-100 bg-white p-4 leading-8 shadow-sm"
                   >
                     • {item}
                   </li>
                 ))}
               </ul>
 
-              <h3 className="text-2xl font-bold mb-5">ملاحظات مهمة</h3>
+              <h3 className="mb-5 text-2xl font-black text-[#101b32]">
+                ملاحظات مهمة
+              </h3>
 
-              <ul className="space-y-3 mb-10">
+              <ul className="mb-10 space-y-3">
                 {selectedVisa.notes.map((note) => (
                   <li
                     key={note}
-                    className="bg-orange-50 rounded-2xl p-4 leading-8 border border-orange-100"
+                    className="rounded-2xl border border-orange-100 bg-orange-50/70 p-4 leading-8 shadow-sm"
                   >
                     • {note}
                   </li>
@@ -260,7 +280,7 @@ export default function CanadaPage() {
 
               <button
                 onClick={sendToWhatsApp}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl text-lg font-bold transition duration-300 hover:scale-[1.02] shadow-xl"
+                className="w-full rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 py-5 text-lg font-black text-white shadow-xl shadow-orange-500/25 transition duration-300 hover:scale-[1.02] hover:from-orange-600 hover:to-orange-500"
               >
                 ابدأ طلب {selectedVisa.title}
               </button>
@@ -270,20 +290,22 @@ export default function CanadaPage() {
       </section>
 
       {/* FAQ */}
-      <section className="px-5 md:px-8 py-16 md:py-24 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-14">
-            الأسئلة الشائعة
+      <section className="relative bg-white px-5 py-20 md:px-8">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
+            الأسئلة <span className="text-orange-500">الشائعة</span>
           </h2>
 
           <div className="space-y-5">
             {selectedVisa.faqs.map((faq) => (
               <div
                 key={faq.question}
-                className="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300"
+                className="rounded-[28px] border border-orange-100 bg-white/90 p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"
               >
-                <h3 className="text-xl font-bold mb-3">{faq.question}</h3>
-                <p className="text-gray-600 leading-8">{faq.answer}</p>
+                <h3 className="mb-3 text-xl font-black text-[#101b32]">
+                  {faq.question}
+                </h3>
+                <p className="leading-8 text-gray-500">{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -291,89 +313,48 @@ export default function CanadaPage() {
       </section>
 
       {/* Related Visas */}
-      <section className="px-5 md:px-8 py-16 md:py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            تأشيرات قد تهمك
+      <section className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
+            تأشيرات قد <span className="text-orange-500">تهمك</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <a
-              href="/schengen"
-              className="bg-white border border-gray-100 rounded-3xl p-8 text-right hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 block"
-            >
-              <div className="text-5xl mb-5">🇪🇺</div>
-              <h3 className="text-2xl font-bold mb-3">تأشيرة شنغن</h3>
-              <p className="text-gray-600 leading-8">
-                خدمات استخراج تأشيرات الشنغن لجميع الدول الأوروبية.
-              </p>
-            </a>
-
-            <a
-              href="/usa"
-              className="bg-white border border-gray-100 rounded-3xl p-8 text-right hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 block"
-            >
-              <div className="text-5xl mb-5">🇺🇸</div>
-              <h3 className="text-2xl font-bold mb-3">تأشيرة أمريكا</h3>
-              <p className="text-gray-600 leading-8">
-                خدمات التأشيرات السياحية والدراسية لأمريكا.
-              </p>
-            </a>
-
-            <a
-              href="/uk"
-              className="bg-white border border-gray-100 rounded-3xl p-8 text-right hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 block"
-            >
-              <div className="text-5xl mb-5">🇬🇧</div>
-              <h3 className="text-2xl font-bold mb-3">تأشيرة بريطانيا</h3>
-              <p className="text-gray-600 leading-8">
-                خدمات التقديم على التأشيرات السياحية والدراسية لبريطانيا.
-              </p>
-            </a>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {[
+              {
+                href: "/usa",
+                flag: "🇺🇸",
+                title: "تأشيرة أمريكا",
+                text: "خدمات التأشيرات السياحية والدراسية لأمريكا.",
+              },
+              {
+                href: "/australia",
+                flag: "🇦🇺",
+                title: "تأشيرة أستراليا",
+                text: "تأشيرات سياحية ودراسية إلكترونية بخطوات سهلة.",
+              },
+              {
+                href: "/uae",
+                flag: "🇦🇪",
+                title: "تأشيرة الإمارات",
+                text: "تأشيرة إلكترونية لمقيمي دول مجلس التعاون الخليجي.",
+              },
+            ].map((visa) => (
+              <a
+                key={visa.href}
+                href={visa.href}
+                className="block rounded-[30px] border border-orange-100 bg-white p-8 text-right shadow-lg transition duration-300 hover:-translate-y-2 hover:border-orange-200 hover:shadow-2xl"
+              >
+                <div className="mb-5 text-5xl">{visa.flag}</div>
+                <h3 className="mb-3 text-2xl font-black text-[#101b32]">
+                  {visa.title}
+                </h3>
+                <p className="leading-8 text-gray-500">{visa.text}</p>
+              </a>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer dir="rtl" className="bg-black text-white py-14 px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h3 className="text-3xl font-bold mb-4">رحلتنا للتأشيرات</h3>
-
-          <p className="text-gray-400 mb-10">
-            خدمات التأشيرات السياحية والدراسية لجميع الوجهات العالمية.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto text-gray-300 mb-10 text-right">
-            <div className="space-y-3">
-              <p>📍 مكتب 102 - الدور الأول - برج الحميضي</p>
-              <p>طريق المدينة - حي السلامة - جدة</p>
-              <p>المملكة العربية السعودية</p>
-              <p>📞 0552525141</p>
-            </div>
-
-            <div className="space-y-3">
-              <p>الاسم التجاري: مؤسسة رحلتنا لتنظيم الرحلات</p>
-              <p>السجل التجاري: 4030228793</p>
-              <p>الرقم الضريبي: 30201661700003</p>
-              <p>التصنيف: منظم رحلات سياحية</p>
-            </div>
-          </div>
-
-          <div className="flex justify-center items-center gap-4 mt-8 mb-10 flex-wrap">
-            <a href="https://instagram.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-orange-500 transition px-5 py-3 rounded-full whitespace-nowrap">Instagram</a>
-            <a href="https://snapchat.com/add/studyrace1" target="_blank" className="bg-white/10 hover:bg-yellow-400 hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">Snapchat</a>
-            <a href="https://tiktok.com/@studyrace1" target="_blank" className="bg-white/10 hover:bg-white hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">TikTok</a>
-            <a href="https://linkedin.com/company/studyrace" target="_blank" className="bg-white/10 hover:bg-blue-600 transition px-5 py-3 rounded-full whitespace-nowrap">LinkedIn</a>
-            <a href="https://x.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-white hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">X</a>
-          </div>
-
-          <p className="text-gray-500 mt-8 text-sm">
-            © 2026 جميع الحقوق محفوظة - رحلتنا للتأشيرات
-          </p>
-        </div>
-      </footer>
-
-      
     </main>
   );
 }
