@@ -67,7 +67,7 @@ const visaTypes: VisaType[] = [
     title: "تأشيرة أمريكا الدراسية",
     icon: "🎓",
     subtitle: "للطلاب المقبولين في معاهد أو جامعات داخل أمريكا.",
-    price: "يحدد لاحقًا",
+    price: "2500 ريال",
     duration: "من 5 إلى 15 يوم عمل وقد تزيد حسب السفارة",
     requirements: studentRequirements,
     notes: commonNotes,

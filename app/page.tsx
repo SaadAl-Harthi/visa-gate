@@ -401,11 +401,6 @@ shadow-2xl
     {/* Heading */}
     <div className="text-center mb-14">
 
-      <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-orange-100 bg-white shadow-sm text-orange-500 font-bold mb-5">
-        <span>✈️</span>
-        وجهاتنا الأكثر طلبًا
-      </div>
-
       <h3 className="text-4xl md:text-6xl font-black mb-5 text-[#101b32]">
         التأشيرات <span className="text-orange-500">الأكثر طلبًا</span>
       </h3>
