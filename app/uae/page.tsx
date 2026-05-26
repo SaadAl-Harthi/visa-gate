@@ -80,10 +80,7 @@ export default function UAEPage() {
         </a>
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-100 bg-white px-5 py-2 font-bold text-orange-500 shadow-sm">
-            <span>🇦🇪</span>
-            تأشيرة إلكترونية
-          </div>
+         
 
           <h1 className="mb-6 text-4xl font-black text-[#101b32] md:text-7xl">
             تأشيرة <span className="text-orange-500">الإمارات</span>
@@ -96,7 +93,7 @@ export default function UAEPage() {
           <div className="mx-auto mt-14 max-w-5xl rounded-[32px] border border-orange-100 bg-white/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.06)] backdrop-blur-xl md:p-12">
             <div className="flex flex-col items-center gap-8 md:flex-row">
               <div className="flex h-[110px] min-w-[110px] items-center justify-center rounded-[30px] bg-gradient-to-br from-orange-500 to-orange-400 text-5xl shadow-[0_15px_40px_rgba(249,115,22,0.35)]">
-                🏙️
+                🇦🇪
               </div>
 
               <div className="flex-1 text-center md:text-right">
