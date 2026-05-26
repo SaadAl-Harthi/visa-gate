@@ -9,6 +9,7 @@ type SchengenCountry = {
   duration: string;
   status: string;
   requirements: string[];
+  extraRequirements?: string[];
   notes: string[];
 };
 
@@ -24,7 +25,7 @@ const defaultRequirements = [
   "حجز الفندق - نسخة لكل شخص.",
   "حجز الطيران - نسخة لكل شخص.",
   "بوليصة التأمين - نسخة لكل شخص.",
-  "صورتان شخصية مقاس 3.5 × 4.5 بخلفية بيضا مكشوف الرأس للرجال ومكشوف الوجه للنساءء.",
+  "صورتان شخصية مقاس 3.5 × 4.5 بخلفية بيضاء.",
   "صورة من تأشيرة الشنغن السابقة إن وجدت.",
   "تأشيرة خروج وعودة لغير السعوديين.",
 ];
@@ -40,11 +41,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "فرنسا",
     flag: "🇫🇷",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة فرنسا مستندات إضافية حسب حالة مقدم الطلب أو الغرض من الزيارة.",
     ],
     notes: buildNotes("فرنسا"),
@@ -52,11 +53,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "إيطاليا",
     flag: "🇮🇹",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة إيطاليا تفاصيل إضافية عن خطة الرحلة أو حجوزات المدن داخل إيطاليا.",
     ],
     notes: buildNotes("إيطاليا"),
@@ -64,11 +65,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "سويسرا",
     flag: "🇨🇭",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة سويسرا توضيحًا إضافيًا لمسار الرحلة أو حجوزات الإقامة حسب الحالة.",
     ],
     notes: buildNotes("سويسرا"),
@@ -76,11 +77,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "ألمانيا",
     flag: "🇩🇪",
-    price: "350 ريال (غير شاملة رسوم السفارة )",
+    price: "350 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة ألمانيا مستندات إضافية لإثبات الغرض من الزيارة أو الوضع المالي.",
     ],
     notes: buildNotes("ألمانيا"),
@@ -88,11 +89,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "هولندا",
     flag: "🇳🇱",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة هولندا تفاصيل إضافية عن الإقامة أو برنامج الرحلة.",
     ],
     notes: buildNotes("هولندا"),
@@ -100,48 +101,40 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "إسبانيا",
     flag: "🇪🇸",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة إسبانيا مستندات إضافية حسب مدينة الوصول أو مدة الإقامة.",
     ],
     notes: buildNotes("إسبانيا"),
   },
   {
-  name: "النمسا",
-  flag: "🇦🇹",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
-  duration: "حسب المواعيد المتاحة",
-  status: "متاحة للتقديم",
-  requirements: [
-    "أصل الجواز وصورة منه.",
-    "ورقة تعريف بالراتب باللغة الإنجليزية موجهة للسفارة ومختومة من جهة العمل.",
-    "للشركات الخاصة: يجب تصديق تعريف العمل من الغرفة التجارية.",
-    "كشف حساب مطبوع باللغة الإنجليزية لمدة 4 أشهر وبرصيد لا يقل عن 15,000 ريال للشخص.",
-    "صورة من الهوية.",
-    "صورة من كرت العائلة إذا كان الموعد للعائلة.",
-    "ورقة الموعد الخاصة بمركز الاعتماد.",
-    "ورقة الأبلكيشن الخاصة بالسفارة.",
-    "حجز الفندق - نسخة لكل شخص.",
-    "حجز الطيران - نسخة لكل شخص.",
-    "بوليصة التأمين - نسخة لكل شخص.",
-  "صورتان شخصية مقاس 3.5 × 4.5 بخلفية بيضا مكشوف الرأس للرجال ومكشوف الوجه للنساءء.",
-    "صورة من تأشيرة الشنغن السابقة إن وجدت.",
-    "تأشيرة خروج وعودة لغير السعوديين.",
-    "قد تطلب سفارة النمسا توضيحات إضافية عن برنامج الرحلة أو حجوزات السكن.",
-  ],
-  notes: buildNotes("النمسا"),
-},
-  {
-    name: "البرتغال",
-    flag: "🇵🇹",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    name: "النمسا",
+    flag: "🇦🇹",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
     requirements: [
-      ...defaultRequirements,
+      ...defaultRequirements.filter(
+        (item) => !item.includes("10,000 ريال")
+      ),
+      "كشف حساب مطبوع باللغة الإنجليزية لمدة 4 أشهر وبرصيد لا يقل عن 15,000 ريال للشخص.",
+    ],
+    extraRequirements: [
+      "قد تطلب سفارة النمسا توضيحات إضافية عن برنامج الرحلة أو حجوزات السكن.",
+    ],
+    notes: buildNotes("النمسا"),
+  },
+  {
+    name: "البرتغال",
+    flag: "🇵🇹",
+    price: "450 ريال غير شاملة رسوم السفارة",
+    duration: "حسب المواعيد المتاحة",
+    status: "متاحة للتقديم",
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة البرتغال مستندات إضافية حسب الغرض من السفر أو مدة الرحلة.",
     ],
     notes: buildNotes("البرتغال"),
@@ -149,11 +142,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "اليونان",
     flag: "🇬🇷",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة اليونان تفاصيل إضافية عن الجزر أو المدن التي سيتم زيارتها.",
     ],
     notes: buildNotes("اليونان"),
@@ -161,11 +154,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "التشيك",
     flag: "🇨🇿",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة التشيك مستندات إضافية عن خطة السفر أو حجوزات الإقامة.",
     ],
     notes: buildNotes("التشيك"),
@@ -173,11 +166,11 @@ const schengenCountries: SchengenCountry[] = [
   {
     name: "بلجيكا",
     flag: "🇧🇪",
-    price: "450 ريال (غير شاملة رسوم السفارة )",
+    price: "450 ريال غير شاملة رسوم السفارة",
     duration: "حسب المواعيد المتاحة",
     status: "متاحة للتقديم",
-    requirements: [
-      ...defaultRequirements,
+    requirements: defaultRequirements,
+    extraRequirements: [
       "قد تطلب سفارة بلجيكا مستندات إضافية حسب الغرض من الزيارة أو جهة الاستضافة.",
     ],
     notes: buildNotes("بلجيكا"),
@@ -189,6 +182,11 @@ export default function SchengenPage() {
     schengenCountries[0]
   );
 
+  const allRequirements = [
+    ...selectedCountry.requirements,
+    ...(selectedCountry.extraRequirements ?? []),
+  ];
+
   const sendToWhatsApp = () => {
     const message = `
 السلام عليكم، أرغب بالتقديم على تأشيرة شنغن
@@ -197,7 +195,7 @@ export default function SchengenPage() {
 نوع التأشيرة: سياحية
 السعر: ${selectedCountry.price}
 المدة: ${selectedCountry.duration}
-    `;
+`;
 
     window.open(
       `https://wa.me/966552525141?text=${encodeURIComponent(message)}`,
@@ -206,160 +204,216 @@ export default function SchengenPage() {
   };
 
   return (
-    <main dir="rtl" className="bg-white text-black">
-        
-<div className="absolute top-6 right-5 md:right-8 z-20">
-  <a
-    href="/"
-    className="
-    flex items-center gap-3
-    bg-white/70 backdrop-blur-xl
-    border border-orange-100
-    hover:border-orange-300
-    hover:bg-white
-    text-gray-700 hover:text-orange-500
-    px-5 md:px-7
-    py-3 md:py-4
-    rounded-full
-    shadow-[0_8px_30px_rgb(0,0,0,0.05)]
-    transition-all duration-300
-    text-sm md:text-base
-    font-medium
-  "
-  >
-    <span className="text-xl">→</span>
-    الرئيسية
-  </a>
-</div>
+    <main dir="rtl" className="bg-white text-black overflow-hidden">
       {/* Hero */}
-<section className="px-5 md:px-8 py-20 md:py-28 text-center bg-gradient-to-b from-orange-100 via-orange-50 to-white">        <div className="max-w-5xl mx-auto">
-          <div className="text-6xl mb-6">🇪🇺</div>
+      <section className="relative overflow-hidden px-5 md:px-8 pt-24 pb-20 bg-white">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-[-120px] h-[420px] w-[420px] rounded-full bg-orange-200/25 blur-3xl" />
+          <div className="absolute bottom-0 left-[-120px] h-[420px] w-[420px] rounded-full bg-blue-200/10 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,130,0,0.08),transparent_45%)]" />
+        </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            تأشيرة شنغن
+        <a
+          href="/"
+          className="absolute right-5 top-6 z-20 inline-flex items-center gap-3 rounded-full border border-orange-100 bg-white/80 px-5 py-3 text-sm font-bold text-[#101b32] shadow-xl backdrop-blur-xl transition hover:text-orange-500 md:right-8 md:px-7 md:py-4 md:text-base"
+        >
+          <span>→</span>
+          الرئيسية
+        </a>
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          
+
+          <h1 className="mb-6 text-4xl font-black text-[#101b32] md:text-7xl">
+            تأشيرة <span className="text-orange-500">شنغن</span>
           </h1>
 
-          <p className="text-gray-600 text-lg md:text-xl leading-9 max-w-3xl mx-auto">
-            اختر دولة الشنغن المطلوبة، واطّلع على المتطلبات والملاحظات المهمة
-            قبل بدء طلب التأشيرة.
+          <p className="mx-auto max-w-3xl text-lg leading-9 text-gray-500 md:text-2xl">
+            اختر دولة الشنغن المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.
           </p>
+
+      
+
+{/* Schengen Intro */}
+<div className="max-w-5xl mx-auto mt-14">
+
+  <div className="
+    relative overflow-hidden
+    bg-white/80 backdrop-blur-xl
+    border border-orange-100
+    rounded-[32px]
+    p-8 md:p-12
+    shadow-[0_20px_80px_rgba(0,0,0,0.06)]
+  ">
+
+    <div className="absolute -top-24 -left-24 w-72 h-72 bg-orange-100 rounded-full blur-3xl opacity-40" />
+
+    <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+
+      <div className="
+        min-w-[110px] h-[110px]
+        rounded-[30px]
+        bg-gradient-to-br from-orange-500 to-orange-400
+        flex items-center justify-center
+        shadow-[0_15px_40px_rgba(249,115,22,0.35)]
+      ">
+        <span className="text-5xl">🌍</span>
+      </div>
+
+      <div className="text-center md:text-right flex-1">
+
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
+          ما هي تأشيرة شنغن؟
+        </h2>
+
+        <p className="text-gray-600 leading-9 text-lg">
+          تأشيرة شنغن هي تأشيرة موحدة تسمح لحاملها بالتنقل بين دول منطقة
+          الشنغن الأوروبية لمدة تصل إلى 90 يومًا خلال فترة 180 يومًا،
+          سواءً للسياحة أو زيارة العائلة أو الأعمال.
+        </p>
+
+        <div className="
+          mt-6
+          bg-orange-50
+          border border-orange-100
+          rounded-2xl
+          px-5 py-4
+          text-orange-700
+          leading-8
+          text-sm md:text-base
+        ">
+          قد تختلف المتطلبات والإجراءات من دولة لأخرى، لذلك يتم تحديث
+          الشروط حسب السفارة المختارة.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="px-5 md:px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Countries Sidebar */}
-          <aside className="bg-white border rounded-3xl p-6 shadow-sm h-fit">
-            <h2 className="text-2xl font-bold mb-6">اختر الدولة</h2>
-<div className="md:hidden mb-6">
-  <select
-    value={selectedCountry.name}
-    onChange={(e) => {
-      const country = schengenCountries.find(
-        (c) => c.name === e.target.value
-      );
+      {/* Content */}
+      <section className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-3">
+          {/* Sidebar */}
+          <aside className="h-fit rounded-[34px] border border-orange-100 bg-white/90 p-6 shadow-xl backdrop-blur-xl">
+            <h2 className="mb-6 text-2xl font-black text-[#101b32]">
+              اختر الدولة
+            </h2>
 
-      if (country) {
-        setSelectedCountry(country);
-      }
-    }}
-    className="w-full border border-gray-200 rounded-2xl p-4 bg-white text-lg"
-  >
-    {schengenCountries.map((country) => (
-      <option key={country.name} value={country.name}>
-        {country.flag} {country.name}
-      </option>
-    ))}
-  </select>
-</div>
-<div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">              {schengenCountries.map((country) => (
+            <div className="mb-6 md:hidden">
+              <select
+                value={selectedCountry.name}
+                onChange={(e) => {
+                  const country = schengenCountries.find(
+                    (c) => c.name === e.target.value
+                  );
+
+                  if (country) {
+                    setSelectedCountry(country);
+                  }
+                }}
+                className="w-full rounded-2xl border border-orange-100 bg-white p-4 text-lg outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100"
+              >
+                {schengenCountries.map((country) => (
+                  <option key={country.name} value={country.name}>
+                    {country.flag} {country.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="hidden gap-3 md:grid">
+              {schengenCountries.map((country) => (
                 <button
                   key={country.name}
                   onClick={() => setSelectedCountry(country)}
-                  className={`text-right p-4 rounded-2xl border transition duration-300 hover:-translate-y-1 ${
+                  className={`rounded-2xl border p-4 text-right font-bold transition duration-300 hover:-translate-y-1 ${
                     selectedCountry.name === country.name
                       ? "border-orange-500 bg-orange-50 text-orange-600 shadow-md"
-                      : "border-gray-200 hover:border-orange-300"
+                      : "border-orange-100 bg-white hover:border-orange-300 hover:shadow-lg"
                   }`}
                 >
-                  <span className="text-2xl ml-2">{country.flag}</span>
+                  <span className="ml-2 text-2xl">{country.flag}</span>
                   {country.name}
                 </button>
               ))}
             </div>
           </aside>
 
-          {/* Country Details */}
-          <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white border rounded-3xl p-6 md:p-8 shadow-sm">
-              <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+          {/* Details */}
+          <div className="lg:col-span-2">
+            <div className="rounded-[34px] border border-orange-100 bg-white/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
+              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center">
                 <div className="text-6xl">{selectedCountry.flag}</div>
 
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">
+                  <h2 className="text-3xl font-black text-[#101b32] md:text-4xl">
                     تأشيرة شنغن - {selectedCountry.name}
                   </h2>
 
-                  <p className="text-green-600 mt-2">
-                    الحالة: {selectedCountry.status}
+                  <p className="mt-2 font-bold text-green-600">
+                    {selectedCountry.status}
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                <div className="bg-gray-50 rounded-2xl p-5">
-                  <p className="text-gray-500 mb-2">نوع التأشيرة</p>
-                  <h3 className="text-xl font-bold">سياحية</h3>
+              <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-5">
+                  <p className="mb-2 text-gray-500">نوع التأشيرة</p>
+                  <h3 className="text-xl font-black">سياحية</h3>
                 </div>
 
-                <div className="bg-gray-50 rounded-2xl p-5">
-                  <p className="text-gray-500 mb-2">السعر</p>
-                  <h3 className="text-xl font-bold text-orange-500">
+                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-5">
+                  <p className="mb-2 text-gray-500">السعر</p>
+                  <h3 className="text-xl font-black text-orange-500">
                     {selectedCountry.price}
                   </h3>
                 </div>
 
-                <div className="bg-gray-50 rounded-2xl p-5">
-                  <p className="text-gray-500 mb-2">المدة</p>
-                  <h3 className="text-xl font-bold">
+                <div className="rounded-2xl border border-orange-100 bg-orange-50/40 p-5">
+                  <p className="mb-2 text-gray-500">المدة</p>
+                  <h3 className="text-xl font-black">
                     {selectedCountry.duration}
                   </h3>
                 </div>
               </div>
 
-              <div className="bg-orange-50 border border-orange-100 rounded-3xl p-5 mb-10">
-                <h3 className="text-xl font-bold mb-2">
-                  ملاحظة قبل التقديم
-                </h3>
-                <p className="text-gray-700 leading-8">
-                  المتطلبات التالية مخصصة لسفارة {selectedCountry.name}، وقد
-                  تختلف حسب حالة مقدم الطلب أو تحديثات السفارة.
+              <div className="mb-10 rounded-3xl border border-orange-100 bg-orange-50 p-5">
+                <h3 className="mb-2 text-xl font-black">ملاحظة قبل التقديم</h3>
+                <p className="leading-8 text-gray-700">
+                  المتطلبات التالية مخصصة لسفارة {selectedCountry.name}، وقد تختلف حسب حالة مقدم الطلب أو تحديثات السفارة.
                 </p>
               </div>
 
-              <h3 className="text-2xl font-bold mb-5">
+              <h3 className="mb-5 text-2xl font-black text-[#101b32]">
                 المتطلبات عند الحضور لمركز التأشيرات
               </h3>
 
-              <ul className="space-y-3 mb-10">
-                {selectedCountry.requirements.map((item) => (
+              <ul className="mb-10 space-y-3">
+                {allRequirements.map((item) => (
                   <li
                     key={item}
-                    className="bg-gray-50 rounded-2xl p-4 leading-8 border border-gray-100"
+                    className="rounded-2xl border border-orange-100 bg-white p-4 leading-8 shadow-sm"
                   >
                     • {item}
                   </li>
                 ))}
               </ul>
 
-              <h3 className="text-2xl font-bold mb-5">ملاحظات مهمة</h3>
+              <h3 className="mb-5 text-2xl font-black text-[#101b32]">
+                ملاحظات مهمة
+              </h3>
 
-              <ul className="space-y-3 mb-10">
+              <ul className="mb-10 space-y-3">
                 {selectedCountry.notes.map((note) => (
                   <li
                     key={note}
-                    className="bg-orange-50 rounded-2xl p-4 leading-8 border border-orange-100"
+                    className="rounded-2xl border border-orange-100 bg-orange-50/70 p-4 leading-8 shadow-sm"
                   >
                     • {note}
                   </li>
@@ -368,7 +422,7 @@ export default function SchengenPage() {
 
               <button
                 onClick={sendToWhatsApp}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl text-lg font-bold transition duration-300 hover:scale-[1.02] shadow-xl"
+                className="w-full rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 py-5 text-lg font-black text-white shadow-xl shadow-orange-500/25 transition duration-300 hover:scale-[1.02] hover:from-orange-600 hover:to-orange-500"
               >
                 ابدأ طلب تأشيرة {selectedCountry.name}
               </button>
@@ -376,177 +430,102 @@ export default function SchengenPage() {
           </div>
         </div>
       </section>
+
       {/* FAQ */}
-<section className="px-5 md:px-8 py-16 md:py-24 bg-white">
+      <section className="relative bg-white px-5 py-20 md:px-8">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
+            الأسئلة <span className="text-orange-500">الشائعة</span>
+          </h2>
 
-  <div className="max-w-5xl mx-auto">
+          <div className="space-y-5">
+            {[
+              {
+                q: "هل الحضور شخصي لمركز التأشيرات؟",
+                a: "نعم، يجب حضور صاحب الطلب شخصيًا لمركز التأشيرات لإجراء البصمة وتسليم الجواز.",
+              },
+              {
+                q: "هل البصمة مطلوبة؟",
+                a: "نعم، البصمة مطلوبة عند التقديم على تأشيرة شنغن.",
+              },
+              {
+                q: "كم مدة استخراج التأشيرة؟",
+                a: "تختلف مدة المعالجة حسب السفارة والموسم، وعادة تستغرق من عدة أيام إلى عدة أسابيع.",
+              },
+              {
+                q: "هل التأشيرة مضمونة؟",
+                a: "لا يمكن ضمان الموافقة على التأشيرة، حيث يعود القرار النهائي للسفارة فقط.",
+              },
+              {
+                q: "هل يمكن التقديم للعائلة؟",
+                a: "نعم، يمكن التقديم للأفراد أو العائلات مع تجهيز كامل للملفات والمواعيد.",
+              },
+              {
+                q: "هل يجب حجز طيران وفندق قبل التقديم؟",
+                a: "نعم، يتطلب ملف التأشيرة وجود حجوزات مبدئية للطيران والفندق، ويمكن توفيرها وتجهيزها من خلالنا.",
+              },
+            ].map((item) => (
+              <div
+                key={item.q}
+                className="rounded-[28px] border border-orange-100 bg-white/90 p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"
+              >
+                <h3 className="mb-3 text-xl font-black text-[#101b32]">
+                  {item.q}
+                </h3>
 
-    <h2 className="text-3xl md:text-4xl font-bold text-center mb-14">
-      الأسئلة الشائعة
-    </h2>
+                <p className="leading-8 text-gray-500">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    <div className="space-y-5">
+      {/* Related Visas */}
+      <section
+        dir="rtl"
+        className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8"
+      >
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
+            تأشيرات قد <span className="text-orange-500">تهمك</span>
+          </h2>
 
-      <div className="border rounded-3xl p-6">
-        <h3 className="text-xl font-bold mb-3">
-          هل الحضور شخصي لمركز التأشيرات؟
-        </h3>
-
-        <p className="text-gray-600 leading-8">
-          نعم، يجب حضور صاحب الطلب شخصيًا لمركز التأشيرات لإجراء البصمة وتسليم الجواز.
-        </p>
-      </div>
-
-      <div className="border rounded-3xl p-6">
-        <h3 className="text-xl font-bold mb-3">
-          هل البصمة مطلوبة؟
-        </h3>
-
-        <p className="text-gray-600 leading-8">
-          نعم، البصمة مطلوبة عند التقديم على تأشيرة شنغن.
-        </p>
-      </div>
-
-      <div className="border rounded-3xl p-6">
-        <h3 className="text-xl font-bold mb-3">
-          كم مدة استخراج التأشيرة؟
-        </h3>
-
-        <p className="text-gray-600 leading-8">
-          تختلف مدة المعالجة حسب السفارة والموسم، وعادة تستغرق من عدة أيام إلى عدة أسابيع.
-        </p>
-      </div>
-
-      <div className="border rounded-3xl p-6">
-        <h3 className="text-xl font-bold mb-3">
-          هل التأشيرة مضمونة؟
-        </h3>
-
-        <p className="text-gray-600 leading-8">
-          لا يمكن ضمان الموافقة على التأشيرة، حيث يعود القرار النهائي للسفارة فقط.
-        </p>
-      </div>
-
-      <div className="border rounded-3xl p-6">
-        <h3 className="text-xl font-bold mb-3">
-          هل يمكن التقديم للعائلة؟
-        </h3>
-
-        <p className="text-gray-600 leading-8">
-          نعم، يمكن التقديم للأفراد أو العائلات مع تجهيز كامل للملفات والمواعيد.
-        </p>
-      </div>
-
-      <div className="border rounded-3xl p-6">
-        <h3 className="text-xl font-bold mb-3">
-          هل يجب حجز طيران وفندق قبل التقديم؟
-        </h3>
-
-        <p className="text-gray-600 leading-8">
-          نعم، يتطلب ملف التأشيرة وجود حجوزات مبدئية للطيران والفندق، ويمكن توفيرها وتجهيزها من خلالنا.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-{/* Related Visas */}
-<section dir="rtl" className="px-5 md:px-8 py-16 md:py-24 bg-gray-50">
-  <div className="max-w-6xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-      تأشيرات قد تهمك
-    </h2>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-<a
-  href="/uk"
-  className="bg-white border border-gray-100 rounded-3xl p-8 text-right hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 block"
->        <div className="text-5xl mb-5">🇬🇧</div>
-        <h3 className="text-2xl font-bold mb-3">تأشيرة بريطانيا</h3>
-        <p className="text-gray-600 leading-8">
-          خدمات التقديم على التأشيرات السياحية والدراسية لبريطانيا.
-        </p>
-      </a>
-
-<a
-  href="/usa"
-  className="bg-white border border-gray-100 rounded-3xl p-8 text-right hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 block"
->        <div className="text-5xl mb-5">🇺🇸</div>
-        <h3 className="text-2xl font-bold mb-3">تأشيرة أمريكا</h3>
-        <p className="text-gray-600 leading-8">
-          تجهيز ملف التأشيرة الأمريكية ومساعدتك في خطوات التقديم.
-        </p>
-      </a>
-
-<a
-  href="/canada"
-  className="bg-white border border-gray-100 rounded-3xl p-8 text-right hover:shadow-2xl hover:-translate-y-2 hover:border-orange-200 transition duration-300 block"
->        <div className="text-5xl mb-5">🇨🇦</div>
-        <h3 className="text-2xl font-bold mb-3">تأشيرة كندا</h3>
-        <p className="text-gray-600 leading-8">
-          خدمات التأشيرات السياحية والدراسية لكندا بخطوات واضحة.
-        </p>
-      </a>
-    </div>
-  </div>
-</section>
-{/* Footer */}
-<footer dir="rtl" className="bg-black text-white py-14 px-8">
-  <div className="max-w-6xl mx-auto text-center">
-    <h3 className="text-3xl font-bold mb-4">
-      رحلتنا للتأشيرات
-    </h3>
-
-    <p className="text-gray-400 mb-10">
-      خدمات التأشيرات السياحية والدراسية لجميع الوجهات العالمية.
-    </p>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto text-gray-300 mb-10 text-right">
-      <div className="space-y-3">
-        <p>📍 مكتب 102 - الدور الأول - برج الحميضي</p>
-        <p>طريق المدينة - حي السلامة - جدة</p>
-        <p>المملكة العربية السعودية</p>
-        <p>📞 0552525141</p>
-      </div>
-
-      <div className="space-y-3">
-        <p>الاسم التجاري: مؤسسة رحلتنا لتنظيم الرحلات</p>
-        <p>السجل التجاري: 4030228793</p>
-        <p>الرقم الضريبي: 30201661700003</p>
-        <p>التصنيف: منظم رحلات سياحية</p>
-      </div>
-    </div>
-
-    <div className="flex justify-center items-center gap-4 mt-8 mb-10 flex-wrap">
-      <a href="https://instagram.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-orange-500 transition px-5 py-3 rounded-full whitespace-nowrap">
-        Instagram
-      </a>
-
-      <a href="https://snapchat.com/add/studyrace1" target="_blank" className="bg-white/10 hover:bg-yellow-400 hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">
-        Snapchat
-      </a>
-
-      <a href="https://tiktok.com/@studyrace1" target="_blank" className="bg-white/10 hover:bg-white hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">
-        TikTok
-      </a>
-
-      <a href="https://linkedin.com/company/studyrace" target="_blank" className="bg-white/10 hover:bg-blue-600 transition px-5 py-3 rounded-full whitespace-nowrap">
-        LinkedIn
-      </a>
-
-      <a href="https://x.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-white hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">
-        X
-      </a>
-    </div>
-
-    <p className="text-gray-500 mt-8 text-sm">
-      © 2026 جميع الحقوق محفوظة - رحلتنا للتأشيرات
-    </p>
-  </div>
-</footer>
-
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {[
+              {
+                href: "/uk",
+                flag: "🇬🇧",
+                title: "تأشيرة بريطانيا",
+                text: "خدمات التقديم على التأشيرات السياحية والدراسية لبريطانيا.",
+              },
+              {
+                href: "/usa",
+                flag: "🇺🇸",
+                title: "تأشيرة أمريكا",
+                text: "تجهيز ملف التأشيرة الأمريكية ومساعدتك في خطوات التقديم.",
+              },
+              {
+                href: "/canada",
+                flag: "🇨🇦",
+                title: "تأشيرة كندا",
+                text: "خدمات التأشيرات السياحية والدراسية لكندا بخطوات واضحة.",
+              },
+            ].map((visa) => (
+              <a
+                key={visa.href}
+                href={visa.href}
+                className="block rounded-[30px] border border-orange-100 bg-white p-8 text-right shadow-lg transition duration-300 hover:-translate-y-2 hover:border-orange-200 hover:shadow-2xl"
+              >
+                <div className="mb-5 text-5xl">{visa.flag}</div>
+                <h3 className="mb-3 text-2xl font-black text-[#101b32]">
+                  {visa.title}
+                </h3>
+                <p className="leading-8 text-gray-500">{visa.text}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
