@@ -140,7 +140,7 @@ export default function UAEPage() {
             <div className="w-full rounded-[28px] border border-orange-100 bg-white/90 p-6 text-center shadow-lg backdrop-blur-xl md:w-80">
               <p className="mb-2 text-gray-500">السعر</p>
               <h3 className="text-2xl font-black text-orange-500">
-                يحدد لاحقًا
+                550 ريال
               </h3>
             </div>
           </div>
