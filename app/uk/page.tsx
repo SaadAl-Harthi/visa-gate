@@ -350,16 +350,6 @@ export default function UKPage() {
 
       </footer>
 
-      {/* WhatsApp Floating */}
-      <a
-        href={`https://wa.me/966552525141?text=${encodeURIComponent(
-          `السلام عليكم، أرغب بالتقديم على تصريح بريطانيا الإلكتروني ETA`
-        )}`}
-        target="_blank"
-        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-green-500 hover:bg-green-600 text-white px-5 py-4 rounded-full shadow-2xl z-50 transition duration-300 hover:scale-110"
-      >
-        واتساب
-      </a>
 
     </main>
   );
