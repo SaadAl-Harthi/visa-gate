@@ -129,7 +129,7 @@ export default function UKPage() {
     <div className="flex justify-center mt-6">
       <div className="bg-gray-50 rounded-3xl p-6 text-center w-full md:w-72">
         <p className="text-gray-500 mb-2">السعر</p>
-        <h3 className="text-2xl font-bold text-orange-500">يحدد لاحقًا</h3>
+        <h3 className="text-2xl font-bold text-orange-500">180 ريال</h3>
       </div>
     </div>
   </div>

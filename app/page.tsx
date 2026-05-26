@@ -6,17 +6,23 @@ import {
   ClipboardCheck,
   Zap,
 } from "lucide-react";
+import { FaInstagram, FaLinkedinIn, FaTiktok, FaSnapchat, FaXTwitter } from "react-icons/fa6";
 import {
+  Menu,
+  X,
+  MessageCircle,
+  Award,
   Headphones,
   ShieldCheck,
-  Award,
-  FileText,
   Users,
-  MessageCircle,
   Globe2,
-    BadgeCheck,
-    Rocket,
-Target,
+  BadgeCheck,
+  Rocket,
+  Target,
+  Music2,
+  MapPin,
+  Phone,
+  FileText,
 } from "lucide-react";
 
 export default function Home() {
@@ -280,7 +286,7 @@ className="mr-0 ml-auto w-full max-w-2xl text-center md:text-right"
         ].map(([text, Icon]: any) => (
           <div
             key={text}
-            className="flex items-center gap-3 rounded-2xl border border-orange-200/70 bg-white/50 px-5 py-3 text-sm font-bold text-slate-800 shadow-sm backdrop-blur-xl"
+            className="flex items-center gap-3 rounded-2xl border border-orange-200/70 bg-white/[0.03]0 px-5 py-3 text-sm font-bold text-slate-800 shadow-sm backdrop-blur-xl"
           >
             <Icon className="text-orange-500" size={22} />
             {text}
@@ -820,7 +826,7 @@ src="/why-clean-bg.png"
 </section>
 {/* Testimonials */}
 <section id="reviews" className="bg-gray-50 py-16 md:py-24 px-5 md:px-8 overflow-hidden">
-  <h3 className="text-3xl md:text-4xl font-bold text-center mb-16">
+  <h3 className="text-2xl md:text-3xl font-bold text-center mb-16">
     آراء عملائنا
   </h3>
 
@@ -1135,15 +1141,14 @@ src="/why-clean-bg.png"
   </div>
 </section>
 {/* Footer */}
-<footer className="bg-black text-white py-14 px-8">
-  <div className="max-w-6xl mx-auto text-center">
+<footer className="relative overflow-hidden bg-gradient-to-b from-[#0d1b3d] to-[#07142c] text-white px-5 md:px-8 pt-14 pb-6">  <div className="max-w-6xl mx-auto text-center">
     <h3 className="text-3xl font-bold mb-4">رحلتنا لإستخراج التأشيرات</h3>
 
-    <p className="text-gray-400 mb-10">
+    <p className="text-gray-400 mb-6">
       خدمات التأشيرات السياحية والدراسية لجميع الوجهات العالمية.
     </p>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-5xl mx-auto text-gray-300 mb-10 text-right">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto text-gray-300 mb-6 text-right">
       <div className="space-y-3">
         <p>📍 مكتب 102 - الدور الأول - برج الحميضي</p>
         <p>طريق المدينة - حي السلامة - جدة</p>
@@ -1159,14 +1164,29 @@ src="/why-clean-bg.png"
       </div>
     </div>
     
+<div className="flex justify-center items-center gap-4 mb-6 flex-wrap">
+  {[
+    { href: "https://instagram.com/studyrace1", icon: FaInstagram, label: "Instagram" },
+    { href: "https://snapchat.com/add/studyrace1", icon: FaSnapchat, label: "Snapchat" },
+    { href: "https://tiktok.com/@studyrace1", icon: FaTiktok, label: "TikTok" },
+    { href: "https://linkedin.com/company/studyrace", icon: FaLinkedinIn, label: "LinkedIn" },
+    { href: "https://x.com/studyrace1", icon: FaXTwitter, label: "X" },
+  ].map((item) => {
+    const Icon = item.icon;
 
-    <div className="flex justify-center items-center gap-4 mt-8 mb-10 flex-wrap">
-      <a href="https://instagram.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-orange-500 transition px-5 py-3 rounded-full whitespace-nowrap">Instagram</a>
-      <a href="https://snapchat.com/add/studyrace1" target="_blank" className="bg-white/10 hover:bg-yellow-400 hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">Snapchat</a>
-      <a href="https://tiktok.com/@studyrace1" target="_blank" className="bg-white/10 hover:bg-white hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">TikTok</a>
-      <a href="https://linkedin.com/company/studyrace" target="_blank" className="bg-white/10 hover:bg-blue-600 transition px-5 py-3 rounded-full whitespace-nowrap">LinkedIn</a>
-      <a href="https://x.com/studyrace1" target="_blank" className="bg-white/10 hover:bg-white hover:text-black transition px-5 py-3 rounded-full whitespace-nowrap">X</a>
-    </div>
+    return (
+      <a
+        key={item.label}
+        href={item.href}
+        target="_blank"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 hover:bg-orange-500 transition"
+        aria-label={item.label}
+      >
+        <Icon size={22} />
+      </a>
+    );
+  })}
+</div>
     <div className="flex justify-center gap-6 mb-8 flex-wrap text-gray-300">
 
   <a
@@ -1189,7 +1209,7 @@ src="/why-clean-bg.png"
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3202.5834825925763!2d39.162962325502896!3d21.594510468108513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d17e2eb9b007%3A0xa76e6baf7e34d360!2z2LHYrdmE2KrZhtinINmE2YTYr9ix2KfYs9ipINio2KfZhNiu2KfYsdisIChTVFVEWSBSQUNFKQ!5e1!3m2!1sar!2ssa!4v1779215522688!5m2!1sar!2ssa"
         width="100%"
-        height="330"
+        height="220"
         style={{ border: 0 }}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
