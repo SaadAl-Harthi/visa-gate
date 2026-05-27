@@ -1,4 +1,3 @@
-"use client";
 
 const requirements = [
   "صورة الهوية.",
@@ -15,7 +14,8 @@ const notes = [
   "قد تطلب السفارة مستندات إضافية حسب حالة الطلب.",
   "إصدار التأشيرة غير مضمون ويعود القرار النهائي للسفارة الأسترالية.",
 ];
-
+import JsonLd from "../components/JsonLd";
+import VisaWhatsAppCTA from "../components/VisaWhatsAppCTA";
 const faqs = [
   {
     question: "هل التأشيرة إلكترونية؟",
@@ -45,6 +45,18 @@ const faqs = [
       "نعم، في حال التقديم على تأشيرة دراسية يجب إرفاق قبول الجهة التعليمية.",
   },
 ];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -76,24 +88,11 @@ export const metadata: Metadata = {
     images: ["/og-image-v2.png"],
   },
 };
+
 export default function AustraliaPage() {
-  const sendToWhatsApp = () => {
-    const message = `
-السلام عليكم، أرغب بالتقديم على تأشيرة أستراليا
-
-نوع التأشيرة: سياحية أو دراسية قصيرة
-السعر: 650 ريال
-المدة: من 4 إلى 10 أيام عمل
-`;
-
-    window.open(
-      `https://wa.me/966552525141?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  };
-
   return (
     <main dir="rtl" className="bg-white text-black overflow-hidden">
+    <JsonLd data={faqSchema} />
       {/* Hero */}
       <section className="relative overflow-hidden px-5 md:px-8 pt-24 pb-20 bg-white">
         <div className="absolute inset-0 pointer-events-none">
@@ -210,12 +209,10 @@ export default function AustraliaPage() {
             ))}
           </ul>
 
-          <button
-            onClick={sendToWhatsApp}
-            className="w-full rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 py-5 text-lg font-black text-white shadow-xl shadow-orange-500/25 transition duration-300 hover:scale-[1.02] hover:from-orange-600 hover:to-orange-500"
-          >
-            ابدأ طلب تأشيرة أستراليا
-          </button>
+    <VisaWhatsAppCTA visaName="أستراليا">
+  ابدأ طلب تأشيرة أستراليا
+</VisaWhatsAppCTA>
+
         </div>
       </section>
 

@@ -1,5 +1,4 @@
-"use client";
-
+import VisaWhatsAppCTA from "../components/VisaWhatsAppCTA";
 const requirements = [
   "صورة الجواز.",
   "صورة الإقامة.",
@@ -209,13 +208,10 @@ export default function UAEPage() {
               </li>
             ))}
           </ul>
+<VisaWhatsAppCTA visaName="الإمارات">
+  ابدأ طلب تأشيرة الإمارات
+</VisaWhatsAppCTA>
 
-          <button
-            onClick={sendToWhatsApp}
-            className="w-full rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 py-5 text-lg font-black text-white shadow-xl shadow-orange-500/25 transition duration-300 hover:scale-[1.02] hover:from-orange-600 hover:to-orange-500"
-          >
-            ابدأ طلب تأشيرة الإمارات
-          </button>
         </div>
       </section>
 

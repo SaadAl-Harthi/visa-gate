@@ -1,5 +1,4 @@
-"use client";
-
+import VisaWhatsAppCTA from "../components/VisaWhatsAppCTA";
 const requirements = [
   "صورة شخصية بخلفية بيضاء.",
   "صورة واضحة للجواز.",
@@ -202,12 +201,10 @@ export default function UKPage() {
             ))}
           </ul>
 
-          <button
-            onClick={sendToWhatsApp}
-            className="w-full rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 py-5 text-lg font-black text-white shadow-xl shadow-orange-500/25 transition duration-300 hover:scale-[1.02] hover:from-orange-600 hover:to-orange-500"
-          >
-            ابدأ طلب تصريح بريطانيا
-          </button>
+          <VisaWhatsAppCTA visaName="بريطانيا">
+  ابدأ طلب تأشيرة بريطانيا
+</VisaWhatsAppCTA>
+
         </div>
       </section>
 
