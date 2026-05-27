@@ -15,6 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://visa-gate.vercel.app"),
+
+  alternates: {
+    canonical: "/",
+  },
+
   title: "رحلتنا للتأشيرات | تأشيرات سياحية ودراسية",
 
   description:
@@ -26,37 +32,28 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "رحلتنا للتأشيرات",
-
     description:
       "خدمات استخراج التأشيرات السياحية والدراسية لجميع الوجهات العالمية.",
-
-    url: "https://visa-gate.vercel.app",
-
+    url: "/",
     siteName: "رحلتنا للتأشيرات",
-
     images: [
       {
-        url: "https://visa-gate.vercel.app/og-image-v2.png",
+        url: "/og-image-v2.png",
         width: 1200,
         height: 630,
-        alt: "رحلتنا لإستخراج التأشيرات",
+        alt: "رحلتنا للتأشيرات",
       },
     ],
-
     locale: "ar_SA",
-
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
-
     title: "رحلتنا للتأشيرات",
-
     description:
       "خدمات استخراج التأشيرات السياحية والدراسية لجميع الوجهات العالمية.",
-
-    images: ["https://visa-gate.vercel.app/og-image-v2.png"],
+    images: ["/og-image-v2.png"],
   },
 };
 

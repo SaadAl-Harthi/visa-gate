@@ -45,7 +45,37 @@ const faqs = [
       "نعم، في حال التقديم على تأشيرة دراسية يجب إرفاق قبول الجهة التعليمية.",
   },
 ];
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "استخراج تأشيرة أستراليا للسعوديين | رحلتنا للتأشيرات",
+
+  description:
+    "استخراج تأشيرة أستراليا السياحية والدراسية مع تجهيز الملف ومتابعة الطلب خطوة بخطوة.",
+
+  alternates: {
+    canonical: "/australia",
+  },
+
+  openGraph: {
+    title: "استخراج تأشيرة أستراليا للسعوديين",
+
+    description:
+      "خدمة احترافية لاستخراج تأشيرة أستراليا بسهولة وسرعة.",
+
+    url: "/australia",
+
+    images: ["/og-image-v2.png"],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "استخراج تأشيرة أستراليا",
+    description:
+      "خدمة استخراج تأشيرة أستراليا السياحية والدراسية.",
+    images: ["/og-image-v2.png"],
+  },
+};
 export default function AustraliaPage() {
   const sendToWhatsApp = () => {
     const message = `

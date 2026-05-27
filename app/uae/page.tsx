@@ -14,7 +14,37 @@ const notes = [
   "إصدار التأشيرة غير مضمون، ويعود القرار النهائي للجهات المختصة في الإمارات.",
   "قد تختلف مدة المعالجة حسب حالة الطلب أو تحديثات الجهات المختصة.",
 ];
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "استخراج تأشيرة الإمارات للسعوديين | رحلتنا للتأشيرات",
+
+  description:
+    "خدمة استخراج تأشيرة الإمارات السياحية بسرعة وسهولة مع متابعة الطلب وتجهيز المتطلبات.",
+
+  alternates: {
+    canonical: "/uae",
+  },
+
+  openGraph: {
+    title: "استخراج تأشيرة الإمارات",
+
+    description:
+      "نساعدك في استخراج تأشيرة الإمارات بخطوات سهلة وسريعة.",
+
+    url: "/uae",
+
+    images: ["/og-image-v2.png"],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "استخراج تأشيرة الإمارات",
+    description:
+      "خدمة استخراج تأشيرة الإمارات للسعوديين.",
+    images: ["/og-image-v2.png"],
+  },
+};
 const faqs = [
   {
     question: "هل التأشيرة إلكترونية؟",
