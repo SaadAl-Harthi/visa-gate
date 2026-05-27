@@ -1,3 +1,10 @@
+import {
+  FaInstagram,
+  FaTiktok,
+  FaSnapchat,
+  FaLinkedinIn,
+  FaXTwitter,
+} from "react-icons/fa6";
 export default function Footer() {
   return (
     <footer
@@ -62,37 +69,47 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social */}
-        <div className="mt-14 flex justify-center gap-4 flex-wrap">
-          {[
-            {
-              name: "Instagram",
-              href: "https://instagram.com/studyrace1",
-            },
-            {
-              name: "TikTok",
-              href: "https://tiktok.com/@studyrace1",
-            },
-            {
-              name: "Snapchat",
-              href: "https://snapchat.com/add/studyrace1",
-            },
-            {
-              name: "X",
-              href: "https://x.com/studyrace1",
-            },
-          ].map((social) => (
-            <a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              className="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-bold text-white/80 backdrop-blur-xl transition hover:border-orange-400 hover:bg-orange-500 hover:text-white"
-            >
-              {social.name}
-            </a>
-          ))}
-        </div>
-
+     {/* Social */}
+<div className="mt-14 flex justify-center gap-4 flex-wrap">
+  {[
+    {
+      name: "Instagram",
+      href: "https://instagram.com/studyrace1",
+      icon: <FaInstagram size={22} />,
+    },
+    {
+      name: "TikTok",
+      href: "https://tiktok.com/@studyrace1",
+      icon: <FaTiktok size={22} />,
+    },
+    {
+      name: "Snapchat",
+      href: "https://snapchat.com/add/studyrace1",
+      icon: <  FaSnapchat size={22} />,
+    },
+    {
+      name: "X",
+      href: "https://x.com/studyrace1",
+      icon: <FaXTwitter size={22} />,
+    },
+    {
+      name: "LinkedIn",
+      href: "https://linkedin.com",
+      icon: <FaLinkedinIn size={22} />,
+    },
+  ].map((social) => (
+    <a
+      key={social.name}
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={social.name}
+      className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-orange-400 hover:bg-orange-500 hover:text-white"
+    >
+      {social.icon}
+    </a>
+  ))}
+</div>
         {/* Bottom */}
         <div className="mt-14 border-t border-white/10 pt-6 text-center">
           <p className="text-sm text-white/40">
