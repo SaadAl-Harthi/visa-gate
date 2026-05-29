@@ -74,6 +74,7 @@ export type VisaPageData = {
   seo: {
     title: string;
     description: string;
+    image: string;
     openGraphTitle: string;
     openGraphDescription: string;
     twitterTitle?: string;
@@ -652,6 +653,7 @@ export const schengenVisaPage: VisaPageData = {
     title: "تأشيرة شنغن للسعوديين | استخراج فيزا شنغن من السعودية",
     description:
       "استخراج تأشيرة شنغن من السعودية للسياحة مع تجهيز متطلبات تأشيرة شنغن، التأمين الطبي، حجوزات السفر، ومتابعة ملف التقديم.",
+    image: "/schengen-og.png",
     openGraphTitle: "استخراج تأشيرة شنغن من السعودية",
     openGraphDescription:
       "خدمة تجهيز فيزا شنغن سياحية للسعوديين مع مراجعة المتطلبات وترتيب ملف التقديم.",
@@ -719,6 +721,7 @@ export const usaVisaPage: VisaPageData = {
     title: "استخراج تأشيرة أمريكا للسعوديين | رحلتنا للتأشيرات",
     description:
       "نساعدك في استخراج تأشيرة أمريكا السياحية أو الدراسية مع تجهيز الملف، تعبئة النماذج، وحجز الموعد.",
+    image: "/usa-og.png",
     openGraphTitle: "استخراج تأشيرة أمريكا للسعوديين",
     openGraphDescription:
       "خدمة متكاملة لاستخراج تأشيرة أمريكا مع متابعة الطلب خطوة بخطوة.",
@@ -783,6 +786,7 @@ export const canadaVisaPage: VisaPageData = {
     title: "استخراج تأشيرة كندا للسعوديين | رحلتنا للتأشيرات",
     description:
       "خدمة استخراج تأشيرة كندا السياحية والدراسية مع تجهيز الملفات والمتابعة الكاملة حتى إصدار التأشيرة.",
+    image: "/canada-og.png",
     openGraphTitle: "استخراج تأشيرة كندا للسعوديين",
     openGraphDescription:
       "نساعدك في استخراج تأشيرة كندا بسهولة مع مراجعة المتطلبات والملف.",
@@ -848,6 +852,7 @@ export const ukVisaPage: VisaPageData = {
     title: "استخراج تأشيرة بريطانيا للسعوديين | رحلتنا للتأشيرات",
     description:
       "خدمة استخراج تأشيرة بريطانيا للسعوديين مع تجهيز الملف، حجز الموعد، والمتابعة خطوة بخطوة عبر واتساب.",
+    image: "/uk-og.png",
     openGraphTitle: "استخراج تأشيرة بريطانيا للسعوديين",
     openGraphDescription:
       "نساعدك في استخراج تأشيرة بريطانيا وتجهيز الملف والمتطلبات بسهولة.",
@@ -915,6 +920,7 @@ export const uaeVisaPage: VisaPageData = {
     title: "استخراج تأشيرة الإمارات للسعوديين | رحلتنا للتأشيرات",
     description:
       "خدمة استخراج تأشيرة الإمارات السياحية بسرعة وسهولة مع متابعة الطلب وتجهيز المتطلبات.",
+    image: "/uae-og.png",
     openGraphTitle: "استخراج تأشيرة الإمارات",
     openGraphDescription:
       "نساعدك في استخراج تأشيرة الإمارات بخطوات سهلة وسريعة.",
@@ -984,6 +990,7 @@ export const australiaVisaPage: VisaPageData = {
     title: "استخراج تأشيرة أستراليا للسعوديين | رحلتنا للتأشيرات",
     description:
       "استخراج تأشيرة أستراليا السياحية والدراسية مع تجهيز الملف ومتابعة الطلب خطوة بخطوة.",
+    image: "/australia-og.png",
     openGraphTitle: "استخراج تأشيرة أستراليا للسعوديين",
     openGraphDescription:
       "خدمة احترافية لاستخراج تأشيرة أستراليا بسهولة وسرعة.",
@@ -1054,6 +1061,7 @@ export const turkeyNonSaudiVisaPage: VisaPageData = {
     title: "تأشيرة تركيا للمقيمين في السعودية | لغير السعوديين",
     description:
       "خدمة تأشيرة تركيا لغير السعوديين المقيمين في السعودية مع توضيح متطلبات تأشيرة تركيا للمقيمين، الرسوم، وتجهيز ملف التقديم.",
+    image: "/turkey-non-saudi-og.png",
     openGraphTitle: "تأشيرة تركيا للمقيمين في السعودية",
     openGraphDescription:
       "نساعد المقيمين غير السعوديين في السعودية على تجهيز متطلبات ورسوم تأشيرة تركيا ومتابعة ملف الطلب.",
@@ -1170,6 +1178,7 @@ export const brazilVisaPage: VisaPageData = {
     title: "تأشيرة البرازيل للسعوديين | المتطلبات والرسوم ومدة المعالجة",
     description:
       "استخراج تأشيرة البرازيل للسعوديين مع معرفة المتطلبات والرسوم ومدة المعالجة وخطوات التقديم عبر رحلتنا للتأشيرات.",
+    image: "/brazil-og.png",
     openGraphTitle: "تأشيرة البرازيل للسعوديين",
     openGraphDescription:
       "تعرف على متطلبات تأشيرة البرازيل للسعوديين ورسوم الخدمة ومدة المعالجة وخطوات استخراج تأشيرة البرازيل من السعودية.",

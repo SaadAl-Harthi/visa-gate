@@ -38,14 +38,14 @@ export async function generateMetadata({
       title: visa.seo.openGraphTitle,
       description: visa.seo.openGraphDescription,
       url: `/${visa.slug}`,
-      images: ["/og-image-v2.png"],
+      images: [visa.seo.image],
     },
     twitter: visa.seo.twitterTitle
       ? {
           card: "summary_large_image",
           title: visa.seo.twitterTitle,
           description: visa.seo.twitterDescription ?? visa.seo.description,
-          images: ["/og-image-v2.png"],
+          images: [visa.seo.image],
         }
       : undefined,
   };
