@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import JsonLd from "../components/JsonLd";
 import VisaPageTemplate from "../components/VisaPageTemplate";
-import { getVisaPageBySlug, visaPages } from "../data/visas";
+import { getVisaPageBySlug, publicVisaPages } from "../data/visas";
 
 type VisaSlugPageProps = {
   params: Promise<{
@@ -13,7 +13,7 @@ type VisaSlugPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return visaPages.map((visa) => ({
+  return publicVisaPages.map((visa) => ({
     visaSlug: visa.slug,
   }));
 }

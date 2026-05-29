@@ -44,6 +44,8 @@ export type RelatedVisa = {
   text: string;
 };
 
+export type VisaPageStatus = "active" | "hidden" | "draft";
+
 export type VisaPageVariant = {
   id: string;
   name: string;
@@ -65,6 +67,7 @@ export type VisaPageVariant = {
 
 export type VisaPageData = {
   slug: string;
+  status: VisaPageStatus;
   title: string;
   highlightedTitle: string;
   description: string;
@@ -643,6 +646,7 @@ const schengenFaqs: Faq[] = [
 
 export const schengenVisaPage: VisaPageData = {
   slug: "schengen",
+  status: "active",
   title: "تأشيرة",
   highlightedTitle: "شنغن",
   description:
@@ -709,6 +713,7 @@ export const schengenVisaPage: VisaPageData = {
 
 export const usaVisaPage: VisaPageData = {
   slug: "usa",
+  status: "active",
   title: "تأشيرة",
   highlightedTitle: "أمريكا",
   description:
@@ -772,6 +777,7 @@ export const usaVisaPage: VisaPageData = {
 
 export const canadaVisaPage: VisaPageData = {
   slug: "canada",
+  status: "active",
   title: "تأشيرة",
   highlightedTitle: "كندا",
   description:
@@ -836,6 +842,7 @@ export const canadaVisaPage: VisaPageData = {
 
 export const ukVisaPage: VisaPageData = {
   slug: "uk",
+  status: "active",
   title: "تصريح بريطانيا الإلكتروني",
   highlightedTitle: "ETA",
   description:
@@ -901,6 +908,7 @@ export const ukVisaPage: VisaPageData = {
 
 export const uaeVisaPage: VisaPageData = {
   slug: "uae",
+  status: "active",
   title: "تأشيرة",
   highlightedTitle: "الإمارات",
   description:
@@ -970,6 +978,7 @@ export const uaeVisaPage: VisaPageData = {
 
 export const australiaVisaPage: VisaPageData = {
   slug: "australia",
+  status: "active",
   title: "تأشيرة",
   highlightedTitle: "أستراليا",
   description:
@@ -1037,7 +1046,7 @@ export const australiaVisaPage: VisaPageData = {
   ],
 };
 
-export const visaPages = [
+export const allVisaPages = [
   schengenVisaPage,
   usaVisaPage,
   canadaVisaPage,
@@ -1046,6 +1055,20 @@ export const visaPages = [
   australiaVisaPage,
 ];
 
+export const activeVisaPages = allVisaPages.filter(
+  (visa) => visa.status === "active"
+);
+
+export const publicVisaPages = allVisaPages.filter(
+  (visa) => visa.status !== "draft"
+);
+
+export const sitemapVisaPages = allVisaPages.filter(
+  (visa) => visa.status === "active"
+);
+
+export const visaPages = publicVisaPages;
+
 export function getVisaPageBySlug(slug: string) {
-  return visaPages.find((visa) => visa.slug === slug);
+  return publicVisaPages.find((visa) => visa.slug === slug);
 }

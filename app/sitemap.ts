@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { sitemapVisaPages } from "./data/visas";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://visa-gate.vercel.app";
@@ -9,35 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
 
-    {
-      url: `${baseUrl}/schengen`,
+    ...sitemapVisaPages.map((visa) => ({
+      url: `${baseUrl}/${visa.slug}`,
       lastModified: new Date(),
-    },
-
-    {
-      url: `${baseUrl}/usa`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${baseUrl}/canada`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${baseUrl}/uk`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${baseUrl}/uae`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${baseUrl}/australia`,
-      lastModified: new Date(),
-    },
+    })),
 
     {
       url: `${baseUrl}/terms`,
