@@ -84,6 +84,13 @@ const homeCardContent: Record<
     image:
       "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800&auto=format&fit=crop",
   },
+  brazil: {
+    flag: "🇧🇷",
+    title: "تأشيرة البرازيل للسعوديين",
+    desc: "استخرج تأشيرة البرازيل السياحية للسعوديين بسهولة.",
+    image:
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop",
+  },
 };
 
 const visaHomeCards = activeVisaPages.map((visa) => {
