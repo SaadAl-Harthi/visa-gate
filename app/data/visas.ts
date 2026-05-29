@@ -37,6 +37,47 @@ export type SimpleVisaData = {
   whatsappMessage: string;
 };
 
+export type RelatedVisa = {
+  href: string;
+  flag: string;
+  title: string;
+  text: string;
+};
+
+export type VisaPageVariant = {
+  id: string;
+  name: string;
+  title: string;
+  icon: string;
+  subtitle?: string;
+  country: string;
+  price: string;
+  duration: string;
+  status?: string;
+  typeLabel: string;
+  requirements: string[];
+  notes: string[];
+  faqs: Faq[];
+  whatsappName: string;
+  whatsappMessage?: string;
+  preApplyNote?: string;
+};
+
+export type VisaPageData = {
+  title: string;
+  highlightedTitle: string;
+  description: string;
+  heroIcon: string;
+  aboutTitle: string;
+  aboutText: string;
+  aboutNote: string;
+  selectorTitle?: string;
+  requirementsTitle: string;
+  variants: VisaPageVariant[];
+  infoCards?: { label: string; value: string }[];
+  relatedVisas: RelatedVisa[];
+};
+
 const schengenDefaultRequirements = [
   "أصل الجواز وصورة منه.",
   "ورقة تعريف بالراتب باللغة الإنجليزية موجهة للسفارة ومختومة من جهة العمل.",
@@ -559,4 +600,362 @@ export const australiaVisa: SimpleVisaData = {
     },
   ],
   whatsappMessage: "السلام عليكم، أود استخراج تأشيرة أستراليا",
+};
+
+const schengenFaqs: Faq[] = [
+  {
+    question: "هل الحضور شخصي لمركز التأشيرات؟",
+    answer:
+      "نعم، يجب حضور صاحب الطلب شخصيًا لمركز التأشيرات لإجراء البصمة وتسليم الجواز.",
+  },
+  {
+    question: "هل البصمة مطلوبة؟",
+    answer: "نعم، البصمة مطلوبة عند التقديم على تأشيرة شنغن.",
+  },
+  {
+    question: "كم مدة استخراج التأشيرة؟",
+    answer:
+      "تختلف مدة المعالجة حسب السفارة والموسم، وعادة تستغرق من عدة أيام إلى عدة أسابيع.",
+  },
+  {
+    question: "هل التأشيرة مضمونة؟",
+    answer: "لا يمكن ضمان الموافقة على التأشيرة، حيث يعود القرار النهائي للسفارة فقط.",
+  },
+  {
+    question: "هل يمكن التقديم للعائلة؟",
+    answer: "نعم، يمكن التقديم للأفراد أو العائلات مع تجهيز كامل للملفات والمواعيد.",
+  },
+  {
+    question: "هل يجب حجز طيران وفندق قبل التقديم؟",
+    answer:
+      "نعم، يتطلب ملف التأشيرة وجود حجوزات مبدئية للطيران والفندق، ويمكن توفيرها وتجهيزها من خلالنا.",
+  },
+];
+
+export const schengenVisaPage: VisaPageData = {
+  title: "تأشيرة",
+  highlightedTitle: "شنغن",
+  description:
+    "اختر دولة الشنغن المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.",
+  heroIcon: "🌍",
+  aboutTitle: "ما هي تأشيرة شنغن؟",
+  aboutText:
+    "تأشيرة شنغن هي تأشيرة موحدة تسمح لحاملها بالتنقل بين دول منطقة الشنغن الأوروبية لمدة تصل إلى 90 يومًا خلال فترة 180 يومًا، سواءً للسياحة أو زيارة العائلة أو الأعمال.",
+  aboutNote:
+    "قد تختلف المتطلبات والإجراءات من دولة لأخرى، لذلك يتم تحديث الشروط حسب السفارة المختارة.",
+  selectorTitle: "اختر الدولة",
+  requirementsTitle: "المتطلبات عند الحضور لمركز التأشيرات",
+  variants: schengenCountries.map((country) => ({
+    id: country.name,
+    name: country.name,
+    title: `تأشيرة شنغن - ${country.name}`,
+    icon: country.flag,
+    country: country.name,
+    price: country.price,
+    duration: country.duration,
+    status: country.status,
+    typeLabel: "سياحية",
+    requirements: [
+      ...country.requirements,
+      ...(country.extraRequirements ?? []),
+    ],
+    notes: country.notes,
+    faqs: schengenFaqs,
+    whatsappName: `الشنغن - ${country.name}`,
+    preApplyNote: `المتطلبات التالية مخصصة لسفارة ${country.name}، وقد تختلف حسب حالة مقدم الطلب أو تحديثات السفارة.`,
+  })),
+  relatedVisas: [
+    {
+      href: "/uk",
+      flag: "🇬🇧",
+      title: "تأشيرة بريطانيا",
+      text: "تصريح السفر الإلكتروني للسعوديين.",
+    },
+    {
+      href: "/usa",
+      flag: "🇺🇸",
+      title: "تأشيرة أمريكا",
+      text: "تجهيز ملف التأشيرة الأمريكية ومساعدتك في خطوات التقديم.",
+    },
+    {
+      href: "/canada",
+      flag: "🇨🇦",
+      title: "تأشيرة كندا",
+      text: "خدمات التأشيرات السياحية والدراسية لكندا.",
+    },
+  ],
+};
+
+export const usaVisaPage: VisaPageData = {
+  title: "تأشيرة",
+  highlightedTitle: "أمريكا",
+  description:
+    "اختر نوع التأشيرة المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.",
+  heroIcon: "🇺🇸",
+  aboutTitle: "عن التأشيرة الأمريكية",
+  aboutText:
+    "نساعدك في تجهيز ملف التأشيرة الأمريكية سواءً للسياحة أو الدراسة، مع توضيح المتطلبات ومساعدتك في خطوات النماذج والمواعيد.",
+  aboutNote:
+    "تختلف المتطلبات حسب نوع التأشيرة وحالة مقدم الطلب، والقرار النهائي يعود للسفارة الأمريكية.",
+  selectorTitle: "اختر نوع التأشيرة",
+  requirementsTitle: "المتطلبات عند الحضور للسفارة الأمريكية",
+  variants: usaVisaTypes.map((visa) => ({
+    id: visa.id,
+    name: visa.title,
+    title: visa.title,
+    icon: visa.icon,
+    subtitle: visa.subtitle,
+    country: "أمريكا",
+    price: visa.price,
+    duration: visa.duration,
+    status: "الحالة: متاحة للتقديم",
+    typeLabel: visa.id === "tourist" ? "سياحية" : "دراسية",
+    requirements: visa.requirements,
+    notes: visa.notes,
+    faqs: visa.faqs,
+    whatsappName: visa.title,
+    preApplyNote: `المتطلبات التالية خاصة بالتقديم على ${visa.title}، وقد تختلف حسب حالة مقدم الطلب أو تحديثات السفارة الأمريكية.`,
+  })),
+  relatedVisas: [
+    {
+      href: "/schengen",
+      flag: "🇪🇺",
+      title: "تأشيرة شنغن",
+      text: "خدمات استخراج تأشيرات الشنغن لجميع الدول الأوروبية.",
+    },
+    {
+      href: "/uk",
+      flag: "🇬🇧",
+      title: "تصريح بريطانيا",
+      text: "تصريح السفر الإلكتروني للسعوديين.",
+    },
+    {
+      href: "/australia",
+      flag: "🇦🇺",
+      title: "تأشيرة أستراليا",
+      text: "تأشيرات سياحية ودراسية إلكترونية بخطوات سهلة.",
+    },
+  ],
+};
+
+export const canadaVisaPage: VisaPageData = {
+  title: "تأشيرة",
+  highlightedTitle: "كندا",
+  description:
+    "اختر نوع التأشيرة المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.",
+  heroIcon: "🇨🇦",
+  aboutTitle: "عن تأشيرة كندا",
+  aboutText:
+    "نساعدك في تجهيز ملف تأشيرة كندا سواء للسياحة أو الدراسة، مع مراجعة المستندات وتوضيح المتطلبات حسب نوع التأشيرة.",
+  aboutNote:
+    "تختلف المتطلبات ومدة المعالجة حسب نوع التأشيرة وحالة مقدم الطلب.",
+  selectorTitle: "اختر نوع التأشيرة",
+  requirementsTitle: "المتطلبات المطلوبة للتقديم",
+  variants: canadaVisaTypes.map((visa) => ({
+    id: visa.id,
+    name: visa.title,
+    title: visa.title,
+    icon: visa.icon,
+    subtitle: visa.subtitle,
+    country: "كندا",
+    price: visa.price,
+    duration: visa.duration,
+    status: "الحالة: متاحة للتقديم",
+    typeLabel: visa.id === "tourist" ? "سياحية" : "دراسية",
+    requirements: visa.requirements,
+    notes: visa.notes,
+    faqs: visa.faqs,
+    whatsappName: visa.title,
+    preApplyNote: `المتطلبات التالية خاصة بالتقديم على ${visa.title}، وقد تختلف حسب حالة مقدم الطلب أو تحديثات السفارة الكندية.`,
+  })),
+  relatedVisas: [
+    {
+      href: "/usa",
+      flag: "🇺🇸",
+      title: "تأشيرة أمريكا",
+      text: "خدمات التأشيرات السياحية والدراسية لأمريكا.",
+    },
+    {
+      href: "/australia",
+      flag: "🇦🇺",
+      title: "تأشيرة أستراليا",
+      text: "تأشيرات سياحية ودراسية إلكترونية بخطوات سهلة.",
+    },
+    {
+      href: "/uae",
+      flag: "🇦🇪",
+      title: "تأشيرة الإمارات",
+      text: "تأشيرة إلكترونية لمقيمي دول مجلس التعاون الخليجي.",
+    },
+  ],
+};
+
+export const ukVisaPage: VisaPageData = {
+  title: "تصريح بريطانيا الإلكتروني",
+  highlightedTitle: "ETA",
+  description:
+    "تصريح سفر إلكتروني للسعوديين يتيح زيارة بريطانيا للسياحة أو الدراسة قصيرة المدة.",
+  heroIcon: "🇬🇧",
+  aboutTitle: "ما هو تصريح بريطانيا ETA؟",
+  aboutText:
+    "تصريح ETA هو تصريح سفر إلكتروني يسمح للمسافرين المؤهلين بدخول بريطانيا للسياحة أو الدراسة قصيرة المدة، ويتم التقديم عليه إلكترونيًا دون الحاجة لزيارة السفارة.",
+  aboutNote: "التصريح صالح لمدة سنتين، ويسمح بالإقامة حتى 6 أشهر لكل زيارة.",
+  requirementsTitle: "المتطلبات",
+  infoCards: [
+    { label: "الصلاحية", value: "سنتين" },
+    { label: "مدة الإقامة", value: "6 أشهر" },
+    { label: "نوع التقديم", value: "إلكتروني" },
+    { label: "البصمة", value: "غير مطلوبة" },
+  ],
+  variants: [
+    {
+      id: "uk-eta",
+      name: ukVisa.title,
+      title: ukVisa.title,
+      icon: "🇬🇧",
+      country: "بريطانيا",
+      price: ukVisa.price,
+      duration: ukVisa.duration,
+      typeLabel: "إلكتروني",
+      requirements: ukVisa.requirements,
+      notes: ukVisa.notes,
+      faqs: ukVisa.faqs,
+      whatsappName: ukVisa.visaName,
+      whatsappMessage: ukVisa.whatsappMessage,
+    },
+  ],
+  relatedVisas: [
+    {
+      href: "/uae",
+      flag: "🇦🇪",
+      title: "تأشيرة الإمارات",
+      text: "تأشيرة إلكترونية لمقيمي دول مجلس التعاون الخليجي.",
+    },
+    {
+      href: "/australia",
+      flag: "🇦🇺",
+      title: "تأشيرة أستراليا",
+      text: "تأشيرات سياحية ودراسية إلكترونية بخطوات سهلة.",
+    },
+    {
+      href: "/canada",
+      flag: "🇨🇦",
+      title: "تأشيرة كندا",
+      text: "خدمات التأشيرات السياحية والدراسية لكندا.",
+    },
+  ],
+};
+
+export const uaeVisaPage: VisaPageData = {
+  title: "تأشيرة",
+  highlightedTitle: "الإمارات",
+  description:
+    "تأشيرة إلكترونية لمقيمي دول مجلس التعاون الخليجي بخطوات سهلة وواضحة.",
+  heroIcon: "🇦🇪",
+  aboutTitle: "لمن تناسب تأشيرة الإمارات؟",
+  aboutText:
+    "هذه الخدمة مناسبة لمقيمي دول مجلس التعاون الخليجي الراغبين في زيارة الإمارات، مع تقديم إلكتروني دون الحاجة للحضور أو البصمة.",
+  aboutNote:
+    "يجب أن تكون صلاحية الإقامة أكثر من 6 أشهر من تاريخ العودة.",
+  requirementsTitle: "المتطلبات",
+  infoCards: [
+    { label: "نوع التقديم", value: "إلكتروني" },
+    { label: "الحضور", value: "غير مطلوب" },
+    { label: "المدة", value: "4 - 15 يوم عمل" },
+    { label: "الفئة", value: "مقيمي الخليج" },
+  ],
+  variants: [
+    {
+      id: "uae-gcc-resident",
+      name: uaeVisa.title,
+      title: uaeVisa.title,
+      icon: "🇦🇪",
+      country: "الإمارات",
+      price: uaeVisa.price,
+      duration: uaeVisa.duration,
+      typeLabel: "إلكترونية لمقيمي دول الخليج",
+      requirements: uaeVisa.requirements,
+      notes: uaeVisa.notes,
+      faqs: uaeVisa.faqs,
+      whatsappName: uaeVisa.visaName,
+      whatsappMessage: uaeVisa.whatsappMessage,
+    },
+  ],
+  relatedVisas: [
+    {
+      href: "/uk",
+      flag: "🇬🇧",
+      title: "تصريح بريطانيا",
+      text: "تصريح السفر الإلكتروني للسعوديين.",
+    },
+    {
+      href: "/schengen",
+      flag: "🇪🇺",
+      title: "تأشيرة شنغن",
+      text: "خدمات استخراج تأشيرات الشنغن لجميع الدول الأوروبية.",
+    },
+    {
+      href: "/canada",
+      flag: "🇨🇦",
+      title: "تأشيرة كندا",
+      text: "خدمات التأشيرات السياحية والدراسية لكندا.",
+    },
+  ],
+};
+
+export const australiaVisaPage: VisaPageData = {
+  title: "تأشيرة",
+  highlightedTitle: "أستراليا",
+  description:
+    "خدمات التأشيرات السياحية والدراسية لأستراليا بخطوات إلكترونية سهلة وواضحة.",
+  heroIcon: "🇦🇺",
+  aboutTitle: "عن تأشيرة أستراليا",
+  aboutText:
+    "تأشيرة إلكترونية مناسبة للسياحة أو الدراسة القصيرة لمدة أقل من 3 أشهر، ويتم تجهيز الطلب إلكترونيًا دون الحاجة للحضور أو البصمة.",
+  aboutNote:
+    "في حال التقديم للدراسة، يجب إرفاق قبول الجهة التعليمية ضمن المستندات.",
+  requirementsTitle: "المتطلبات",
+  infoCards: [
+    { label: "نوع التقديم", value: "إلكتروني" },
+    { label: "المدة", value: "4 - 10 أيام" },
+    { label: "نوع التأشيرة", value: "سياحية + دراسية" },
+    { label: "البصمة", value: "غير مطلوبة" },
+  ],
+  variants: [
+    {
+      id: "australia-tourist-student",
+      name: australiaVisa.title,
+      title: australiaVisa.title,
+      icon: "🇦🇺",
+      country: "أستراليا",
+      price: australiaVisa.price,
+      duration: australiaVisa.duration,
+      typeLabel: "سياحية + دراسية",
+      requirements: australiaVisa.requirements,
+      notes: australiaVisa.notes,
+      faqs: australiaVisa.faqs,
+      whatsappName: australiaVisa.visaName,
+      whatsappMessage: australiaVisa.whatsappMessage,
+    },
+  ],
+  relatedVisas: [
+    {
+      href: "/usa",
+      flag: "🇺🇸",
+      title: "تأشيرة أمريكا",
+      text: "خدمات التأشيرات السياحية والدراسية لأمريكا.",
+    },
+    {
+      href: "/uae",
+      flag: "🇦🇪",
+      title: "تأشيرة الإمارات",
+      text: "تأشيرة إلكترونية لمقيمي دول مجلس التعاون الخليجي.",
+    },
+    {
+      href: "/schengen",
+      flag: "🇪🇺",
+      title: "تأشيرة شنغن",
+      text: "خدمات استخراج تأشيرات الشنغن لجميع الدول الأوروبية.",
+    },
+  ],
 };

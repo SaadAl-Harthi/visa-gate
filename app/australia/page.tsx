@@ -1,13 +1,12 @@
-
 import type { Metadata } from "next";
 import JsonLd from "../components/JsonLd";
-import VisaWhatsAppCTA from "../components/VisaWhatsAppCTA";
-import { australiaVisa } from "../data/visas";
+import VisaPageTemplate from "../components/VisaPageTemplate";
+import { australiaVisaPage } from "../data/visas";
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: australiaVisa.faqs.map((faq) => ({
+  mainEntity: australiaVisaPage.variants[0].faqs.map((faq) => ({
     "@type": "Question",
     name: faq.question,
     acceptedAnswer: {
@@ -49,203 +48,9 @@ export const metadata: Metadata = {
 
 export default function AustraliaPage() {
   return (
-    <main dir="rtl" className="bg-white text-black overflow-hidden">
-    <JsonLd data={faqSchema} />
-      {/* Hero */}
-      <section className="relative overflow-hidden px-5 md:px-8 pt-24 pb-20 bg-white">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-[-120px] h-[420px] w-[420px] rounded-full bg-orange-200/25 blur-3xl" />
-          <div className="absolute bottom-0 left-[-120px] h-[420px] w-[420px] rounded-full bg-blue-200/10 blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,130,0,0.08),transparent_45%)]" />
-        </div>
-
-        <a
-          href="/"
-          className="absolute right-5 top-6 z-20 inline-flex items-center gap-3 rounded-full border border-orange-100 bg-white/80 px-5 py-3 text-sm font-bold text-[#101b32] shadow-xl backdrop-blur-xl transition hover:text-orange-500 md:right-8 md:px-7 md:py-4 md:text-base"
-        >
-          <span>→</span>
-          الرئيسية
-        </a>
-
-        <div className="relative z-10 mx-auto max-w-5xl text-center">
-
-          <h1 className="mb-6 text-4xl font-black text-[#101b32] md:text-7xl">
-            تأشيرة <span className="text-orange-500">أستراليا</span>
-          </h1>
-
-          <p className="mx-auto max-w-3xl text-lg leading-9 text-gray-500 md:text-2xl">
-            خدمات التأشيرات السياحية والدراسية لأستراليا بخطوات إلكترونية سهلة وواضحة.
-          </p>
-
-          <div className="mx-auto mt-14 max-w-5xl rounded-[32px] border border-orange-100 bg-white/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.06)] backdrop-blur-xl md:p-12">
-            <div className="flex flex-col items-center gap-8 md:flex-row">
-              <div className="flex h-[110px] min-w-[110px] items-center justify-center rounded-[30px] bg-gradient-to-br from-orange-500 to-orange-400 text-5xl shadow-[0_15px_40px_rgba(249,115,22,0.35)]">
-                🇦🇺
-              </div>
-
-              <div className="flex-1 text-center md:text-right">
-                <h2 className="mb-5 text-3xl font-black text-[#101b32] md:text-4xl">
-                  عن تأشيرة أستراليا
-                </h2>
-
-                <p className="text-lg leading-9 text-gray-600">
-                  تأشيرة إلكترونية مناسبة للسياحة أو الدراسة القصيرة لمدة أقل من 3 أشهر، ويتم تجهيز الطلب إلكترونيًا دون الحاجة للحضور أو البصمة.
-                </p>
-
-                <div className="mt-6 rounded-2xl border border-orange-100 bg-orange-50 px-5 py-4 text-sm leading-8 text-orange-700 md:text-base">
-                  في حال التقديم للدراسة، يجب إرفاق قبول الجهة التعليمية ضمن المستندات.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Info Cards */}
-      <section className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-            {[
-              ["نوع التقديم", "إلكتروني"],
-              ["المدة", "4 - 10 أيام"],
-              ["نوع التأشيرة", "سياحية + دراسية"],
-              ["البصمة", "غير مطلوبة"],
-            ].map(([label, value]) => (
-              <div
-                key={label}
-                className="rounded-[28px] border border-orange-100 bg-white/90 p-6 text-center shadow-lg backdrop-blur-xl"
-              >
-                <p className="mb-2 text-gray-500">{label}</p>
-                <h3 className="text-2xl font-black text-[#101b32]">
-                  {value}
-                </h3>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 flex justify-center">
-            <div className="w-full rounded-[28px] border border-orange-100 bg-white/90 p-6 text-center shadow-lg backdrop-blur-xl md:w-80">
-              <p className="mb-2 text-gray-500">السعر</p>
-              <h3 className="text-2xl font-black text-orange-500">
-                {australiaVisa.price}
-              </h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Requirements */}
-      <section className="px-5 md:px-8 pb-20">
-        <div className="mx-auto max-w-5xl rounded-[34px] border border-orange-100 bg-white/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
-          <h2 className="mb-8 text-3xl font-black text-[#101b32]">
-            المتطلبات
-          </h2>
-
-          <ul className="mb-10 space-y-3">
-            {australiaVisa.requirements.map((item) => (
-              <li
-                key={item}
-                className="rounded-2xl border border-orange-100 bg-white p-4 leading-8 shadow-sm"
-              >
-                • {item}
-              </li>
-            ))}
-          </ul>
-
-          <h2 className="mb-8 text-3xl font-black text-[#101b32]">
-            ملاحظات مهمة
-          </h2>
-
-          <ul className="mb-10 space-y-3">
-            {australiaVisa.notes.map((note) => (
-              <li
-                key={note}
-                className="rounded-2xl border border-orange-100 bg-orange-50/70 p-4 leading-8 shadow-sm"
-              >
-                • {note}
-              </li>
-            ))}
-          </ul>
-
-    <VisaWhatsAppCTA
-      visaName={australiaVisa.visaName}
-      message={australiaVisa.whatsappMessage}
-    >
-  ابدأ طلب تأشيرة أستراليا
-</VisaWhatsAppCTA>
-
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="relative bg-white px-5 py-20 md:px-8">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
-            الأسئلة <span className="text-orange-500">الشائعة</span>
-          </h2>
-
-          <div className="space-y-5">
-            {australiaVisa.faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="rounded-[28px] border border-orange-100 bg-white/90 p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"
-              >
-                <h3 className="mb-3 text-xl font-black text-[#101b32]">
-                  {faq.question}
-                </h3>
-
-                <p className="leading-8 text-gray-500">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Related Visas */}
-      <section className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
-            تأشيرات قد <span className="text-orange-500">تهمك</span>
-          </h2>
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {[
-              {
-                href: "/usa",
-                flag: "🇺🇸",
-                title: "تأشيرة أمريكا",
-                text: "خدمات التأشيرات السياحية والدراسية لأمريكا.",
-              },
-              {
-                href: "/uae",
-                flag: "🇦🇪",
-                title: "تأشيرة الإمارات",
-                text: "تأشيرة إلكترونية لمقيمي دول مجلس التعاون الخليجي.",
-              },
-              {
-                href: "/schengen",
-                flag: "🇪🇺",
-                title: "تأشيرة شنغن",
-                text: "خدمات استخراج تأشيرات الشنغن لجميع الدول الأوروبية.",
-              },
-            ].map((visa) => (
-              <a
-                key={visa.href}
-                href={visa.href}
-                className="block rounded-[30px] border border-orange-100 bg-white p-8 text-right shadow-lg transition duration-300 hover:-translate-y-2 hover:border-orange-200 hover:shadow-2xl"
-              >
-                <div className="mb-5 text-5xl">{visa.flag}</div>
-
-                <h3 className="mb-3 text-2xl font-black text-[#101b32]">
-                  {visa.title}
-                </h3>
-
-                <p className="leading-8 text-gray-500">{visa.text}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
+    <>
+      <JsonLd data={faqSchema} />
+      <VisaPageTemplate data={australiaVisaPage} />
+    </>
   );
 }
