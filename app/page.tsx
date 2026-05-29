@@ -24,6 +24,81 @@ import {
   Phone,
   FileText,
 } from "lucide-react";
+import { activeVisaPages } from "./data/visas";
+
+const homeCardContent: Record<
+  string,
+  {
+    flag: string;
+    title: string;
+    desc: string;
+    image: string;
+  }
+> = {
+  schengen: {
+    flag: "🇪🇺",
+    title: "شنغن",
+    desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
+    image:
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
+  },
+  uk: {
+    flag: "🇬🇧",
+    title: "بريطانيا",
+    desc: "تأشيرات سياحية ودراسية مع تجهيز كامل للملف",
+    image:
+      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=800&auto=format&fit=crop",
+  },
+  usa: {
+    flag: "🇺🇸",
+    title: "أمريكا",
+    desc: "مساعدتك في تعبئة النماذج وحجز المواعيد",
+    image:
+      "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=800&auto=format&fit=crop",
+  },
+  uae: {
+    flag: "🇦🇪",
+    title: "الإمارات",
+    desc: "تأشيرة إلكترونية لمقيمي دول الخليج",
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop",
+  },
+  canada: {
+    flag: "🇨🇦",
+    title: "كندا",
+    desc: "خدمات التأشيرات السياحية والدراسية لكندا",
+    image:
+      "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=800&auto=format&fit=crop",
+  },
+  australia: {
+    flag: "🇦🇺",
+    title: "أستراليا",
+    desc: "تأشيرات سياحية ودراسية إلكترونية",
+    image:
+      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=800&auto=format&fit=crop",
+  },
+  "turkey-non-saudi": {
+    flag: "🇹🇷",
+    title: "تركيا لغير السعوديين",
+    desc: "تأشيرة تركيا للمقيمين غير السعوديين داخل المملكة",
+    image:
+      "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800&auto=format&fit=crop",
+  },
+};
+
+const visaHomeCards = activeVisaPages.map((visa) => {
+  const content = homeCardContent[visa.slug];
+
+  return {
+    href: `/${visa.slug}`,
+    flag: content?.flag ?? visa.heroIcon,
+    title: content?.title ?? `${visa.title} ${visa.highlightedTitle}`,
+    desc: content?.desc ?? visa.description,
+    image:
+      content?.image ??
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop",
+  };
+});
 
 export default function Home() {
 
@@ -414,58 +489,9 @@ shadow-2xl
     {/* Desktop Cards */}
     <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
 
-      {[
-          {
-          href: "/schengen",
-          flag: "🇪🇺",
-          title: "شنغن",
-          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
-          image:
-            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/uk",
-          flag: "🇬🇧",
-          title: "بريطانيا",
-          desc: "تأشيرات سياحية ودراسية مع تجهيز كامل للملف",
-          image:
-            "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/usa",
-          flag: "🇺🇸",
-          title: "أمريكا",
-          desc: "مساعدتك في تعبئة النماذج وحجز المواعيد",
-          image:
-            "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/uae",
-          flag: "🇦🇪",
-          title: "الإمارات",
-          desc: "تأشيرة إلكترونية لمقيمي دول الخليج",
-          image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/canada",
-          flag: "🇨🇦",
-          title: "كندا",
-          desc: "خدمات التأشيرات السياحية والدراسية لكندا",
-          image:
-            "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/australia",
-          flag: "🇦🇺",
-          title: "أستراليا",
-          desc: "تأشيرات سياحية ودراسية إلكترونية",
-          image:
-            "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=800&auto=format&fit=crop",
-        },
-      ].map((country) => (
+      {visaHomeCards.map((country) => (
         <a
-          key={country.title}
+          key={country.href}
           href={country.href}
           className="group relative overflow-hidden rounded-[34px] bg-white border border-orange-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center"
         >
@@ -507,58 +533,9 @@ shadow-2xl
     {/* Mobile Cards */}
     <div className="md:hidden space-y-4">
 
-      {[
-          {
-          href: "/schengen",
-          flag: "🇪🇺",
-          title: "شنغن",
-          desc: "استخراج تأشيرات الشنغن لجميع الدول الأوروبية",
-          image:
-            "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/uk",
-          flag: "🇬🇧",
-          title: "بريطانيا",
-          desc: "تأشيرات سياحية ودراسية مع تجهيز كامل للملف",
-          image:
-            "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/usa",
-          flag: "🇺🇸",
-          title: "أمريكا",
-          desc: "مساعدتك في تعبئة النماذج وحجز المواعيد",
-          image:
-            "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/canada",
-          flag: "🇨🇦",
-          title: "كندا",
-          desc: "خدمات التأشيرات السياحية والدراسية لكندا",
-          image:
-            "https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/uae",
-          flag: "🇦🇪",
-          title: "الإمارات",
-          desc: "تأشيرة إلكترونية لمقيمي دول الخليج",
-          image:
-            "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop",
-        },
-        {
-          href: "/australia",
-          flag: "🇦🇺",
-          title: "أستراليا",
-          desc: "تأشيرات سياحية ودراسية إلكترونية",
-          image:
-            "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=800&auto=format&fit=crop",
-        },
-      ].map((country) => (
+      {visaHomeCards.map((country) => (
         <a
-          key={country.title}
+          key={country.href}
           href={country.href}
           className="group flex items-center justify-between rounded-[28px] bg-white border border-orange-100 shadow-lg overflow-hidden active:scale-[0.98] transition"
         >
