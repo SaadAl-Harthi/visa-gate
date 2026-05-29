@@ -2,18 +2,20 @@
 
 type VisaWhatsAppCTAProps = {
   visaName: string;
+  message?: string;
   children: React.ReactNode;
 };
 
 export default function VisaWhatsAppCTA({
   visaName,
+  message,
   children,
 }: VisaWhatsAppCTAProps) {
   const sendToWhatsApp = () => {
-    const message = `السلام عليكم، أود استخراج تأشيرة ${visaName}`;
+    const whatsappMessage = message ?? `السلام عليكم، أود استخراج تأشيرة ${visaName}`;
 
     window.open(
-      `https://wa.me/966552525141?text=${encodeURIComponent(message)}`,
+      `https://wa.me/966552525141?text=${encodeURIComponent(whatsappMessage)}`,
       "_blank"
     );
   };

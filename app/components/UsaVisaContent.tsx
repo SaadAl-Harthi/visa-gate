@@ -1,131 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { usaVisaTypes, type VisaType } from "../data/visas";
 import VisaWhatsAppCTA from "./VisaWhatsAppCTA";
 
-type VisaType = {
-  id: string;
-  title: string;
-  icon: string;
-  subtitle: string;
-  price: string;
-  duration: string;
-  requirements: string[];
-  notes: string[];
-  faqs: { question: string; answer: string }[];
-};
-
-const touristRequirements = [
-  "أصل الجواز وصورة منه.",
-  "ورقة تعريف بالراتب باللغة الإنجليزية موجهة للسفارة ومختومة من جهة العمل، وللشركات الخاصة يجب تصديقها من الغرفة التجارية.",
-  "كشف حساب مطبوع باللغة الإنجليزية لمدة 6 أشهر وبرصيد لا يقل عن 10,000 ريال للشخص.",
-  "صورة من الهوية.",
-  "صورة من كرت العائلة في حال كان الموعد للعائلة.",
-  "ورقة الموعد الخاصة بمركز الاعتماد.",
-  "ورقة الكونفرميشن الخاصة بالسفارة.",
-  "حجز الفندق - نسخة لكل شخص.",
-  "حجز الطيران - نسخة لكل شخص.",
-  "صورتان شخصية مقاس 5×5 مكشوف الرأس للرجال ومكشوف الوجه للنساء.",
-  "صورة من تأشيرة أمريكا السابقة إن وجدت.",
-  "تأشيرة خروج وعودة لغير السعوديين.",
-];
-
-const studentRequirements = [
-  ...touristRequirements.slice(0, 9),
-  "فاتورة SEVIS.",
-  "قبول جهة الدراسة.",
-  "نموذج I-20.",
-  ...touristRequirements.slice(9),
-];
-
-const commonNotes = [
-  "الهويات وكرت العائلة إذا لم تكن بالإصدار الجديد يجب ترجمتها باللغة الإنجليزية، ويمكن ترجمتها عن طريقنا برسوم إضافية.",
-  "يمكن للسفارة الأمريكية تغيير بعض المتطلبات أو طلب مستندات إضافية دون سابق إنذار.",
-  "لا يوجد أي وعد أو ضمان من جهتنا باستخراج التأشيرة أو تحديد وقت إصدارها.",
-  "في حال رغبتك بالاستفسار عن تأشيرتك يمكنك زيارة السفارة الأمريكية للاستفسار عن معاملتك.",
-];
-
-const visaTypes: VisaType[] = [
-  {
-    id: "tourist",
-    title: "تأشيرة أمريكا السياحية",
-    icon: "🇺🇸",
-    subtitle: "للسياحة والزيارة وحضور الفعاليات.",
-    price: "900 ريال",
-    duration: "من 5 إلى 15 يوم عمل وقد تزيد حسب السفارة",
-    requirements: touristRequirements,
-    notes: commonNotes,
-    faqs: [
-      {
-        question: "هل البصمة مطلوبة؟",
-        answer: "نعم، البصمة مطلوبة عند التقديم على التأشيرة الأمريكية.",
-      },
-      {
-        question: "هل توجد مقابلة شخصية؟",
-        answer:
-          "نعم، توجد مقابلة شخصية في السفارة الأمريكية ضمن إجراءات التقديم.",
-      },
-      {
-        question: "كم مدة استخراج التأشيرة؟",
-        answer:
-          "عادة تستغرق من 5 إلى 15 يوم عمل، وقد تزيد حسب السفارة وحالة الطلب.",
-      },
-      {
-        question: "هل التأشيرة مضمونة؟",
-        answer:
-          "لا، التأشيرة ليست مضمونة، والقرار النهائي يعود للسفارة الأمريكية.",
-      },
-      {
-        question: "هل يمكن توفير حجوزات الطيران والفندق؟",
-        answer:
-          "نعم، يمكن توفير حجوزات مبدئية للطيران والفندق وتجهيزها ضمن ملف التأشيرة.",
-      },
-    ],
-  },
-  {
-    id: "student",
-    title: "تأشيرة أمريكا الدراسية",
-    icon: "🎓",
-    subtitle: "للطلاب المقبولين في معاهد أو جامعات داخل أمريكا.",
-    price: "2500 ريال",
-    duration: "من 5 إلى 15 يوم عمل وقد تزيد حسب السفارة",
-    requirements: studentRequirements,
-    notes: commonNotes,
-    faqs: [
-      {
-        question: "هل البصمة مطلوبة؟",
-        answer: "نعم، البصمة مطلوبة عند التقديم على التأشيرة الأمريكية.",
-      },
-      {
-        question: "هل توجد مقابلة شخصية؟",
-        answer:
-          "نعم، توجد مقابلة شخصية في السفارة الأمريكية ضمن إجراءات التقديم.",
-      },
-      {
-        question: "ما هو نموذج I-20؟",
-        answer:
-          "نموذج I-20 هو مستند رسمي يصدر من جهة الدراسة في أمريكا، ويثبت قبول الطالب ويُستخدم للتقديم على التأشيرة الدراسية.",
-      },
-      {
-        question: "هل رسوم SEVIS مشمولة؟",
-        answer: "نعم، يتم تجهيز فاتورة SEVIS ضمن متطلبات التأشيرة الدراسية.",
-      },
-      {
-        question: "كم مدة استخراج التأشيرة؟",
-        answer:
-          "عادة تستغرق من 5 إلى 15 يوم عمل، وقد تزيد حسب السفارة وحالة الطلب.",
-      },
-      {
-        question: "هل التأشيرة مضمونة؟",
-        answer:
-          "لا، التأشيرة ليست مضمونة، والقرار النهائي يعود للسفارة الأمريكية.",
-      },
-    ],
-  },
-];
-
 export default function UsaVisaContent() {
-  const [selectedVisa, setSelectedVisa] = useState<VisaType>(visaTypes[0]);
+  const [selectedVisa, setSelectedVisa] = useState<VisaType>(usaVisaTypes[0]);
 
   return (
     <main dir="rtl" className="bg-white text-black overflow-hidden">
@@ -186,7 +66,7 @@ export default function UsaVisaContent() {
             </h2>
 
             <div className="space-y-3">
-              {visaTypes.map((visa) => (
+              {usaVisaTypes.map((visa) => (
                 <button
                   key={visa.id}
                   onClick={() => setSelectedVisa(visa)}

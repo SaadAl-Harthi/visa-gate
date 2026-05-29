@@ -1,19 +1,5 @@
 import VisaWhatsAppCTA from "../components/VisaWhatsAppCTA";
-const requirements = [
-  "صورة شخصية بخلفية بيضاء.",
-  "صورة واضحة للجواز.",
-  "العنوان الوطني.",
-];
-
-const notes = [
-  "التصريح الإلكتروني البريطاني ETA صالح لمدة سنتين.",
-  "يسمح بالإقامة حتى 6 أشهر لكل زيارة.",
-  "صالح للسياحة والدراسة قصيرة المدة أقل من 6 أشهر.",
-  "التقديم يتم إلكترونيًا بالكامل بدون زيارة السفارة.",
-  "لا توجد بصمة أو مقابلة شخصية.",
-  "استخراج التصريح الإلكتروني غير مضمون 100٪، وتصل نسبة القبول غالبًا إلى 99٪ عند استيفاء المتطلبات بشكل صحيح.",
-  "القرار النهائي بالدخول يعود لضابط الجوازات البريطاني عند الوصول.",
-];
+import { ukVisa } from "../data/visas";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -37,51 +23,7 @@ export const metadata: Metadata = {
     images: ["/og-image-v2.png"],
   },
 };
-const faqs = [
-  {
-    question: "هل يحتاج حضور للسفارة؟",
-    answer: "لا، التقديم يتم إلكترونيًا بالكامل.",
-  },
-  {
-    question: "هل توجد بصمة؟",
-    answer: "لا، لا توجد بصمة للتصريح الإلكتروني البريطاني ETA.",
-  },
-  {
-    question: "كم مدة صلاحية التصريح؟",
-    answer: "التصريح صالح لمدة سنتين.",
-  },
-  {
-    question: "كم مدة الإقامة المسموحة؟",
-    answer: "يمكن البقاء حتى 6 أشهر لكل زيارة.",
-  },
-  {
-    question: "هل يمكن استخدامه للدراسة؟",
-    answer: "نعم، يمكن استخدامه للدراسة قصيرة المدة أقل من 6 أشهر.",
-  },
-  {
-    question: "هل التصريح مضمون؟",
-    answer:
-      "لا، استخراج التصريح غير مضمون 100٪، والقرار النهائي يعود للجهات البريطانية.",
-  },
-];
-
 export default function UKPage() {
-  const sendToWhatsApp = () => {
-    const message = `
-السلام عليكم، أرغب بالتقديم على تصريح بريطانيا الإلكتروني ETA
-
-نوع الخدمة: تصريح بريطانيا الإلكتروني ETA
-السعر: 180 ريال
-الصلاحية: سنتين
-مدة الإقامة: حتى 6 أشهر لكل زيارة
-`;
-
-    window.open(
-      `https://wa.me/966552525141?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  };
-
   return (
     <main dir="rtl" className="bg-white text-black overflow-hidden">
       {/* Hero */}
@@ -161,7 +103,7 @@ export default function UKPage() {
             <div className="w-full rounded-[28px] border border-orange-100 bg-white/90 p-6 text-center shadow-lg backdrop-blur-xl md:w-80">
               <p className="mb-2 text-gray-500">السعر</p>
               <h3 className="text-2xl font-black text-orange-500">
-                180 ريال
+                {ukVisa.price}
               </h3>
             </div>
           </div>
@@ -176,7 +118,7 @@ export default function UKPage() {
           </h2>
 
           <ul className="mb-10 space-y-3">
-            {requirements.map((item) => (
+            {ukVisa.requirements.map((item) => (
               <li
                 key={item}
                 className="rounded-2xl border border-orange-100 bg-white p-4 leading-8 shadow-sm"
@@ -191,7 +133,7 @@ export default function UKPage() {
           </h2>
 
           <ul className="mb-10 space-y-3">
-            {notes.map((note) => (
+            {ukVisa.notes.map((note) => (
               <li
                 key={note}
                 className="rounded-2xl border border-orange-100 bg-orange-50/70 p-4 leading-8 shadow-sm"
@@ -201,7 +143,10 @@ export default function UKPage() {
             ))}
           </ul>
 
-          <VisaWhatsAppCTA visaName="بريطانيا">
+          <VisaWhatsAppCTA
+            visaName={ukVisa.visaName}
+            message={ukVisa.whatsappMessage}
+          >
   ابدأ طلب تأشيرة بريطانيا
 </VisaWhatsAppCTA>
 
@@ -216,7 +161,7 @@ export default function UKPage() {
           </h2>
 
           <div className="space-y-5">
-            {faqs.map((faq) => (
+            {ukVisa.faqs.map((faq) => (
               <div
                 key={faq.question}
                 className="rounded-[28px] border border-orange-100 bg-white/90 p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"

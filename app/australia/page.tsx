@@ -1,54 +1,13 @@
 
-const requirements = [
-  "صورة الهوية.",
-  "صورة الجواز.",
-  "صورة شخصية بخلفية بيضاء.",
-  "العنوان الوطني.",
-  "قبول الجهة التعليمية في حال التقديم الدراسي.",
-];
-
-const notes = [
-  "التأشيرة إلكترونية بالكامل.",
-  "يمكن استخدام التأشيرة للسياحة أو الدراسة لمدة أقل من 3 أشهر.",
-  "يجب أن تكون جميع المستندات واضحة وحديثة.",
-  "قد تطلب السفارة مستندات إضافية حسب حالة الطلب.",
-  "إصدار التأشيرة غير مضمون ويعود القرار النهائي للسفارة الأسترالية.",
-];
+import type { Metadata } from "next";
 import JsonLd from "../components/JsonLd";
 import VisaWhatsAppCTA from "../components/VisaWhatsAppCTA";
-const faqs = [
-  {
-    question: "هل التأشيرة إلكترونية؟",
-    answer: "نعم، يتم إصدار التأشيرة إلكترونيًا.",
-  },
-  {
-    question: "هل يلزم حضور أو بصمة؟",
-    answer: "لا، لا يلزم حضور أو بصمة للتقديم.",
-  },
-  {
-    question: "كم مدة استخراج التأشيرة؟",
-    answer: "من 4 إلى 10 أيام عمل، وقد تختلف حسب حالة الطلب.",
-  },
-  {
-    question: "هل التأشيرة مضمونة؟",
-    answer:
-      "إصدار التأشيرة غير مضمون، ويعود القرار النهائي للسفارة الأسترالية.",
-  },
-  {
-    question: "هل تشمل التأشيرة الدراسة؟",
-    answer:
-      "نعم، يمكن استخدامها للدراسة إذا كانت مدة الدراسة أقل من 3 أشهر.",
-  },
-  {
-    question: "هل أحتاج قبول دراسي؟",
-    answer:
-      "نعم، في حال التقديم على تأشيرة دراسية يجب إرفاق قبول الجهة التعليمية.",
-  },
-];
+import { australiaVisa } from "../data/visas";
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
+  mainEntity: australiaVisa.faqs.map((faq) => ({
     "@type": "Question",
     name: faq.question,
     acceptedAnswer: {
@@ -57,7 +16,6 @@ const faqSchema = {
     },
   })),
 };
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "استخراج تأشيرة أستراليا للسعوديين | رحلتنا للتأشيرات",
@@ -169,7 +127,7 @@ export default function AustraliaPage() {
             <div className="w-full rounded-[28px] border border-orange-100 bg-white/90 p-6 text-center shadow-lg backdrop-blur-xl md:w-80">
               <p className="mb-2 text-gray-500">السعر</p>
               <h3 className="text-2xl font-black text-orange-500">
-                650 ريال
+                {australiaVisa.price}
               </h3>
             </div>
           </div>
@@ -184,7 +142,7 @@ export default function AustraliaPage() {
           </h2>
 
           <ul className="mb-10 space-y-3">
-            {requirements.map((item) => (
+            {australiaVisa.requirements.map((item) => (
               <li
                 key={item}
                 className="rounded-2xl border border-orange-100 bg-white p-4 leading-8 shadow-sm"
@@ -199,7 +157,7 @@ export default function AustraliaPage() {
           </h2>
 
           <ul className="mb-10 space-y-3">
-            {notes.map((note) => (
+            {australiaVisa.notes.map((note) => (
               <li
                 key={note}
                 className="rounded-2xl border border-orange-100 bg-orange-50/70 p-4 leading-8 shadow-sm"
@@ -209,7 +167,10 @@ export default function AustraliaPage() {
             ))}
           </ul>
 
-    <VisaWhatsAppCTA visaName="أستراليا">
+    <VisaWhatsAppCTA
+      visaName={australiaVisa.visaName}
+      message={australiaVisa.whatsappMessage}
+    >
   ابدأ طلب تأشيرة أستراليا
 </VisaWhatsAppCTA>
 
@@ -224,7 +185,7 @@ export default function AustraliaPage() {
           </h2>
 
           <div className="space-y-5">
-            {faqs.map((faq) => (
+            {australiaVisa.faqs.map((faq) => (
               <div
                 key={faq.question}
                 className="rounded-[28px] border border-orange-100 bg-white/90 p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"

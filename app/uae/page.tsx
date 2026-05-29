@@ -1,18 +1,5 @@
 import VisaWhatsAppCTA from "../components/VisaWhatsAppCTA";
-const requirements = [
-  "صورة الجواز.",
-  "صورة الإقامة.",
-  "صورة شخصية بخلفية بيضاء.",
-  "العنوان الوطني.",
-];
-
-const notes = [
-  "هذه الخدمة مخصصة لمقيمي دول مجلس التعاون الخليجي.",
-  "يجب أن تكون صلاحية الإقامة أكثر من 6 أشهر من تاريخ العودة.",
-  "التأشيرة إلكترونية ولا تتطلب حضور أو بصمة.",
-  "إصدار التأشيرة غير مضمون، ويعود القرار النهائي للجهات المختصة في الإمارات.",
-  "قد تختلف مدة المعالجة حسب حالة الطلب أو تحديثات الجهات المختصة.",
-];
+import { uaeVisa } from "../data/visas";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -44,52 +31,7 @@ export const metadata: Metadata = {
     images: ["/og-image-v2.png"],
   },
 };
-const faqs = [
-  {
-    question: "هل التأشيرة إلكترونية؟",
-    answer: "نعم، يتم إصدار التأشيرة إلكترونيًا.",
-  },
-  {
-    question: "هل يلزم حضور أو بصمة؟",
-    answer: "لا، لا يلزم حضور أو بصمة للتقديم.",
-  },
-  {
-    question: "كم مدة استخراج التأشيرة؟",
-    answer:
-      "من 4 إلى 15 يوم عمل، وقد تزيد حسب حالة الطلب أو تحديثات الجهات المختصة.",
-  },
-  {
-    question: "هل التأشيرة مضمونة؟",
-    answer:
-      "لا، إصدار التأشيرة غير مضمون، ويعود القرار النهائي للجهات المختصة في الإمارات.",
-  },
-  {
-    question: "هل يمكن التقديم للمقيمين بدول الخليج؟",
-    answer:
-      "نعم، يمكن لمقيمي دول مجلس التعاون الخليجي التقديم حسب الشروط المطلوبة.",
-  },
-  {
-    question: "هل توجد شروط على الإقامة؟",
-    answer:
-      "نعم، يجب أن تكون صلاحية الإقامة أكثر من 6 أشهر من تاريخ العودة.",
-  },
-];
-
 export default function UAEPage() {
-  const sendToWhatsApp = () => {
-    const message = `
-السلام عليكم، أرغب بالتقديم على تأشيرة الإمارات
-
-نوع التأشيرة: إلكترونية لمقيمي دول الخليج
-المدة: من 4 إلى 15 يوم عمل وقد تزيد
-`;
-
-    window.open(
-      `https://wa.me/966552525141?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  };
-
   return (
     <main dir="rtl" className="bg-white text-black overflow-hidden">
       {/* Hero */}
@@ -169,7 +111,7 @@ export default function UAEPage() {
             <div className="w-full rounded-[28px] border border-orange-100 bg-white/90 p-6 text-center shadow-lg backdrop-blur-xl md:w-80">
               <p className="mb-2 text-gray-500">السعر</p>
               <h3 className="text-2xl font-black text-orange-500">
-                550 ريال
+                {uaeVisa.price}
               </h3>
             </div>
           </div>
@@ -184,7 +126,7 @@ export default function UAEPage() {
           </h2>
 
           <ul className="mb-10 space-y-3">
-            {requirements.map((item) => (
+            {uaeVisa.requirements.map((item) => (
               <li
                 key={item}
                 className="rounded-2xl border border-orange-100 bg-white p-4 leading-8 shadow-sm"
@@ -199,7 +141,7 @@ export default function UAEPage() {
           </h2>
 
           <ul className="mb-10 space-y-3">
-            {notes.map((note) => (
+            {uaeVisa.notes.map((note) => (
               <li
                 key={note}
                 className="rounded-2xl border border-orange-100 bg-orange-50/70 p-4 leading-8 shadow-sm"
@@ -208,7 +150,10 @@ export default function UAEPage() {
               </li>
             ))}
           </ul>
-<VisaWhatsAppCTA visaName="الإمارات">
+<VisaWhatsAppCTA
+  visaName={uaeVisa.visaName}
+  message={uaeVisa.whatsappMessage}
+>
   ابدأ طلب تأشيرة الإمارات
 </VisaWhatsAppCTA>
 
@@ -223,7 +168,7 @@ export default function UAEPage() {
           </h2>
 
           <div className="space-y-5">
-            {faqs.map((faq) => (
+            {uaeVisa.faqs.map((faq) => (
               <div
                 key={faq.question}
                 className="rounded-[28px] border border-orange-100 bg-white/90 p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"

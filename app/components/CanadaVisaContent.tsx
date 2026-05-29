@@ -1,110 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { canadaVisaTypes, type VisaType } from "../data/visas";
 import VisaWhatsAppCTA from "./VisaWhatsAppCTA";
 
-type VisaType = {
-  id: string;
-  title: string;
-  icon: string;
-  subtitle: string;
-  price: string;
-  duration: string;
-  requirements: string[];
-  notes: string[];
-  faqs: { question: string; answer: string }[];
-};
-
-const touristRequirements = [
-  "أصل الجواز وصورة منه.",
-  "صورة الهوية.",
-  "صورة التأشيرة السابقة إن وجدت.",
-  "صورة من كرت العائلة.",
-  "العنوان الوطني.",
-  "سجل السفريات من توكلنا.",
-  "صور الأختام من جواز السفر.",
-  "ورقة التعريف بالراتب باللغة الإنجليزية موجهة للسفارة ومختومة من جهة العمل، وللشركات الخاصة يجب تصديقها من الغرفة التجارية.",
-  "كشف حساب لمدة 6 أشهر باللغة الإنجليزية وبرصيد لا يقل عن 15,000 ريال.",
-  "صورتان شخصية مقاس 5×5 بخلفية بيضاء، مكشوف الرأس للرجال ومكشوف الوجه للنساء.",
-];
-
-const studentRequirements = [
-  ...touristRequirements,
-  "قبول المعهد أو جهة الدراسة في كندا.",
-];
-
-const commonNotes = [
-  "يمكن للسفارة الكندية تغيير بعض المتطلبات أو طلب مستندات إضافية دون سابق إنذار.",
-  "لا يوجد أي وعد أو ضمان من جهتنا باستخراج التأشيرة أو تحديد وقت إصدارها.",
-  "يجب أن تكون جميع المستندات واضحة وحديثة عند التقديم.",
-  "قد تختلف مدة المعالجة حسب نوع التأشيرة وحالة الطلب.",
-];
-
-const visaTypes: VisaType[] = [
-  {
-    id: "tourist",
-    title: "تأشيرة كندا السياحية",
-    icon: "🇨🇦",
-    subtitle: "للسياحة والزيارة العائلية أو حضور الفعاليات.",
-    price: "1100 ريال",
-    duration: "حسب مدة معالجة السفارة",
-    requirements: touristRequirements,
-    notes: commonNotes,
-    faqs: [
-      {
-        question: "هل البصمة مطلوبة؟",
-        answer: "نعم، البصمة مطلوبة عند التقديم على تأشيرة كندا.",
-      },
-      {
-        question: "هل التأشيرة مضمونة؟",
-        answer: "لا، التأشيرة ليست مضمونة، والقرار النهائي يعود للسفارة الكندية.",
-      },
-      {
-        question: "كم مدة استخراج التأشيرة؟",
-        answer:
-          "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
-      },
-      {
-        question: "هل يجب توفير كشف حساب؟",
-        answer:
-          "نعم، يتطلب ملف التأشيرة كشف حساب لمدة 6 أشهر باللغة الإنجليزية وبرصيد لا يقل عن 15,000 ريال.",
-      },
-    ],
-  },
-  {
-    id: "student",
-    title: "تأشيرة كندا الدراسية",
-    icon: "🎓",
-    subtitle: "للطلاب المقبولين في معاهد أو مؤسسات تعليمية في كندا.",
-    price: "1170 ريال",
-    duration: "حسب مدة معالجة السفارة",
-    requirements: studentRequirements,
-    notes: commonNotes,
-    faqs: [
-      {
-        question: "هل قبول المعهد مطلوب؟",
-        answer:
-          "نعم، قبول المعهد أو جهة الدراسة مطلوب ضمن ملف التأشيرة الدراسية.",
-      },
-      {
-        question: "هل البصمة مطلوبة؟",
-        answer: "نعم، البصمة مطلوبة عند التقديم على تأشيرة كندا.",
-      },
-      {
-        question: "هل التأشيرة مضمونة؟",
-        answer: "لا، التأشيرة ليست مضمونة، والقرار النهائي يعود للسفارة الكندية.",
-      },
-      {
-        question: "كم مدة استخراج التأشيرة؟",
-        answer:
-          "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
-      },
-    ],
-  },
-];
-
 export default function CanadaVisaContent() {
-  const [selectedVisa, setSelectedVisa] = useState<VisaType>(visaTypes[0]);
+  const [selectedVisa, setSelectedVisa] = useState<VisaType>(canadaVisaTypes[0]);
 
   return (
     <main dir="rtl" className="bg-white text-black overflow-hidden">
@@ -166,7 +67,7 @@ export default function CanadaVisaContent() {
             </h2>
 
             <div className="space-y-3">
-              {visaTypes.map((visa) => (
+              {canadaVisaTypes.map((visa) => (
                 <button
                   key={visa.id}
                   onClick={() => setSelectedVisa(visa)}
