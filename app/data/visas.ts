@@ -395,7 +395,7 @@ export const canadaVisaTypes: VisaType[] = [
     icon: "🇨🇦",
     subtitle: "للسياحة والزيارة العائلية أو حضور الفعاليات.",
     price: "1100 ريال",
-    duration: "حسب مدة معالجة السفارة",
+    duration: "من شهر إلى شهرين",
     requirements: canadaTouristRequirements,
     notes: canadaCommonNotes,
     faqs: [
@@ -409,8 +409,7 @@ export const canadaVisaTypes: VisaType[] = [
       },
       {
         question: "كم مدة استخراج التأشيرة؟",
-        answer:
-          "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
+        answer: "تستغرق معالجة تأشيرة كندا عادة من شهر إلى شهرين.",
       },
       {
         question: "هل يجب توفير كشف حساب؟",
@@ -425,7 +424,7 @@ export const canadaVisaTypes: VisaType[] = [
     icon: "🎓",
     subtitle: "للطلاب المقبولين في معاهد أو مؤسسات تعليمية في كندا.",
     price: "1170 ريال",
-    duration: "حسب مدة معالجة السفارة",
+    duration: "من شهر إلى شهرين",
     requirements: canadaStudentRequirements,
     notes: canadaCommonNotes,
     faqs: [
@@ -444,8 +443,7 @@ export const canadaVisaTypes: VisaType[] = [
       },
       {
         question: "كم مدة استخراج التأشيرة؟",
-        answer:
-          "تختلف مدة المعالجة حسب السفارة وحالة الطلب، وقد تزيد في بعض المواسم.",
+        answer: "تستغرق معالجة تأشيرة كندا عادة من شهر إلى شهرين.",
       },
     ],
   },
@@ -464,6 +462,7 @@ export const ukVisa: SimpleVisaData = {
   notes: [
     "التصريح الإلكتروني البريطاني ETA صالح لمدة سنتين.",
     "يسمح بالإقامة حتى 6 أشهر لكل زيارة.",
+    "يتم إصدار تصريح بريطانيا غالبًا خلال 24 - 72 ساعة.",
     "صالح للسياحة والدراسة قصيرة المدة أقل من 6 أشهر.",
     "التقديم يتم إلكترونيًا بالكامل بدون زيارة السفارة.",
     "لا توجد بصمة أو مقابلة شخصية.",
@@ -627,7 +626,7 @@ const schengenFaqs: Faq[] = [
   {
     question: "كم مدة استخراج التأشيرة؟",
     answer:
-      "تختلف مدة المعالجة حسب السفارة والموسم، وعادة تستغرق من عدة أيام إلى عدة أسابيع.",
+      "تستغرق معالجة تأشيرة الشنغن عادة من 10 إلى 15 يوم عمل، وقد تختلف حسب السفارة والموسم.",
   },
   {
     question: "هل التأشيرة مضمونة؟",
@@ -677,7 +676,7 @@ export const schengenVisaPage: VisaPageData = {
     icon: country.flag,
     country: country.name,
     price: country.price,
-    duration: country.duration,
+    duration: "10 - 15 يوم عمل",
     status: country.status,
     typeLabel: "سياحية",
     requirements: [
@@ -859,7 +858,8 @@ export const ukVisaPage: VisaPageData = {
   aboutTitle: "ما هو تصريح بريطانيا ETA؟",
   aboutText:
     "تصريح ETA هو تصريح سفر إلكتروني يسمح للمسافرين المؤهلين بدخول بريطانيا للسياحة أو الدراسة قصيرة المدة، ويتم التقديم عليه إلكترونيًا دون الحاجة لزيارة السفارة.",
-  aboutNote: "التصريح صالح لمدة سنتين، ويسمح بالإقامة حتى 6 أشهر لكل زيارة.",
+  aboutNote:
+    "التصريح صالح لمدة سنتين، ويسمح بالإقامة حتى 6 أشهر لكل زيارة، ويتم إصداره غالبًا خلال 24 - 72 ساعة.",
   requirementsTitle: "المتطلبات",
   infoCards: [
     { label: "الصلاحية", value: "سنتين" },
@@ -1069,13 +1069,13 @@ export const turkeyNonSaudiVisaPage: VisaPageData = {
   aboutText:
     "هذه الخدمة مخصصة للمقيمين غير السعوديين داخل المملكة الراغبين في التقديم على تأشيرة تركيا، مع تجهيز المتطلبات وترتيب ملف الطلب حسب متطلبات مركز التأشيرات.",
   aboutNote:
-    "يجب أن تكون صلاحية الإقامة أكثر من 3 أشهر وصلاحية الجواز أكثر من 6 أشهر.",
+    "يجب أن تكون صلاحية الإقامة أكثر من 3 أشهر وصلاحية الجواز أكثر من 6 أشهر، ومدة المعالجة عادة 5 - 15 يوم عمل.",
   requirementsTitle: "المتطلبات",
   infoCards: [
     { label: "الدولة", value: "تركيا" },
     { label: "الفئة", value: "غير السعوديين" },
-    { label: "السعر", value: "550 ريال" },
-    { label: "نوع التقديم", value: "عبر مركز التأشيرات" },
+    { label: "مدة المعالجة", value: "5 - 15 يوم عمل" },
+    { label: "نوع التقديم", value: "يتطلب بصمة" },
   ],
   variants: [
     {
@@ -1085,9 +1085,9 @@ export const turkeyNonSaudiVisaPage: VisaPageData = {
       icon: "🇹🇷",
       country: "تركيا",
       price: "550 ريال",
-      duration: "حسب مدة معالجة السفارة",
+      duration: "5 - 15 يوم عمل",
       status: "الحالة: متاحة للتقديم",
-      typeLabel: "غير السعوديين / المقيمين في السعودية",
+      typeLabel: "يتطلب بصمة",
       requirements: [
         "أصل الجواز وصورة منه.",
         "أصل وصورة من الإقامة.",

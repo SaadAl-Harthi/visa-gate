@@ -403,10 +403,10 @@ backdrop-blur-2xl
 "  >
     <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:divide-x md:divide-x-reverse md:divide-slate-200">
       {[
-        { icon: ShieldCheck, value: "99%", label: "نسبة نجاح عالية" },
-        { icon: Headphones, value: "24/7", label: "دعم متخصص" },
-        { icon: FileText, value: "1200+", label: "طلب مكتمل بنجاح" },
-        { icon: Users, value: "40+", label: "وجهة متاحة" },
+        { icon: Globe2, value: "+40", label: "وجهة متاحة" },
+        { icon: FileText, value: "+1200", label: "طلب مكتمل" },
+        { icon: Award, value: "خبرة", label: "كبيرة في التأشيرات" },
+        { icon: BadgeCheck, value: "متابعة", label: "حتى استلام التأشيرة" },
       ].map((item) => (
         <div key={item.value} className="flex items-center justify-center gap-4">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-orange-500 shadow-lg">
