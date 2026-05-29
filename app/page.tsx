@@ -181,7 +181,7 @@ const goPrev = () => {
 
 الاسم: ${name}
 الجوال: ${phone}
-الدولة: ${country}
+التأشيرة المختارة: ${country}
 نوع التأشيرة: ${visaType}
     `;
 
@@ -1078,13 +1078,12 @@ src="/why-clean-bg.png"
             onChange={(e) => setCountry(e.target.value)}
             className="border border-orange-100 bg-orange-50/30 rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition duration-300"
           >
-            <option value="">اختر الدولة</option>
-            <option>🇬🇧 بريطانيا</option>
-            <option>🇺🇸 أمريكا</option>
-            <option>🇨🇦 كندا</option>
-            <option>🇪🇺 شنغن</option>
-            <option>🇦🇪 الإمارات</option>
-            <option>🇦🇺 أستراليا</option>
+            <option value="">اختر التأشيرة</option>
+            {visaHomeCards.map((visa) => (
+              <option key={visa.href} value={visa.title}>
+                {visa.flag} {visa.title}
+              </option>
+            ))}
           </select>
 
           <select
@@ -1093,11 +1092,8 @@ src="/why-clean-bg.png"
             className="border border-orange-100 bg-orange-50/30 rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition duration-300"
           >
             <option value="">نوع التأشيرة</option>
-            {visaHomeCards.map((visa) => (
-              <option key={visa.href} value={visa.title}>
-                {visa.flag} {visa.title}
-              </option>
-            ))}
+            <option>سياحية</option>
+            <option>دراسية</option>
           </select>
         </div>
 
