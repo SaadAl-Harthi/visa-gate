@@ -64,9 +64,18 @@ export type VisaPageVariant = {
 };
 
 export type VisaPageData = {
+  slug: string;
   title: string;
   highlightedTitle: string;
   description: string;
+  seo: {
+    title: string;
+    description: string;
+    openGraphTitle: string;
+    openGraphDescription: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+  };
   heroIcon: string;
   aboutTitle: string;
   aboutText: string;
@@ -633,10 +642,22 @@ const schengenFaqs: Faq[] = [
 ];
 
 export const schengenVisaPage: VisaPageData = {
+  slug: "schengen",
   title: "تأشيرة",
   highlightedTitle: "شنغن",
   description:
     "اختر دولة الشنغن المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.",
+  seo: {
+    title: "استخراج تأشيرة الشنغن | رحلتنا للتأشيرات",
+    description:
+      "استخراج تأشيرة الشنغن للسعوديين مع تجهيز الملف، التأمين الطبي، حجوزات السفر، والمتابعة الكاملة.",
+    openGraphTitle: "استخراج تأشيرة الشنغن",
+    openGraphDescription:
+      "نساعدك في استخراج فيزا الشنغن لجميع الدول الأوروبية بسهولة.",
+    twitterTitle: "استخراج تأشيرة الشنغن",
+    twitterDescription:
+      "خدمة استخراج تأشيرة الشنغن للسعوديين بخطوات سهلة.",
+  },
   heroIcon: "🌍",
   aboutTitle: "ما هي تأشيرة شنغن؟",
   aboutText:
@@ -687,10 +708,21 @@ export const schengenVisaPage: VisaPageData = {
 };
 
 export const usaVisaPage: VisaPageData = {
+  slug: "usa",
   title: "تأشيرة",
   highlightedTitle: "أمريكا",
   description:
     "اختر نوع التأشيرة المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.",
+  seo: {
+    title: "استخراج تأشيرة أمريكا للسعوديين | رحلتنا للتأشيرات",
+    description:
+      "نساعدك في استخراج تأشيرة أمريكا السياحية أو الدراسية مع تجهيز الملف، تعبئة النماذج، وحجز الموعد.",
+    openGraphTitle: "استخراج تأشيرة أمريكا للسعوديين",
+    openGraphDescription:
+      "خدمة متكاملة لاستخراج تأشيرة أمريكا مع متابعة الطلب خطوة بخطوة.",
+    twitterTitle: "استخراج تأشيرة أمريكا",
+    twitterDescription: "خدمة استخراج تأشيرة أمريكا السياحية والدراسية.",
+  },
   heroIcon: "🇺🇸",
   aboutTitle: "عن التأشيرة الأمريكية",
   aboutText:
@@ -739,10 +771,22 @@ export const usaVisaPage: VisaPageData = {
 };
 
 export const canadaVisaPage: VisaPageData = {
+  slug: "canada",
   title: "تأشيرة",
   highlightedTitle: "كندا",
   description:
     "اختر نوع التأشيرة المطلوبة واطّلع على المتطلبات والملاحظات المهمة قبل بدء طلب التأشيرة.",
+  seo: {
+    title: "استخراج تأشيرة كندا للسعوديين | رحلتنا للتأشيرات",
+    description:
+      "خدمة استخراج تأشيرة كندا السياحية والدراسية مع تجهيز الملفات والمتابعة الكاملة حتى إصدار التأشيرة.",
+    openGraphTitle: "استخراج تأشيرة كندا للسعوديين",
+    openGraphDescription:
+      "نساعدك في استخراج تأشيرة كندا بسهولة مع مراجعة المتطلبات والملف.",
+    twitterTitle: "استخراج تأشيرة كندا",
+    twitterDescription:
+      "خدمة استخراج تأشيرة كندا للسعوديين بسهولة وسرعة.",
+  },
   heroIcon: "🇨🇦",
   aboutTitle: "عن تأشيرة كندا",
   aboutText:
@@ -791,10 +835,19 @@ export const canadaVisaPage: VisaPageData = {
 };
 
 export const ukVisaPage: VisaPageData = {
+  slug: "uk",
   title: "تصريح بريطانيا الإلكتروني",
   highlightedTitle: "ETA",
   description:
     "تصريح سفر إلكتروني للسعوديين يتيح زيارة بريطانيا للسياحة أو الدراسة قصيرة المدة.",
+  seo: {
+    title: "استخراج تأشيرة بريطانيا للسعوديين | رحلتنا للتأشيرات",
+    description:
+      "خدمة استخراج تأشيرة بريطانيا للسعوديين مع تجهيز الملف، حجز الموعد، والمتابعة خطوة بخطوة عبر واتساب.",
+    openGraphTitle: "استخراج تأشيرة بريطانيا للسعوديين",
+    openGraphDescription:
+      "نساعدك في استخراج تأشيرة بريطانيا وتجهيز الملف والمتطلبات بسهولة.",
+  },
   heroIcon: "🇬🇧",
   aboutTitle: "ما هو تصريح بريطانيا ETA؟",
   aboutText:
@@ -847,10 +900,22 @@ export const ukVisaPage: VisaPageData = {
 };
 
 export const uaeVisaPage: VisaPageData = {
+  slug: "uae",
   title: "تأشيرة",
   highlightedTitle: "الإمارات",
   description:
     "تأشيرة إلكترونية لمقيمي دول مجلس التعاون الخليجي بخطوات سهلة وواضحة.",
+  seo: {
+    title: "استخراج تأشيرة الإمارات للسعوديين | رحلتنا للتأشيرات",
+    description:
+      "خدمة استخراج تأشيرة الإمارات السياحية بسرعة وسهولة مع متابعة الطلب وتجهيز المتطلبات.",
+    openGraphTitle: "استخراج تأشيرة الإمارات",
+    openGraphDescription:
+      "نساعدك في استخراج تأشيرة الإمارات بخطوات سهلة وسريعة.",
+    twitterTitle: "استخراج تأشيرة الإمارات",
+    twitterDescription:
+      "خدمة استخراج تأشيرة الإمارات للسعوديين.",
+  },
   heroIcon: "🇦🇪",
   aboutTitle: "لمن تناسب تأشيرة الإمارات؟",
   aboutText:
@@ -904,10 +969,22 @@ export const uaeVisaPage: VisaPageData = {
 };
 
 export const australiaVisaPage: VisaPageData = {
+  slug: "australia",
   title: "تأشيرة",
   highlightedTitle: "أستراليا",
   description:
     "خدمات التأشيرات السياحية والدراسية لأستراليا بخطوات إلكترونية سهلة وواضحة.",
+  seo: {
+    title: "استخراج تأشيرة أستراليا للسعوديين | رحلتنا للتأشيرات",
+    description:
+      "استخراج تأشيرة أستراليا السياحية والدراسية مع تجهيز الملف ومتابعة الطلب خطوة بخطوة.",
+    openGraphTitle: "استخراج تأشيرة أستراليا للسعوديين",
+    openGraphDescription:
+      "خدمة احترافية لاستخراج تأشيرة أستراليا بسهولة وسرعة.",
+    twitterTitle: "استخراج تأشيرة أستراليا",
+    twitterDescription:
+      "خدمة استخراج تأشيرة أستراليا السياحية والدراسية.",
+  },
   heroIcon: "🇦🇺",
   aboutTitle: "عن تأشيرة أستراليا",
   aboutText:
@@ -959,3 +1036,16 @@ export const australiaVisaPage: VisaPageData = {
     },
   ],
 };
+
+export const visaPages = [
+  schengenVisaPage,
+  usaVisaPage,
+  canadaVisaPage,
+  ukVisaPage,
+  uaeVisaPage,
+  australiaVisaPage,
+];
+
+export function getVisaPageBySlug(slug: string) {
+  return visaPages.find((visa) => visa.slug === slug);
+}
