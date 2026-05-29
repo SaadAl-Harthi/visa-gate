@@ -1093,8 +1093,11 @@ src="/why-clean-bg.png"
             className="border border-orange-100 bg-orange-50/30 rounded-2xl p-4 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100 transition duration-300"
           >
             <option value="">نوع التأشيرة</option>
-            <option>تأشيرة سياحية</option>
-            <option>تأشيرة دراسية</option>
+            {visaHomeCards.map((visa) => (
+              <option key={visa.href} value={visa.title}>
+                {visa.flag} {visa.title}
+              </option>
+            ))}
           </select>
         </div>
 
