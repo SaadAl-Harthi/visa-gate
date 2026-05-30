@@ -1416,6 +1416,134 @@ export const newZealandVisaPage: VisaPageData = {
   ],
 };
 
+const irelandTouristRequirements = [
+  "صورة الجواز.",
+  "صورة الهوية.",
+  "العنوان الوطني.",
+  "صورة شخصية.",
+  "تعريف بالراتب باللغة الإنجليزية موجه للسفارة ومختوم من جهة العمل.",
+  "للشركات الخاصة: يجب تصديق تعريف العمل من الغرفة التجارية.",
+  "كشف حساب آخر 6 أشهر باللغة الإنجليزية بمتوسط رصيد 10 الاف ريال للشهر.",
+];
+
+const irelandStudentRequirements = [
+  ...irelandTouristRequirements,
+  "قبول المعهد.",
+  "إثبات دفع الرسوم الدراسية للمعهد.",
+];
+
+const irelandCommonNotes = [
+  "رسوم الخدمة لا تشمل رسوم السفارة.",
+  "رسوم السفارة للدخول المفرد: 275 ريال تقريبًا.",
+  "رسوم السفارة للدخول المتعدد: 460 ريال تقريبًا.",
+  "السعر لا يشمل رسوم التوصيل من المركز الموحد للتأشيرات.",
+  "قد تطلب سفارة إيرلندا مستندات إضافية حسب الحالة.",
+  "الموافقة النهائية تخضع لقرار سفارة إيرلندا.",
+];
+
+const irelandFaqs: Faq[] = [
+  {
+    question: "هل إيرلندا ضمن دول الشنغن؟",
+    answer:
+      "لا، إيرلندا لديها نظام تأشيرات مستقل ولا تعتبر من دول الشنغن.",
+  },
+  {
+    question: "هل التأشيرة تتطلب بصمة؟",
+    answer: "نعم، التقديم على تأشيرة إيرلندا يتطلب بصمة.",
+  },
+  {
+    question: "من يمكنه التقديم حاليًا؟",
+    answer: "التقديم متاح حاليًا للسعوديين فقط.",
+  },
+];
+
+export const irelandVisaPage: VisaPageData = {
+  slug: "ireland",
+  status: "active",
+  title: "تأشيرة",
+  highlightedTitle: "إيرلندا",
+  description:
+    "خدمة استخراج تأشيرة إيرلندا للسعوديين للتأشيرات السياحية والدراسية مع توضيح المتطلبات والرسوم ومدة المعالجة.",
+  seo: {
+    title: "تأشيرة إيرلندا للسعوديين | المتطلبات والرسوم ومدة المعالجة",
+    description:
+      "استخراج تأشيرة إيرلندا للسعوديين مع معرفة المتطلبات والرسوم ومدة المعالجة للتأشيرات السياحية والدراسية عبر رحلتنا للتأشيرات.",
+    image: "/ireland-og.png",
+    openGraphTitle: "تأشيرة إيرلندا للسعوديين",
+    openGraphDescription:
+      "تعرف على متطلبات تأشيرة إيرلندا السياحية والدراسية ورسومها ومدة المعالجة لاستخراج فيزا إيرلندا من السعودية.",
+    twitterTitle: "فيزا إيرلندا للسعوديين",
+    twitterDescription:
+      "خدمة استخراج تأشيرة إيرلندا من السعودية مع تجهيز المتطلبات للتأشيرة السياحية أو الدراسية.",
+  },
+  heroIcon: "🇮🇪",
+  aboutTitle: "عن تأشيرة إيرلندا",
+  aboutText:
+    "نساعدك في تجهيز طلب تأشيرة إيرلندا للسعوديين سواء للسياحة أو الدراسة، مع توضيح المتطلبات والرسوم ومدة المعالجة حسب نوع التأشيرة.",
+  aboutNote:
+    "التقديم متاح حاليًا للسعوديين فقط، وتأشيرة إيرلندا لها نظام مستقل ولا تعتبر من دول الشنغن.",
+  selectorTitle: "اختر نوع التأشيرة",
+  requirementsTitle: "المتطلبات",
+  variants: [
+    {
+      id: "ireland-tourist",
+      name: "تأشيرة سياحية",
+      title: "تأشيرة إيرلندا السياحية",
+      icon: "🇮🇪",
+      subtitle: "تتطلب بصمة.",
+      country: "إيرلندا",
+      price: "700 ريال",
+      duration: "من 15 إلى 30 يوم عمل وقد تزيد حسب ضغط السفارة والموسم.",
+      status: "الحالة: متاحة للتقديم",
+      typeLabel: "يتطلب بصمة",
+      requirements: irelandTouristRequirements,
+      notes: irelandCommonNotes,
+      faqs: irelandFaqs,
+      whatsappName: "تأشيرة إيرلندا السياحية",
+      preApplyNote:
+        "هذا النوع مخصص للسعوديين حاليًا، ومناسب لغرض السياحة.",
+    },
+    {
+      id: "ireland-student",
+      name: "تأشيرة دراسية",
+      title: "تأشيرة إيرلندا الدراسية",
+      icon: "🎓",
+      subtitle: "تتطلب بصمة.",
+      country: "إيرلندا",
+      price: "600 ريال",
+      duration: "من 15 إلى 30 يوم عمل وقد تزيد حسب ضغط السفارة والموسم.",
+      status: "الحالة: متاحة للتقديم",
+      typeLabel: "يتطلب بصمة",
+      requirements: irelandStudentRequirements,
+      notes: irelandCommonNotes,
+      faqs: irelandFaqs,
+      whatsappName: "تأشيرة إيرلندا الدراسية",
+      preApplyNote:
+        "هذا النوع مخصص للسعوديين حاليًا، ومناسب لغرض الدراسة.",
+    },
+  ],
+  relatedVisas: [
+    {
+      href: "/uk",
+      flag: "🇬🇧",
+      title: "تصريح بريطانيا",
+      text: "تصريح السفر الإلكتروني للسعوديين.",
+    },
+    {
+      href: "/schengen",
+      flag: "🇪🇺",
+      title: "تأشيرة شنغن",
+      text: "خدمات استخراج تأشيرات الشنغن لجميع الدول الأوروبية.",
+    },
+    {
+      href: "/canada",
+      flag: "🇨🇦",
+      title: "تأشيرة كندا",
+      text: "خدمات التأشيرات السياحية والدراسية لكندا.",
+    },
+  ],
+};
+
 export const allVisaPages = [
   schengenVisaPage,
   usaVisaPage,
@@ -1426,6 +1554,7 @@ export const allVisaPages = [
   turkeyNonSaudiVisaPage,
   brazilVisaPage,
   newZealandVisaPage,
+  irelandVisaPage,
 ];
 
 export const activeVisaPages = allVisaPages.filter(

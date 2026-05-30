@@ -98,6 +98,13 @@ const homeCardContent: Record<
     image:
       "https://images.unsplash.com/photo-1469521669194-babb45599def?q=80&w=800&auto=format&fit=crop",
   },
+  ireland: {
+    flag: "🇮🇪",
+    title: "إيرلندا",
+    desc: "تأشيرات سياحية ودراسية للسعوديين.",
+    image:
+      "https://images.unsplash.com/photo-1763755688324-a2ea2e12efc4?q=80&w=800&auto=format&fit=crop",
+  },
 };
 
 const visaHomeCards = activeVisaPages.map((visa) => {
