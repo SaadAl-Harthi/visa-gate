@@ -19,7 +19,7 @@ export default function Footer() {
 
       <div className="relative max-w-6xl mx-auto">
         {/* Top */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 text-right">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 text-right">
           
           {/* Brand */}
           <div>
@@ -65,6 +65,34 @@ export default function Footer() {
               >
                 سياسة الخصوصية
               </a>
+            </div>
+          </div>
+
+          {/* Business Info */}
+          <div>
+            <h4 className="text-xl font-black mb-5 text-orange-400">
+              معلومات المنشأة
+            </h4>
+
+            <div className="space-y-4 text-white/70 leading-8">
+              <p>
+                ✓ السجل التجاري:{" "}
+                <span dir="ltr" className="inline-block font-semibold text-white/85">
+                  4030228793
+                </span>
+              </p>
+              <p>
+                ✓ رقم الرخصة:{" "}
+                <span dir="ltr" className="inline-block font-semibold text-white/85">
+                  73104015
+                </span>
+              </p>
+              <p>
+                ✓ الرقم الضريبي:{" "}
+                <span dir="ltr" className="inline-block font-semibold text-white/85">
+                  30201661700003
+                </span>
+              </p>
             </div>
           </div>
         </div>
