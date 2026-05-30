@@ -89,7 +89,14 @@ const homeCardContent: Record<
     title: "تأشيرة البرازيل للسعوديين",
     desc: "استخرج تأشيرة البرازيل السياحية للسعوديين بسهولة.",
     image:
-      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop",
+  },
+  "new-zealand": {
+    flag: "🇳🇿",
+    title: "نيوزيلندا",
+    desc: "تأشيرة إلكترونية بدخول متعدد للسياحة أو الدراسة.",
+    image:
+      "https://images.unsplash.com/photo-1469521669194-babb45599def?q=80&w=800&auto=format&fit=crop",
   },
 };
 
