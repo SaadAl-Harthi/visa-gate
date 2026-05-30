@@ -86,7 +86,7 @@ const homeCardContent: Record<
   },
   brazil: {
     flag: "🇧🇷",
-    title: "تأشيرة البرازيل للسعوديين",
+    title: "البرازيل",
     desc: "استخرج تأشيرة البرازيل السياحية للسعوديين بسهولة.",
     image:
       "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800&auto=format&fit=crop",
