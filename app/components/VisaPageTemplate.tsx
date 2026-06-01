@@ -257,6 +257,7 @@ function VisaRequirements({
 
       <VisaWhatsAppCTA
         visaName={selectedVisa.whatsappName}
+        visaSlug={data.slug}
         message={selectedVisa.whatsappMessage}
       >
         ابدأ طلب {selectedVisa.title}

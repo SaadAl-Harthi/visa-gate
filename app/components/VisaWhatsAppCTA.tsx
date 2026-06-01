@@ -1,17 +1,28 @@
 "use client";
 
+import { getPageAnalyticsParams, trackEvent } from "../lib/analytics";
+
 type VisaWhatsAppCTAProps = {
   visaName: string;
+  visaSlug?: string;
   message?: string;
   children: React.ReactNode;
 };
 
 export default function VisaWhatsAppCTA({
   visaName,
+  visaSlug,
   message,
   children,
 }: VisaWhatsAppCTAProps) {
   const sendToWhatsApp = () => {
+    trackEvent("whatsapp_click", {
+      button_location: "visa_page_cta",
+      visa_slug: visaSlug,
+      visa_name: visaName,
+      ...getPageAnalyticsParams(),
+    });
+
     const whatsappMessage = message ?? `السلام عليكم، أود استخراج تأشيرة ${visaName}`;
 
     window.open(

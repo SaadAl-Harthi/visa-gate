@@ -25,6 +25,7 @@ import {
   FileText,
 } from "lucide-react";
 import { activeVisaPages } from "./data/visas";
+import { getPageAnalyticsParams, trackEvent } from "./lib/analytics";
 
 const homeCardContent: Record<
   string,
@@ -112,6 +113,7 @@ const visaHomeCards = activeVisaPages.map((visa) => {
 
   return {
     href: `/${visa.slug}`,
+    slug: visa.slug,
     flag: content?.flag ?? visa.heroIcon,
     title: content?.title ?? `${visa.title} ${visa.highlightedTitle}`,
     desc: content?.desc ?? visa.description,
@@ -197,6 +199,18 @@ const goPrev = () => {
 };
 
   const sendToWhatsApp = () => {
+    trackEvent("lead_form_submit", {
+      selected_visa: country,
+      selected_visa_type: visaType,
+      ...getPageAnalyticsParams(),
+    });
+
+    trackEvent("whatsapp_click", {
+      button_location: "contact_form_submit",
+      visa_name: country,
+      ...getPageAnalyticsParams(),
+    });
+
     const message = `
 طلب تأشيرة جديد
 
@@ -282,6 +296,12 @@ const goPrev = () => {
     <a
       href="https://wa.me/966552525141"
       target="_blank"
+      onClick={() =>
+        trackEvent("whatsapp_click", {
+          button_location: "hero_cta",
+          ...getPageAnalyticsParams(),
+        })
+      }
       className="hidden md:flex items-center gap-2 rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 px-8 py-4 text-base font-bold text-white shadow-lg shadow-orange-500/30 transition hover:scale-105"
     >
       <MessageCircle size={22} />
@@ -345,6 +365,12 @@ const goPrev = () => {
       <a
         href="https://wa.me/966552525141"
         target="_blank"
+        onClick={() =>
+          trackEvent("whatsapp_click", {
+            button_location: "hero_cta",
+            ...getPageAnalyticsParams(),
+          })
+        }
         className="bg-orange-500 text-white rounded-2xl py-4 text-center mt-2"
       >
         واتساب
@@ -514,6 +540,13 @@ shadow-2xl
         <a
           key={country.href}
           href={country.href}
+          onClick={() =>
+            trackEvent("visa_card_click", {
+              visa_slug: country.slug,
+              visa_name: country.title,
+              page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+            })
+          }
           className="group relative overflow-hidden rounded-[34px] bg-white border border-orange-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center"
         >
           <div className="relative h-44 overflow-hidden rounded-b-[46px]">
@@ -558,6 +591,13 @@ shadow-2xl
         <a
           key={country.href}
           href={country.href}
+          onClick={() =>
+            trackEvent("visa_card_click", {
+              visa_slug: country.slug,
+              visa_name: country.title,
+              page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+            })
+          }
           className="group flex items-center justify-between rounded-[28px] bg-white border border-orange-100 shadow-lg overflow-hidden active:scale-[0.98] transition"
         >
           <div className="flex-1 p-5 text-right">

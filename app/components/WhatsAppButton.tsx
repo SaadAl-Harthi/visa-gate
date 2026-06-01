@@ -1,8 +1,18 @@
+"use client";
+
+import { getPageAnalyticsParams, trackEvent } from "../lib/analytics";
+
 export default function WhatsAppButton() {
   return (
     <a
       href="https://wa.me/966552525141"
       target="_blank"
+      onClick={() =>
+        trackEvent("whatsapp_click", {
+          button_location: "floating_whatsapp",
+          ...getPageAnalyticsParams(),
+        })
+      }
       className="group fixed bottom-5 right-5 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-green-400 shadow-2xl shadow-green-500/30 transition duration-300 hover:scale-110"
     >
       <svg
