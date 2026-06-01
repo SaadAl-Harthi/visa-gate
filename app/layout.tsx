@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -73,6 +74,7 @@ export default function RootLayout({
   <Footer />
   <WhatsAppButton />
   <Analytics />
+  <GoogleAnalytics gaId="G-Z8BRTJ9SR3" />
 </body>
     </html>
   );
