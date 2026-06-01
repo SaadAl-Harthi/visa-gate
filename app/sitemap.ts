@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { sitemapVisaPages } from "./data/visas";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://visa-gate.vercel.app";
+  const baseUrl = "https://visarace.net";
 
   return [
     {

@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://visa-gate.vercel.app/sitemap.xml",
+    sitemap: "https://visarace.net/sitemap.xml",
   };
 }

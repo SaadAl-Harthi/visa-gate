@@ -222,8 +222,8 @@ const goPrev = () => {
       "@type": "TravelAgency",
       name: "رحلتنا لإستخراج التأشيرات",
       alternateName: "Study Race",
-      url: "https://visa-gate.vercel.app",
-      logo: "https://visa-gate.vercel.app/logo.png",
+      url: "https://visarace.net",
+      logo: "https://visarace.net/logo.png",
       telephone: "+966552525141",
       address: {
         "@type": "PostalAddress",

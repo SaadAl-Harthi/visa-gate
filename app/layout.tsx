@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://visa-gate.vercel.app"),
+  metadataBase: new URL("https://visarace.net"),
 
   alternates: {
     canonical: "/",
