@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "استخراج التأشيرات السياحية والدراسية لجميع الوجهات العالمية مع تجهيز الملفات، حجز المواعيد، والمتابعة عبر واتساب.",
 
   verification: {
-    google: "a_FZgceeVsU7gRvj0J29ggKAgPKRCYnGg9n1Hxi8Lvo",
+    google: "2gwF7lQNIq2CFVTlAS1R7cWptoqOreI-LvFtXwCtmjY",
   },
 
   openGraph: {
