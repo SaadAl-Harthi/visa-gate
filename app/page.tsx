@@ -119,7 +119,9 @@ const visaHomeCards = activeVisaPages.map((visa) => {
     desc: content?.desc ?? visa.description,
     image:
       content?.image ??
-      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop",
+      (visa.slug === "south-africa"
+        ? "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?q=80&w=800&auto=format&fit=crop"
+        : "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop"),
   };
 });
 
@@ -547,7 +549,7 @@ shadow-2xl
               page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
             })
           }
-          className="group relative overflow-hidden rounded-[34px] bg-white border border-orange-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center"
+          className="group relative flex h-full flex-col overflow-hidden rounded-[34px] bg-white border border-orange-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center"
         >
           <div className="relative h-44 overflow-hidden rounded-b-[46px]">
             <img
@@ -563,16 +565,16 @@ shadow-2xl
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="flex flex-1 flex-col p-6">
             <h4 className="text-2xl font-black text-[#101b32] mb-3">
               {country.title}
             </h4>
 
-            <p className="text-gray-500 text-sm leading-7 min-h-[56px]">
+            <p className="flex-1 text-gray-500 text-sm leading-7 min-h-[56px]">
               {country.desc}
             </p>
 
-            <div className="mt-5 flex items-center justify-center gap-2 text-orange-500 font-bold">
+            <div className="mt-auto flex items-center justify-center gap-2 pt-5 text-orange-500 font-bold">
               <span>ابدأ الطلب الآن</span>
               <span className="h-8 w-8 rounded-full border border-orange-200 bg-orange-50 flex items-center justify-center">
                 ←
