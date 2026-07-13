@@ -24,8 +24,9 @@ import {
   Phone,
   FileText,
 } from "lucide-react";
-import { activeVisaPages } from "./data/visas";
-import { getPageAnalyticsParams, trackEvent } from "./lib/analytics";
+import { activeVisaPages } from "../data/visas";
+import { getPageAnalyticsParams, trackEvent } from "../lib/analytics";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const homeCardContent: Record<
   string,
@@ -294,21 +295,28 @@ const goPrev = () => {
       ☰
     </button>
 
-    {/* Desktop WhatsApp - Left */}
-    <a
-      href="https://wa.me/966552525141"
-      target="_blank"
-      onClick={() =>
-        trackEvent("whatsapp_click", {
-          button_location: "hero_cta",
-          ...getPageAnalyticsParams(),
-        })
-      }
-      className="hidden md:flex items-center gap-2 rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 px-8 py-4 text-base font-bold text-white shadow-lg shadow-orange-500/30 transition hover:scale-105"
-    >
-      <MessageCircle size={22} />
-      واتساب
-    </a>
+    <div className="hidden md:flex items-center gap-3">
+      <LanguageSwitcher
+        locale="ar"
+        className="inline-flex items-center rounded-2xl border border-orange-100 bg-white px-5 py-4 text-base font-bold text-[#101b32] shadow-sm transition hover:text-orange-500"
+      />
+
+      {/* Desktop WhatsApp - Left */}
+      <a
+        href="https://wa.me/966552525141"
+        target="_blank"
+        onClick={() =>
+          trackEvent("whatsapp_click", {
+            button_location: "hero_cta",
+            ...getPageAnalyticsParams(),
+          })
+        }
+        className="flex items-center gap-2 rounded-2xl bg-gradient-to-l from-orange-500 to-orange-400 px-8 py-4 text-base font-bold text-white shadow-lg shadow-orange-500/30 transition hover:scale-105"
+      >
+        <MessageCircle size={22} />
+        واتساب
+      </a>
+    </div>
 
     {/* Desktop Links */}
     <div className="hidden items-center gap-14 text-[19px] font-bold text-slate-800 lg:flex">
@@ -363,6 +371,11 @@ const goPrev = () => {
       <a href="#about" onClick={() => setMenuOpen(false)}>
         من نحن
       </a>
+
+      <LanguageSwitcher
+        locale="ar"
+        className="rounded-2xl border border-orange-100 bg-white py-4 text-center text-[#101b32]"
+      />
 
       <a
         href="https://wa.me/966552525141"

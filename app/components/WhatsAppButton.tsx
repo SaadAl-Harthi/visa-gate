@@ -2,7 +2,11 @@
 
 import { getPageAnalyticsParams, trackEvent } from "../lib/analytics";
 
-export default function WhatsAppButton() {
+type WhatsAppButtonProps = {
+  locale?: "ar" | "en";
+};
+
+export default function WhatsAppButton({ locale = "ar" }: WhatsAppButtonProps) {
   return (
     <a
       href="https://wa.me/966552525141"
@@ -26,7 +30,7 @@ export default function WhatsAppButton() {
       </svg>
 
       <span className="absolute right-20 whitespace-nowrap rounded-full bg-[#101b32] px-4 py-2 text-sm font-bold text-white opacity-0 shadow-xl transition-all duration-300 group-hover:opacity-100">
-        تواصل واتساب
+        {locale === "ar" ? "تواصل واتساب" : "Contact us on WhatsApp"}
       </span>
     </a>
   );

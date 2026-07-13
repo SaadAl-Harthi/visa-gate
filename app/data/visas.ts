@@ -1692,6 +1692,1470 @@ export const allVisaPages = [
   southAfricaVisaPage,
 ];
 
+export type Locale = "ar" | "en";
+
+type LocalizedSeo = {
+  title: string;
+  description: string;
+  openGraphTitle: string;
+  openGraphDescription: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+};
+
+type LocalizedVariant = {
+  name: string;
+  title: string;
+  subtitle?: string;
+  country: string;
+  duration: string;
+  status?: string;
+  typeLabel: string;
+  requirements: string[];
+  notes: string[];
+  faqs: Faq[];
+  whatsappName?: string;
+  preApplyNote?: string;
+};
+
+type LocalizedVisaPage = {
+  title: string;
+  highlightedTitle: string;
+  description: string;
+  seo: LocalizedSeo;
+  aboutTitle: string;
+  aboutText: string;
+  aboutNote: string;
+  selectorTitle?: string;
+  requirementsTitle: string;
+  infoCards?: { label: string; value: string }[];
+  relatedVisas: RelatedVisa[];
+  variants: Record<string, LocalizedVariant>;
+};
+
+const schengenRequirementsEn = [
+  "Original passport and a copy.",
+  "Employment letter in English addressed to the embassy and stamped by the employer.",
+  "For private-sector companies: the employment letter must be attested by the Chamber of Commerce.",
+  "Bank statement in English for the last 4 months with a balance of at least SAR 10,000 per person.",
+  "Copy of the national ID.",
+  "Copy of the family card if the appointment is for a family.",
+  "Appointment confirmation from the visa application center.",
+  "Embassy application form.",
+  "Hotel booking - one copy per applicant.",
+  "Flight booking - one copy per applicant.",
+  "Travel insurance policy - one copy per applicant.",
+  "Two personal photos, 3.5×4.5 cm, white background; uncovered head for men and uncovered face for women.",
+  "Copy of any previous Schengen visa, if available.",
+  "Exit and re-entry visa for non-Saudis.",
+];
+
+const schengenNotesEn = (country: string) => [
+  "IDs and family cards that are not in the new format must be translated into English. We can arrange the translation for an additional fee.",
+  `The Embassy of ${country} may change requirements or request additional documents without prior notice.`,
+  "We do not promise or guarantee visa approval or a specific issuance date.",
+  "If you would like to ask about your visa status, you may visit the visa application center to inquire about your application.",
+];
+
+const schengenFaqsEn: Faq[] = [
+  {
+    question: "Is personal attendance required at the visa center?",
+    answer:
+      "Yes, the applicant must attend the visa center in person for biometrics and passport submission.",
+  },
+  {
+    question: "Are biometrics required?",
+    answer: "Yes, biometrics are required when applying for a Schengen visa.",
+  },
+  {
+    question: "How long does Schengen visa processing take?",
+    answer:
+      "Schengen visa processing usually takes 10 to 15 business days and may vary by embassy and season.",
+  },
+  {
+    question: "Is visa approval guaranteed?",
+    answer:
+      "No, visa approval cannot be guaranteed. The final decision belongs only to the embassy.",
+  },
+  {
+    question: "Can families apply together?",
+    answer:
+      "Yes, individuals and families can apply, with full file and appointment preparation.",
+  },
+  {
+    question: "Do I need flight and hotel bookings before applying?",
+    answer:
+      "Yes, the visa file requires preliminary flight and hotel bookings. We can prepare these as part of the file.",
+  },
+  {
+    question: "How much are Schengen embassy fees?",
+    answer:
+      "Adults aged 12 and above: EUR 90. Children aged 6 to 11: EUR 45. Children under 6: exempt from embassy fees. Fees or exemptions may vary by issuing country and any EU updates.",
+  },
+  {
+    question: "Are embassy fees included in the service price?",
+    answer:
+      "No, embassy fees are paid separately. All fees will be clarified before starting the request.",
+  },
+];
+
+const countryNamesEn: Record<string, string> = {
+  فرنسا: "France",
+  إيطاليا: "Italy",
+  سويسرا: "Switzerland",
+  ألمانيا: "Germany",
+  هولندا: "Netherlands",
+  إسبانيا: "Spain",
+  النمسا: "Austria",
+  البرتغال: "Portugal",
+  اليونان: "Greece",
+  التشيك: "Czech Republic",
+  بلجيكا: "Belgium",
+};
+
+const buildSchengenVariantEn = (country: SchengenCountry): LocalizedVariant => {
+  const countryName = countryNamesEn[country.name] ?? country.name;
+
+  return {
+    name: countryName,
+    title: `Schengen Visa - ${countryName}`,
+    country: countryName,
+    duration: "10 - 15 business days",
+    status: "Available for application",
+    typeLabel: "Tourist",
+    requirements: [
+      ...(country.name === "النمسا"
+        ? [
+            ...schengenRequirementsEn.filter(
+              (item) => !item.includes("SAR 10,000")
+            ),
+            "Bank statement in English for the last 4 months with a balance of at least SAR 15,000 per person.",
+          ]
+        : schengenRequirementsEn),
+      ...(country.name === "إسبانيا" ? ["Travel itinerary."] : []),
+      `The Embassy of ${countryName} may request additional documents depending on the applicant's case or itinerary.`,
+    ],
+    notes: schengenNotesEn(countryName),
+    faqs: schengenFaqsEn,
+    whatsappName: `Schengen - ${countryName}`,
+    preApplyNote: `The following requirements are specific to the Embassy of ${countryName}. They may vary depending on the applicant's case or embassy updates.`,
+  };
+};
+
+const usaTouristRequirementsEn = [
+  "Original passport and a copy.",
+  "Employment letter in English addressed to the embassy and stamped by the employer. For private-sector companies, it must be attested by the Chamber of Commerce.",
+  "Bank statement in English for the last 6 months with a balance of at least SAR 10,000 per person.",
+  "Copy of the national ID.",
+  "Copy of the family card if the appointment is for a family.",
+  "Appointment confirmation from the visa application center.",
+  "Embassy confirmation page.",
+  "Hotel booking - one copy per applicant.",
+  "Flight booking - one copy per applicant.",
+  "Two personal photos, 5×5 cm; uncovered head for men and uncovered face for women.",
+  "Copy of any previous U.S. visa, if available.",
+  "Exit and re-entry visa for non-Saudis.",
+];
+
+const usaStudentRequirementsEn = [
+  ...usaTouristRequirementsEn.slice(0, 9),
+  "SEVIS fee invoice.",
+  "Admission letter from the educational institution.",
+  "Form I-20.",
+  ...usaTouristRequirementsEn.slice(9),
+];
+
+const usaCommonNotesEn = [
+  "IDs and family cards that are not in the new format must be translated into English. We can arrange the translation for an additional fee.",
+  "The U.S. Embassy may change requirements or request additional documents without prior notice.",
+  "We do not promise or guarantee visa approval or a specific issuance date.",
+  "If you would like to ask about your visa status, you may contact the U.S. Embassy regarding your application.",
+];
+
+const usaFaqsEn: Faq[] = [
+  {
+    question: "Are biometrics required?",
+    answer: "Yes, biometrics are required for U.S. visa applications.",
+  },
+  {
+    question: "Is there an in-person interview?",
+    answer:
+      "Yes, an in-person interview at the U.S. Embassy is part of the application process.",
+  },
+  {
+    question: "How long does visa processing take?",
+    answer:
+      "It usually takes 5 to 15 business days and may take longer depending on the embassy and the application case.",
+  },
+  {
+    question: "Is visa approval guaranteed?",
+    answer:
+      "No, approval is not guaranteed. The final decision belongs to the U.S. Embassy.",
+  },
+  {
+    question: "Can you provide flight and hotel bookings?",
+    answer:
+      "Yes, we can provide preliminary flight and hotel bookings and prepare them as part of the visa file.",
+  },
+];
+
+const canadaTouristRequirementsEn = [
+  "Original passport and a copy.",
+  "Copy of the national ID.",
+  "Copy of any previous visa, if available.",
+  "Copy of the family card.",
+  "National address.",
+  "Travel history from Tawakkalna.",
+  "Copies of passport entry and exit stamps.",
+  "Employment letter in English addressed to the embassy and stamped by the employer. For private-sector companies, it must be attested by the Chamber of Commerce.",
+  "Bank statement in English for the last 6 months with a balance of at least SAR 15,000.",
+  "Two personal photos, 5×5 cm, white background; uncovered head for men and uncovered face for women.",
+];
+
+const canadaStudentRequirementsEn = [
+  ...canadaTouristRequirementsEn,
+  "Admission letter from the institute or educational institution in Canada.",
+];
+
+const canadaCommonNotesEn = [
+  "The Canadian Embassy may change requirements or request additional documents without prior notice.",
+  "We do not promise or guarantee visa approval or a specific issuance date.",
+  "All documents must be clear and up to date when submitted.",
+  "Processing time may vary depending on the visa type and the applicant's case.",
+];
+
+const canadaFaqsEn: Faq[] = [
+  {
+    question: "Are biometrics required?",
+    answer: "Yes, biometrics are required when applying for a Canadian visa.",
+  },
+  {
+    question: "Is visa approval guaranteed?",
+    answer:
+      "No, approval is not guaranteed. The final decision belongs to the Canadian Embassy.",
+  },
+  {
+    question: "How long does visa processing take?",
+    answer: "Canadian visa processing usually takes one to two months.",
+  },
+  {
+    question: "Is a bank statement required?",
+    answer:
+      "Yes, the visa file requires a 6-month bank statement in English with a balance of at least SAR 15,000.",
+  },
+];
+
+const localizedVisaContent: Record<string, LocalizedVisaPage> = {
+  schengen: {
+    title: "Schengen",
+    highlightedTitle: "Visa",
+    description:
+      "Choose the Schengen country you want to apply through and review the requirements and important notes before starting your visa request.",
+    seo: {
+      title: "Schengen Visa from Saudi Arabia | Requirements and Application",
+      description:
+        "Apply for a Schengen tourist visa from Saudi Arabia with document preparation, travel insurance, bookings, and application follow-up.",
+      openGraphTitle: "Schengen Visa Application from Saudi Arabia",
+      openGraphDescription:
+        "Professional Schengen tourist visa file preparation with requirements review and application support.",
+      twitterTitle: "Schengen Visa from Saudi Arabia",
+      twitterDescription:
+        "Apply for a Schengen tourist visa with document and file preparation.",
+    },
+    aboutTitle: "What is a Schengen visa?",
+    aboutText:
+      "A Schengen visa is a unified visa that allows its holder to travel within the European Schengen Area for up to 90 days within a 180-day period for tourism, family visits, or business.",
+    aboutNote:
+      "Requirements and procedures may vary from one country to another, so conditions are updated according to the selected embassy.",
+    selectorTitle: "Choose country",
+    requirementsTitle: "Requirements for attending the visa application center",
+    variants: Object.fromEntries(
+      schengenCountries.map((country) => [country.name, buildSchengenVariantEn(country)])
+    ),
+    relatedVisas: [
+      {
+        href: "/en/uk",
+        flag: "🇬🇧",
+        title: "UK ETA",
+        text: "Electronic travel authorization for Saudis.",
+      },
+      {
+        href: "/en/usa",
+        flag: "🇺🇸",
+        title: "U.S. Visa",
+        text: "U.S. visa file preparation and application support.",
+      },
+      {
+        href: "/en/canada",
+        flag: "🇨🇦",
+        title: "Canada Visa",
+        text: "Tourist and study visa services for Canada.",
+      },
+    ],
+  },
+  usa: {
+    title: "U.S.",
+    highlightedTitle: "Visa",
+    description:
+      "Choose the visa type you need and review the requirements and important notes before starting your application.",
+    seo: {
+      title: "U.S. Visa for Saudis | Tourist and Student Visa Support",
+      description:
+        "Professional support for U.S. tourist and student visas, including file preparation, forms, appointment guidance, and follow-up.",
+      openGraphTitle: "U.S. Visa Application for Saudis",
+      openGraphDescription:
+        "End-to-end U.S. visa support with step-by-step application follow-up.",
+      twitterTitle: "U.S. Visa Application",
+      twitterDescription: "U.S. tourist and student visa application service.",
+    },
+    aboutTitle: "About the U.S. visa",
+    aboutText:
+      "We help prepare your U.S. visa file for tourism or study, clarify the requirements, and support you through the form and appointment steps.",
+    aboutNote:
+      "Requirements vary by visa type and applicant profile. The final decision belongs to the U.S. Embassy.",
+    selectorTitle: "Choose visa type",
+    requirementsTitle: "Requirements for attending the U.S. Embassy",
+    variants: {
+      tourist: {
+        name: "U.S. Tourist Visa",
+        title: "U.S. Tourist Visa",
+        subtitle: "For tourism, visits, and events.",
+        country: "United States",
+        duration: "5 to 15 business days and may take longer depending on the embassy",
+        status: "Status: Available for application",
+        typeLabel: "Tourist",
+        requirements: usaTouristRequirementsEn,
+        notes: usaCommonNotesEn,
+        faqs: usaFaqsEn,
+        whatsappName: "U.S. Tourist Visa",
+        preApplyNote:
+          "The following requirements apply to the U.S. Tourist Visa and may vary depending on the applicant's case or embassy updates.",
+      },
+      student: {
+        name: "U.S. Student Visa",
+        title: "U.S. Student Visa",
+        subtitle: "For students accepted by institutions in the United States.",
+        country: "United States",
+        duration: "5 to 15 business days and may take longer depending on the embassy",
+        status: "Status: Available for application",
+        typeLabel: "Student",
+        requirements: usaStudentRequirementsEn,
+        notes: usaCommonNotesEn,
+        faqs: [
+          ...usaFaqsEn.slice(0, 2),
+          {
+            question: "What is Form I-20?",
+            answer:
+              "Form I-20 is an official document issued by the U.S. educational institution. It confirms the student's admission and is used for the student visa application.",
+          },
+          {
+            question: "Are SEVIS fees included?",
+            answer:
+              "Yes, the SEVIS invoice is prepared as part of the student visa requirements.",
+          },
+          ...usaFaqsEn.slice(2, 4),
+        ],
+        whatsappName: "U.S. Student Visa",
+        preApplyNote:
+          "The following requirements apply to the U.S. Student Visa and may vary depending on the applicant's case or embassy updates.",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/schengen",
+        flag: "🇪🇺",
+        title: "Schengen Visa",
+        text: "Schengen visa services for European destinations.",
+      },
+      {
+        href: "/en/uk",
+        flag: "🇬🇧",
+        title: "UK ETA",
+        text: "Electronic travel authorization for Saudis.",
+      },
+      {
+        href: "/en/australia",
+        flag: "🇦🇺",
+        title: "Australia Visa",
+        text: "Electronic tourist and study visas with a clear process.",
+      },
+    ],
+  },
+  canada: {
+    title: "Canada",
+    highlightedTitle: "Visa",
+    description:
+      "Choose the visa type you need and review the requirements and important notes before starting your application.",
+    seo: {
+      title: "Canada Visa for Saudis | Tourist and Student Visa Support",
+      description:
+        "Canada tourist and student visa service with document preparation and full follow-up until the application decision.",
+      openGraphTitle: "Canada Visa Application for Saudis",
+      openGraphDescription:
+        "We help you apply for a Canadian visa with document review and file preparation.",
+      twitterTitle: "Canada Visa Application",
+      twitterDescription: "Canada visa application service for Saudis.",
+    },
+    aboutTitle: "About the Canada visa",
+    aboutText:
+      "We help prepare your Canada visa file for tourism or study, review the documents, and clarify the requirements according to the visa type.",
+    aboutNote:
+      "Requirements and processing time may vary depending on visa type and applicant profile.",
+    selectorTitle: "Choose visa type",
+    requirementsTitle: "Required documents for application",
+    variants: {
+      tourist: {
+        name: "Canada Tourist Visa",
+        title: "Canada Tourist Visa",
+        subtitle: "For tourism, family visits, or events.",
+        country: "Canada",
+        duration: "One to two months",
+        status: "Status: Available for application",
+        typeLabel: "Tourist",
+        requirements: canadaTouristRequirementsEn,
+        notes: canadaCommonNotesEn,
+        faqs: canadaFaqsEn,
+        whatsappName: "Canada Tourist Visa",
+        preApplyNote:
+          "The following requirements apply to the Canada Tourist Visa and may vary depending on the applicant's case or Canadian Embassy updates.",
+      },
+      student: {
+        name: "Canada Student Visa",
+        title: "Canada Student Visa",
+        subtitle: "For students accepted by institutes or educational institutions in Canada.",
+        country: "Canada",
+        duration: "One to two months",
+        status: "Status: Available for application",
+        typeLabel: "Student",
+        requirements: canadaStudentRequirementsEn,
+        notes: canadaCommonNotesEn,
+        faqs: [
+          {
+            question: "Is an admission letter required?",
+            answer:
+              "Yes, an admission letter from the institute or educational institution is required for the student visa file.",
+          },
+          ...canadaFaqsEn.slice(0, 3),
+        ],
+        whatsappName: "Canada Student Visa",
+        preApplyNote:
+          "The following requirements apply to the Canada Student Visa and may vary depending on the applicant's case or Canadian Embassy updates.",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/usa",
+        flag: "🇺🇸",
+        title: "U.S. Visa",
+        text: "Tourist and student visa services for the United States.",
+      },
+      {
+        href: "/en/australia",
+        flag: "🇦🇺",
+        title: "Australia Visa",
+        text: "Electronic tourist and study visas with a clear process.",
+      },
+      {
+        href: "/en/uae",
+        flag: "🇦🇪",
+        title: "UAE Visa",
+        text: "Electronic visa for GCC residents.",
+      },
+    ],
+  },
+  uk: {
+    title: "UK Electronic",
+    highlightedTitle: "ETA",
+    description:
+      "An electronic travel authorization for Saudis to visit the United Kingdom for tourism or short-term study.",
+    seo: {
+      title: "UK ETA for Saudis | Requirements, Fees, and Processing",
+      description:
+        "UK ETA application service for Saudis with online submission, requirements review, and WhatsApp follow-up.",
+      openGraphTitle: "UK ETA for Saudis",
+      openGraphDescription:
+        "We help you apply for the UK Electronic Travel Authorization easily.",
+    },
+    aboutTitle: "What is the UK ETA?",
+    aboutText:
+      "The ETA is an electronic travel authorization that allows eligible travelers to enter the United Kingdom for tourism or short-term study. The application is completed online without visiting the embassy.",
+    aboutNote:
+      "The authorization is valid for two years, allows stays of up to 6 months per visit, and is often issued within 24 to 72 hours.",
+    requirementsTitle: "Requirements",
+    infoCards: [
+      { label: "Validity", value: "Two years" },
+      { label: "Stay duration", value: "6 months" },
+      { label: "Application type", value: "Online" },
+      { label: "Biometrics", value: "Not required" },
+    ],
+    variants: {
+      "uk-eta": {
+        name: "UK Electronic ETA",
+        title: "UK Electronic ETA",
+        country: "United Kingdom",
+        duration: "Up to 6 months per visit",
+        typeLabel: "Online",
+        requirements: [
+          "Personal photo with a white background.",
+          "Clear passport copy.",
+          "National address.",
+        ],
+        notes: [
+          "The UK ETA is valid for two years.",
+          "It allows stays of up to 6 months per visit.",
+          "The UK authorization is often issued within 24 to 72 hours.",
+          "It is valid for tourism and short-term study under 6 months.",
+          "The application is fully online without visiting the embassy.",
+          "No biometrics or personal interview are required.",
+          "Issuance of the electronic authorization is not 100% guaranteed. Approval is often around 99% when requirements are correctly met.",
+          "The final decision to enter the UK belongs to the UK border officer upon arrival.",
+        ],
+        faqs: [
+          {
+            question: "Do I need to attend the embassy?",
+            answer: "No, the application is completed fully online.",
+          },
+          {
+            question: "Are biometrics required?",
+            answer: "No, biometrics are not required for the UK ETA.",
+          },
+          {
+            question: "How long is the ETA valid?",
+            answer: "The authorization is valid for two years.",
+          },
+          {
+            question: "How long can I stay per visit?",
+            answer: "You can stay for up to 6 months per visit.",
+          },
+          {
+            question: "Can it be used for study?",
+            answer: "Yes, it can be used for short-term study under 6 months.",
+          },
+          {
+            question: "Is the ETA guaranteed?",
+            answer:
+              "No, issuance is not 100% guaranteed. The final decision belongs to the UK authorities.",
+          },
+        ],
+        whatsappName: "UK Electronic ETA",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/uae",
+        flag: "🇦🇪",
+        title: "UAE Visa",
+        text: "Electronic visa for GCC residents.",
+      },
+      {
+        href: "/en/australia",
+        flag: "🇦🇺",
+        title: "Australia Visa",
+        text: "Electronic tourist and study visas with a clear process.",
+      },
+      {
+        href: "/en/canada",
+        flag: "🇨🇦",
+        title: "Canada Visa",
+        text: "Tourist and study visa services for Canada.",
+      },
+    ],
+  },
+  uae: {
+    title: "UAE",
+    highlightedTitle: "Visa",
+    description:
+      "An electronic visa for GCC residents with a clear and simple application process.",
+    seo: {
+      title: "UAE Visa Application | Requirements and Processing",
+      description:
+        "Fast and easy UAE tourist visa service with application follow-up and requirements preparation.",
+      openGraphTitle: "UAE Visa Application",
+      openGraphDescription:
+        "We help you apply for a UAE visa through a simple and quick process.",
+      twitterTitle: "UAE Visa Application",
+      twitterDescription: "UAE visa application service.",
+    },
+    aboutTitle: "Who is the UAE visa suitable for?",
+    aboutText:
+      "This service is suitable for GCC residents who wish to visit the UAE, with an online application and no attendance or biometrics required.",
+    aboutNote:
+      "Residence permit validity must be more than 6 months from the return date.",
+    requirementsTitle: "Requirements",
+    infoCards: [
+      { label: "Application type", value: "Online" },
+      { label: "Attendance", value: "Not required" },
+      { label: "Category", value: "GCC residents" },
+    ],
+    variants: {
+      "uae-gcc-resident": {
+        name: "UAE Visa",
+        title: "UAE Visa",
+        country: "United Arab Emirates",
+        duration: "4 to 15 business days and may take longer",
+        typeLabel: "Electronic visa for GCC residents",
+        requirements: [
+          "Passport copy.",
+          "Passport cover.",
+          "Residence permit copy.",
+          "Personal photo with a white background.",
+          "National address.",
+        ],
+        notes: [
+          "This service is for residents of GCC countries.",
+          "The residence permit must be valid for more than 6 months from the return date.",
+          "The visa is electronic and does not require attendance or biometrics.",
+          "Visa issuance is not guaranteed. The final decision belongs to the competent UAE authorities.",
+          "Processing time may vary depending on the application case or authority updates.",
+        ],
+        faqs: [
+          {
+            question: "How long does a UAE visa take?",
+            answer:
+              "Usually 2 to 5 business days, but it may vary depending on visa type, nationality, and application volume.",
+          },
+          {
+            question: "Is the price fixed for all UAE visa types?",
+            answer:
+              "The price may vary depending on visa type and stay duration. The final price will be clarified before starting the request.",
+          },
+          {
+            question: "Is the visa guaranteed?",
+            answer:
+              "No, final approval is issued by the competent authority and visa issuance is not guaranteed.",
+          },
+          {
+            question: "Do I need a hotel booking or flight ticket?",
+            answer:
+              "A hotel booking or travel plan may be requested depending on visa type and nationality.",
+          },
+          {
+            question: "Can residents in Saudi Arabia apply?",
+            answer:
+              "Yes. A copy of the Saudi residence permit may be requested for non-Saudis.",
+          },
+        ],
+        whatsappName: "UAE Visa",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/uk",
+        flag: "🇬🇧",
+        title: "UK ETA",
+        text: "Electronic travel authorization for Saudis.",
+      },
+      {
+        href: "/en/schengen",
+        flag: "🇪🇺",
+        title: "Schengen Visa",
+        text: "Schengen visa services for European destinations.",
+      },
+      {
+        href: "/en/canada",
+        flag: "🇨🇦",
+        title: "Canada Visa",
+        text: "Tourist and study visa services for Canada.",
+      },
+    ],
+  },
+  australia: {
+    title: "Australia",
+    highlightedTitle: "Visa",
+    description:
+      "Tourist and study visa services for Australia through a simple online process.",
+    seo: {
+      title: "Australia Visa for Saudis | Tourist and Study Visa",
+      description:
+        "Australia tourist and study visa application service with file preparation and step-by-step follow-up.",
+      openGraphTitle: "Australia Visa for Saudis",
+      openGraphDescription:
+        "Professional support for Australia visa applications with a simple process.",
+      twitterTitle: "Australia Visa Application",
+      twitterDescription: "Australia tourist and study visa application service.",
+    },
+    aboutTitle: "About the Australia visa",
+    aboutText:
+      "An electronic visa suitable for tourism or short study programs under 3 months. The application is prepared online without attendance or biometrics.",
+    aboutNote:
+      "For study applications, an admission letter from the educational institution must be included.",
+    requirementsTitle: "Requirements",
+    infoCards: [
+      { label: "Application type", value: "Online" },
+      { label: "Processing time", value: "4 - 10 days" },
+      { label: "Visa type", value: "Tourist + Study" },
+      { label: "Biometrics", value: "Not required" },
+    ],
+    variants: {
+      "australia-tourist-student": {
+        name: "Australia Visa",
+        title: "Australia Visa",
+        country: "Australia",
+        duration: "4 to 10 business days, may vary depending on the application case.",
+        typeLabel: "Tourist + Study",
+        requirements: [
+          "Copy of the national ID.",
+          "Passport copy.",
+          "Personal photo with a white background.",
+          "National address.",
+          "Admission letter from the educational institution if applying for study.",
+        ],
+        notes: [
+          "The visa is fully electronic.",
+          "The visa can be used for tourism or study for less than 3 months.",
+          "All documents must be clear and up to date.",
+          "The embassy may request additional documents depending on the application case.",
+          "Visa issuance is not guaranteed and the final decision belongs to the Australian Embassy.",
+        ],
+        faqs: [
+          {
+            question: "Is the visa electronic?",
+            answer: "Yes, the visa is issued electronically.",
+          },
+          {
+            question: "Is attendance or biometrics required?",
+            answer: "No, attendance or biometrics are not required.",
+          },
+          {
+            question: "How long does visa processing take?",
+            answer:
+              "It takes 4 to 10 business days and may vary depending on the application case.",
+          },
+          {
+            question: "Is the visa guaranteed?",
+            answer:
+              "Visa issuance is not guaranteed. The final decision belongs to the Australian Embassy.",
+          },
+          {
+            question: "Does the visa cover study?",
+            answer:
+              "Yes, it can be used for study if the study duration is less than 3 months.",
+          },
+          {
+            question: "Do I need a study admission letter?",
+            answer:
+              "Yes, if applying for a study visa, an admission letter from the educational institution must be attached.",
+          },
+        ],
+        whatsappName: "Australia Visa",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/usa",
+        flag: "🇺🇸",
+        title: "U.S. Visa",
+        text: "Tourist and student visa services for the United States.",
+      },
+      {
+        href: "/en/uae",
+        flag: "🇦🇪",
+        title: "UAE Visa",
+        text: "Electronic visa for GCC residents.",
+      },
+      {
+        href: "/en/schengen",
+        flag: "🇪🇺",
+        title: "Schengen Visa",
+        text: "Schengen visa services for European destinations.",
+      },
+    ],
+  },
+  "turkey-non-saudi": {
+    title: "Turkey Visa",
+    highlightedTitle: "for Non-Saudis",
+    description:
+      "Turkey visa service for non-Saudi residents in Saudi Arabia, including requirements preparation and application file support.",
+    seo: {
+      title: "Turkey Visa for Residents in Saudi Arabia | Non-Saudis",
+      description:
+        "Turkey visa service for non-Saudi residents in Saudi Arabia with requirements, fees, and application file preparation.",
+      openGraphTitle: "Turkey Visa for Residents in Saudi Arabia",
+      openGraphDescription:
+        "We help non-Saudi residents in Saudi Arabia prepare Turkey visa requirements, fees, and application files.",
+      twitterTitle: "Turkey Visa for Non-Saudis",
+      twitterDescription:
+        "Turkey visa requirements and fee guidance for residents in Saudi Arabia.",
+    },
+    aboutTitle: "About the Turkey visa for non-Saudis",
+    aboutText:
+      "This service is for non-Saudi residents in the Kingdom who wish to apply for a Turkey visa, with requirements preparation and file organization according to the visa center's requirements.",
+    aboutNote:
+      "Residence validity must be more than 3 months and passport validity more than 6 months. Processing usually takes 5 to 15 business days.",
+    requirementsTitle: "Requirements",
+    infoCards: [
+      { label: "Country", value: "Turkey" },
+      { label: "Category", value: "Non-Saudis" },
+      { label: "Processing time", value: "5 - 15 business days" },
+      { label: "Application type", value: "Biometrics required" },
+    ],
+    variants: {
+      "turkey-non-saudi-resident": {
+        name: "Turkey Visa for Non-Saudis",
+        title: "Turkey Visa for Non-Saudis",
+        country: "Turkey",
+        duration: "5 - 15 business days",
+        status: "Status: Available for application",
+        typeLabel: "Biometrics required",
+        requirements: [
+          "Original passport and a copy.",
+          "Original residence permit and a copy.",
+          "Employment letter in English addressed to the embassy and attested by the Chamber of Commerce.",
+          "Bank statement in English for 3 months with a balance of SAR 10,000 per person.",
+          "Appointment confirmation from Etimad visa center.",
+          "Hotel booking - one copy per applicant.",
+          "Flight booking - one copy per applicant.",
+          "Copy of the national address from Tawakkalna.",
+          "Copy of any previous Turkish visa, if available.",
+          "Two personal photos, 5×5 cm, white background; uncovered head for men and uncovered face for women.",
+          "Exit and re-entry visa.",
+        ],
+        notes: [
+          "Residence validity must be more than 3 months and passport validity more than 6 months.",
+          "The applicant must be accompanied during submission by the wife, father, mother, son, brother, sister, or Saudi sponsor.",
+          "Sudanese nationals require a no-objection travel letter from the Sudanese Embassy, valid for no more than 3 months.",
+          "The Turkish Embassy may change requirements or request additional documents without prior notice.",
+          "We do not promise or guarantee visa approval or a specific processing time.",
+          "To inquire about the application status, the client may visit Etimad center.",
+        ],
+        faqs: [
+          {
+            question: "How much are Turkish embassy fees?",
+            answer:
+              "Approximate embassy fees: single entry SAR 769, multiple entry SAR 1,395.",
+          },
+          {
+            question: "Are embassy fees included in the service price?",
+            answer:
+              "No, embassy and visa center fees are separate from the service fee.",
+          },
+          {
+            question: "Is this visa for Saudis?",
+            answer:
+              "No, this service is for non-Saudi residents inside the Kingdom.",
+          },
+          {
+            question: "Is the original passport required?",
+            answer: "Yes, the original passport is required along with a copy.",
+          },
+        ],
+        whatsappName: "Turkey Visa for Non-Saudis",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/schengen",
+        flag: "🇪🇺",
+        title: "Schengen Visa",
+        text: "Schengen visa services for European destinations.",
+      },
+      {
+        href: "/en/uk",
+        flag: "🇬🇧",
+        title: "UK ETA",
+        text: "Electronic travel authorization for Saudis.",
+      },
+      {
+        href: "/en/uae",
+        flag: "🇦🇪",
+        title: "UAE Visa",
+        text: "Electronic visa for GCC residents.",
+      },
+    ],
+  },
+  brazil: {
+    title: "Brazil Visa",
+    highlightedTitle: "for Saudis",
+    description:
+      "Brazil visa service for Saudis with clear requirements, fees, processing time, and application steps.",
+    seo: {
+      title: "Brazil Visa for Saudis | Requirements, Fees, and Processing",
+      description:
+        "Apply for a Brazil visa for Saudis with requirements, fees, processing time, and application support through VisaRace.",
+      openGraphTitle: "Brazil Visa for Saudis",
+      openGraphDescription:
+        "Learn about Brazil visa requirements for Saudis, service fees, processing time, and application steps from Saudi Arabia.",
+      twitterTitle: "Brazil Visa for Saudis",
+      twitterDescription:
+        "Brazil visa application service from Saudi Arabia with requirements preparation and follow-up.",
+    },
+    aboutTitle: "About the Brazil visa for Saudis",
+    aboutText:
+      "We help prepare your Brazil visa application for Saudis and review the core requirements before submission, with fee guidance, processing time, and passport submission steps after preliminary approval.",
+    aboutNote:
+      "After preliminary approval, the original passport must be sent to the embassy through the embassy-approved courier to complete visa issuance.",
+    requirementsTitle: "Requirements",
+    infoCards: [
+      { label: "Country", value: "Brazil" },
+      { label: "Processing time", value: "10 - 15 business days" },
+      { label: "Application type", value: "No biometrics required" },
+    ],
+    variants: {
+      "brazil-saudi": {
+        name: "Brazil Visa for Saudis",
+        title: "Brazil Visa for Saudis",
+        country: "Brazil",
+        duration: "10 - 15 business days",
+        typeLabel: "No biometrics required",
+        requirements: [
+          "Passport copy.",
+          "Copy of the national ID.",
+          "National address.",
+          "Personal photo.",
+          "Employment letter in English addressed to the embassy and stamped by the employer.",
+          "For private-sector companies: the employment letter must be attested by the Chamber of Commerce.",
+          "Bank statement in English for the last 3 months with a balance of at least SAR 10,000.",
+          "Visa application submission receipt.",
+          "Visa application confirmation receipt.",
+          "Preliminary hotel booking.",
+          "Preliminary flight booking.",
+          "Preliminary travel itinerary.",
+          "Personal photo, 5×5 cm, white background; uncovered head for men and uncovered face for women.",
+        ],
+        notes: [
+          "Final approval is subject to the embassy's decision.",
+          "After preliminary approval, the original passport must be sent to the embassy through the embassy-approved courier to complete issuance procedures.",
+          "Courier fees are not included in the price.",
+          "The embassy may request additional documents depending on the case.",
+        ],
+        faqs: [
+          {
+            question: "How long does a Brazil visa take?",
+            answer:
+              "Usually 10 to 15 business days, but it may vary depending on the embassy and application volume.",
+          },
+          {
+            question: "Does the Brazil visa require biometrics?",
+            answer: "No, biometrics are currently not required.",
+          },
+          {
+            question: "What happens after application approval?",
+            answer:
+              "After approval, the passport is sent to the embassy through the approved courier to complete visa issuance.",
+          },
+          {
+            question: "Are courier fees included in the price?",
+            answer: "No, courier fees are not included in the service fee.",
+          },
+          {
+            question: "Is visa approval guaranteed?",
+            answer:
+              "No, final approval is subject to the embassy's decision and visa issuance is not guaranteed.",
+          },
+        ],
+        whatsappName: "Brazil Visa for Saudis",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/usa",
+        flag: "🇺🇸",
+        title: "U.S. Visa",
+        text: "Tourist and student visa services for the United States.",
+      },
+      {
+        href: "/en/schengen",
+        flag: "🇪🇺",
+        title: "Schengen Visa",
+        text: "Schengen visa services for European destinations.",
+      },
+      {
+        href: "/en/canada",
+        flag: "🇨🇦",
+        title: "Canada Visa",
+        text: "Tourist and study visa services for Canada.",
+      },
+    ],
+  },
+  "new-zealand": {
+    title: "New Zealand",
+    highlightedTitle: "Visa",
+    description:
+      "An electronic multiple-entry visa for Saudis, suitable for tourism or study depending on program duration.",
+    seo: {
+      title: "New Zealand Visa for Saudis | Fees, Requirements, and Processing",
+      description:
+        "Apply for a New Zealand visa for Saudis with requirements, fees, and processing time. Electronic multiple-entry visa for tourism or study through VisaRace.",
+      openGraphTitle: "New Zealand Visa for Saudis",
+      openGraphDescription:
+        "Learn about New Zealand visa requirements, fees, and processing time for Saudis applying from Saudi Arabia.",
+      twitterTitle: "New Zealand Visa for Saudis",
+      twitterDescription:
+        "New Zealand tourist or student visa service for Saudis with online application and multiple entry.",
+    },
+    aboutTitle: "About the New Zealand visa",
+    aboutText:
+      "We help prepare New Zealand visa applications for Saudis for tourism or study, with clear fees, requirements, and processing time according to visa type.",
+    aboutNote:
+      "Applications are currently available for Saudis only. The visa is electronic and allows multiple entries during its validity.",
+    selectorTitle: "Choose visa type",
+    requirementsTitle: "Requirements",
+    variants: {
+      "new-zealand-tourist-short-study": {
+        name: "Tourist or study under 3 months",
+        title: "New Zealand Tourist or Short Study Visa",
+        subtitle: "Electronic multiple-entry visa.",
+        country: "New Zealand",
+        duration: "15 days to one month",
+        status: "Status: Available for application",
+        typeLabel: "Electronic visa - multiple entry",
+        requirements: canadaTouristRequirementsEn,
+        notes: [
+          "Fees include embassy and service fees.",
+          "The visa is issued electronically.",
+          "Multiple entry is allowed during the visa validity period.",
+          "The New Zealand Embassy may request additional documents depending on the case.",
+          "Final approval is subject to the decision of the New Zealand Embassy.",
+        ],
+        faqs: [
+          {
+            question: "How long does a New Zealand visa take?",
+            answer:
+              "Around 15 days to one month, and it may vary depending on the season and application volume.",
+          },
+          {
+            question: "Is the New Zealand visa electronic?",
+            answer: "Yes, the visa is usually issued electronically.",
+          },
+          {
+            question: "Is the visa multiple entry?",
+            answer:
+              "Yes, it allows multiple entries during its validity period.",
+          },
+          {
+            question: "Are embassy fees included?",
+            answer:
+              "Yes, the listed prices include embassy and service fees.",
+          },
+          {
+            question: "Who can apply currently?",
+            answer: "Applications are currently available for Saudis only.",
+          },
+        ],
+        whatsappName: "New Zealand Tourist or Short Study Visa",
+        preApplyNote:
+          "This visa type is currently for Saudis and is suitable for tourism or study under 3 months.",
+      },
+      "new-zealand-long-study": {
+        name: "Study more than 3 months",
+        title: "New Zealand Student Visa over 3 Months",
+        subtitle: "Electronic multiple-entry visa.",
+        country: "New Zealand",
+        duration: "15 days to one month",
+        status: "Status: Available for application",
+        typeLabel: "Electronic visa - multiple entry",
+        requirements: [
+          ...canadaTouristRequirementsEn,
+          "Admission letter from the institute or educational institution in New Zealand.",
+        ],
+        notes: [
+          "Fees include embassy and service fees.",
+          "The visa is issued electronically.",
+          "Multiple entry is allowed during the visa validity period.",
+          "The New Zealand Embassy may request additional documents depending on the case.",
+          "Final approval is subject to the decision of the New Zealand Embassy.",
+        ],
+        faqs: [
+          {
+            question: "How long does a New Zealand visa take?",
+            answer:
+              "Around 15 days to one month, and it may vary depending on the season and application volume.",
+          },
+          {
+            question: "Is the New Zealand visa electronic?",
+            answer: "Yes, the visa is usually issued electronically.",
+          },
+          {
+            question: "Is the visa multiple entry?",
+            answer:
+              "Yes, it allows multiple entries during its validity period.",
+          },
+          {
+            question: "Are embassy fees included?",
+            answer:
+              "Yes, the listed prices include embassy and service fees.",
+          },
+          {
+            question: "Who can apply currently?",
+            answer: "Applications are currently available for Saudis only.",
+          },
+        ],
+        whatsappName: "New Zealand Student Visa over 3 Months",
+        preApplyNote:
+          "This visa type is currently for Saudis and is suitable for study programs longer than 3 months.",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/australia",
+        flag: "🇦🇺",
+        title: "Australia Visa",
+        text: "Electronic tourist and study visas with a clear process.",
+      },
+      {
+        href: "/en/canada",
+        flag: "🇨🇦",
+        title: "Canada Visa",
+        text: "Tourist and study visa services for Canada.",
+      },
+      {
+        href: "/en/uk",
+        flag: "🇬🇧",
+        title: "UK ETA",
+        text: "Electronic travel authorization for Saudis.",
+      },
+    ],
+  },
+  ireland: {
+    title: "Ireland",
+    highlightedTitle: "Visa",
+    description:
+      "Ireland visa service for Saudis for tourist and student visas, with requirements, fees, and processing time guidance.",
+    seo: {
+      title: "Ireland Visa for Saudis | Requirements, Fees, and Processing",
+      description:
+        "Apply for an Ireland visa for Saudis with tourist and student visa requirements, fees, and processing time through VisaRace.",
+      openGraphTitle: "Ireland Visa for Saudis",
+      openGraphDescription:
+        "Learn about Ireland tourist and student visa requirements, fees, and processing time from Saudi Arabia.",
+      twitterTitle: "Ireland Visa for Saudis",
+      twitterDescription:
+        "Ireland visa application service from Saudi Arabia for tourist or student visas.",
+    },
+    aboutTitle: "About the Ireland visa",
+    aboutText:
+      "We help prepare Ireland visa applications for Saudis for tourism or study, with clear requirements, fees, and processing time according to visa type.",
+    aboutNote:
+      "Applications are currently available for Saudis only. Ireland has an independent visa system and is not part of the Schengen Area.",
+    selectorTitle: "Choose visa type",
+    requirementsTitle: "Requirements",
+    variants: {
+      "ireland-tourist": {
+        name: "Tourist Visa",
+        title: "Ireland Tourist Visa",
+        subtitle: "Biometrics required.",
+        country: "Ireland",
+        duration:
+          "15 to 30 business days and may take longer depending on embassy workload and season.",
+        status: "Status: Available for application",
+        typeLabel: "Biometrics required",
+        requirements: [
+          "Passport copy.",
+          "Copy of the national ID.",
+          "National address.",
+          "Personal photo.",
+          "Employment letter in English addressed to the embassy and stamped by the employer.",
+          "For private-sector companies: the employment letter must be attested by the Chamber of Commerce.",
+          "Bank statement in English for the last 6 months with an average monthly balance of SAR 10,000.",
+        ],
+        notes: [
+          "The service fee does not include embassy fees.",
+          "Embassy fee for single entry: approximately SAR 275.",
+          "Embassy fee for multiple entry: approximately SAR 460.",
+          "The price does not include delivery fees from the unified visa center.",
+          "The Irish Embassy may request additional documents depending on the case.",
+          "Final approval is subject to the decision of the Irish Embassy.",
+        ],
+        faqs: [
+          {
+            question: "Is Ireland part of the Schengen Area?",
+            answer:
+              "No, Ireland has an independent visa system and is not a Schengen country.",
+          },
+          {
+            question: "Does the visa require biometrics?",
+            answer: "Yes, applying for an Ireland visa requires biometrics.",
+          },
+          {
+            question: "Who can apply currently?",
+            answer: "Applications are currently available for Saudis only.",
+          },
+        ],
+        whatsappName: "Ireland Tourist Visa",
+        preApplyNote:
+          "This visa type is currently for Saudis and is suitable for tourism.",
+      },
+      "ireland-student": {
+        name: "Student Visa",
+        title: "Ireland Student Visa",
+        subtitle: "Biometrics required.",
+        country: "Ireland",
+        duration:
+          "15 to 30 business days and may take longer depending on embassy workload and season.",
+        status: "Status: Available for application",
+        typeLabel: "Biometrics required",
+        requirements: [
+          "Passport copy.",
+          "Copy of the national ID.",
+          "National address.",
+          "Personal photo.",
+          "Employment letter in English addressed to the embassy and stamped by the employer.",
+          "For private-sector companies: the employment letter must be attested by the Chamber of Commerce.",
+          "Bank statement in English for the last 6 months with an average monthly balance of SAR 10,000.",
+          "Institute admission letter.",
+          "Proof of tuition fee payment to the institute.",
+        ],
+        notes: [
+          "The service fee does not include embassy fees.",
+          "Embassy fee for single entry: approximately SAR 275.",
+          "Embassy fee for multiple entry: approximately SAR 460.",
+          "The price does not include delivery fees from the unified visa center.",
+          "The Irish Embassy may request additional documents depending on the case.",
+          "Final approval is subject to the decision of the Irish Embassy.",
+        ],
+        faqs: [
+          {
+            question: "Is Ireland part of the Schengen Area?",
+            answer:
+              "No, Ireland has an independent visa system and is not a Schengen country.",
+          },
+          {
+            question: "Does the visa require biometrics?",
+            answer: "Yes, applying for an Ireland visa requires biometrics.",
+          },
+          {
+            question: "Who can apply currently?",
+            answer: "Applications are currently available for Saudis only.",
+          },
+        ],
+        whatsappName: "Ireland Student Visa",
+        preApplyNote:
+          "This visa type is currently for Saudis and is suitable for study.",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/uk",
+        flag: "🇬🇧",
+        title: "UK ETA",
+        text: "Electronic travel authorization for Saudis.",
+      },
+      {
+        href: "/en/schengen",
+        flag: "🇪🇺",
+        title: "Schengen Visa",
+        text: "Schengen visa services for European destinations.",
+      },
+      {
+        href: "/en/canada",
+        flag: "🇨🇦",
+        title: "Canada Visa",
+        text: "Tourist and study visa services for Canada.",
+      },
+    ],
+  },
+  "south-africa": {
+    title: "South Africa",
+    highlightedTitle: "Visa",
+    description:
+      "South Africa visa service for non-Saudi residents in Saudi Arabia.",
+    seo: {
+      title: "South Africa Visa for Non-Saudis | Requirements, Fees, and Processing",
+      description:
+        "Apply for a South Africa visa for non-Saudi residents in Saudi Arabia with requirements, fees, processing time, and application support through VisaRace.",
+      openGraphTitle: "South Africa Visa for Non-Saudis",
+      openGraphDescription:
+        "Learn about South Africa visa requirements for residents in Saudi Arabia, fees, processing time, and application steps.",
+      twitterTitle: "South Africa Visa for Residents",
+      twitterDescription:
+        "South Africa visa service for non-Saudi residents in Saudi Arabia with requirements preparation and follow-up.",
+    },
+    aboutTitle: "About the South Africa visa",
+    aboutText:
+      "We help non-Saudi residents in Saudi Arabia prepare their South Africa visa application and review the core requirements before submission.",
+    aboutNote:
+      "The application requires personal attendance. The price does not include the embassy fee of SAR 90.",
+    requirementsTitle: "Core requirements",
+    infoCards: [
+      { label: "Category", value: "Non-Saudis" },
+      { label: "Processing time", value: "5 - 15 business days" },
+      { label: "Application type", value: "Personal attendance required" },
+    ],
+    variants: {
+      "south-africa-non-saudi": {
+        name: "South Africa Visa for Non-Saudis",
+        title: "South Africa Visa",
+        subtitle: "For non-Saudi residents in the Kingdom of Saudi Arabia.",
+        country: "South Africa",
+        duration:
+          "5 to 15 business days and may vary depending on the embassy and travel season.",
+        typeLabel: "Personal attendance required",
+        requirements: [
+          "Passport and ID copy for the student.",
+          "Father's employment salary letter in English, attested by the Chamber of Commerce, with the purpose of travel stated.",
+          "Copy of the father's passport and ID.",
+          "Updated 3-month bank statement in English, stamped by the bank employee.",
+          "Original passport of the student.",
+          "Two personal photos.",
+          "Student birth certificate.",
+          "Exit and re-entry visa.",
+          "For visas longer than 90 days: criminal record clearance from Absher attested by the Ministry of Foreign Affairs.",
+          "For visas longer than 90 days: required medical examinations.",
+          "For visas longer than 90 days: South African medical insurance.",
+        ],
+        notes: [
+          "The price does not include the embassy fee of SAR 90.",
+          "The embassy or visa center may request additional documents depending on each case.",
+        ],
+        faqs: [
+          {
+            question: "Does the visa require personal attendance?",
+            answer:
+              "Yes, South Africa visa applications require the applicant's personal attendance to complete submission procedures.",
+          },
+          {
+            question:
+              "Is the visa available for non-Saudis residing in Saudi Arabia?",
+            answer:
+              "Yes, residents in Saudi Arabia can apply for a South Africa visa according to the listed requirements.",
+          },
+          {
+            question: "How long does visa processing take?",
+            answer:
+              "Processing usually takes 5 to 15 business days and may vary depending on the embassy and travel season.",
+          },
+          {
+            question: "Is a bank statement required?",
+            answer:
+              "Yes, a 3-month bank statement in English, updated and stamped by the bank, is required.",
+          },
+          {
+            question: "Is an exit and re-entry visa required?",
+            answer:
+              "Yes, residents in the Kingdom must provide a valid exit and re-entry visa.",
+          },
+          {
+            question: "Can I apply for a visa longer than 90 days?",
+            answer:
+              "Yes, but additional documents are required, such as a criminal record clearance, medical examinations, and South African medical insurance.",
+          },
+          {
+            question: "Can students apply?",
+            answer:
+              "Yes, students can apply by providing the birth certificate and the guardian's financial documents according to embassy requirements.",
+          },
+        ],
+        whatsappName: "South Africa Visa for Non-Saudis",
+        preApplyNote:
+          "This service is for non-Saudi residents in the Kingdom of Saudi Arabia.",
+      },
+    },
+    relatedVisas: [
+      {
+        href: "/en/turkey-non-saudi",
+        flag: "🇹🇷",
+        title: "Turkey Visa for Non-Saudis",
+        text: "Turkey visa service for non-Saudi residents in the Kingdom.",
+      },
+      {
+        href: "/en/schengen",
+        flag: "🇪🇺",
+        title: "Schengen Visa",
+        text: "Schengen visa services for European destinations.",
+      },
+      {
+        href: "/en/brazil",
+        flag: "🇧🇷",
+        title: "Brazil Visa",
+        text: "Apply for a Brazil tourist visa for Saudis with ease.",
+      },
+    ],
+  },
+};
+
+export function localizeVisaPage(
+  visa: VisaPageData,
+  locale: Locale = "ar"
+): VisaPageData {
+  if (locale === "ar") {
+    return visa;
+  }
+
+  const content = localizedVisaContent[visa.slug];
+
+  if (!content) {
+    return visa;
+  }
+
+  return {
+    ...visa,
+    title: content.title,
+    highlightedTitle: content.highlightedTitle,
+    description: content.description,
+    seo: {
+      ...visa.seo,
+      ...content.seo,
+    },
+    aboutTitle: content.aboutTitle,
+    aboutText: content.aboutText,
+    aboutNote: content.aboutNote,
+    selectorTitle: content.selectorTitle,
+    requirementsTitle: content.requirementsTitle,
+    infoCards: content.infoCards ?? visa.infoCards,
+    relatedVisas: content.relatedVisas,
+    variants: visa.variants.map((variant) => {
+      const localizedVariant = content.variants[variant.id];
+
+      if (!localizedVariant) {
+        return variant;
+      }
+
+      return {
+        ...variant,
+        id: formatVariantIdForLocale(variant.id, localizedVariant.title, locale),
+        name: localizedVariant.name,
+        title: localizedVariant.title,
+        subtitle: localizedVariant.subtitle,
+        country: localizedVariant.country,
+        price: formatPriceForLocale(variant.price, locale),
+        duration: localizedVariant.duration,
+        status: localizedVariant.status,
+        typeLabel: localizedVariant.typeLabel,
+        requirements: localizedVariant.requirements,
+        notes: localizedVariant.notes,
+        faqs: localizedVariant.faqs,
+        whatsappName: localizedVariant.whatsappName ?? variant.whatsappName,
+        whatsappMessage: undefined,
+        preApplyNote: localizedVariant.preApplyNote,
+      };
+    }),
+  };
+}
+
+function formatPriceForLocale(price: string, locale: Locale) {
+  if (locale === "ar") {
+    return price;
+  }
+
+  return price
+    .replace(/(\d[\d,]*)\s*ريال\s*سعودي/g, "SAR $1")
+    .replace(/(\d[\d,]*)\s*ريال/g, "SAR $1")
+    .replace(/غير شاملة رسوم السفارة/g, "excluding embassy fees")
+    .replace(/تقريبًا/g, "approximately");
+}
+
+function formatVariantIdForLocale(
+  id: string,
+  fallback: string,
+  locale: Locale
+) {
+  if (locale === "ar" || !/[\u0600-\u06FF]/.test(id)) {
+    return id;
+  }
+
+  return fallback
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function localizeVisaPages(
+  visas: VisaPageData[],
+  locale: Locale = "ar"
+) {
+  return visas.map((visa) => localizeVisaPage(visa, locale));
+}
+
 export const activeVisaPages = allVisaPages.filter(
   (visa) => visa.status === "active"
 );
@@ -1706,6 +3170,8 @@ export const sitemapVisaPages = allVisaPages.filter(
 
 export const visaPages = publicVisaPages;
 
-export function getVisaPageBySlug(slug: string) {
-  return publicVisaPages.find((visa) => visa.slug === slug);
+export function getVisaPageBySlug(slug: string, locale: Locale = "ar") {
+  const visa = publicVisaPages.find((item) => item.slug === slug);
+
+  return visa ? localizeVisaPage(visa, locale) : undefined;
 }

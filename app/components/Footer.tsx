@@ -5,10 +5,58 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
-export default function Footer() {
+
+type FooterProps = {
+  locale?: "ar" | "en";
+};
+
+const footerText = {
+  ar: {
+    brand: "رحلتنا للتأشيرات",
+    description:
+      "خدمات التأشيرات السياحية والدراسية لجميع الوجهات العالمية بخطوات واضحة وتجهيز احترافي لملف التأشيرة.",
+    contactTitle: "معلومات التواصل",
+    address: "📍 جدة - حي السلامة - طريق المدينة",
+    phone: "📞 0552525141",
+    hours: "🕒 يوميًا من 10 صباحًا حتى 10 مساءً",
+    linksTitle: "روابط مهمة",
+    terms: "الشروط والأحكام",
+    privacy: "سياسة الخصوصية",
+    businessTitle: "معلومات المنشأة",
+    cr: "السجل التجاري",
+    license: "رقم الرخصة",
+    tax: "الرقم الضريبي",
+    rights: "© 2026 جميع الحقوق محفوظة - رحلتنا للتأشيرات",
+    termsHref: "/terms",
+    privacyHref: "/privacy",
+  },
+  en: {
+    brand: "VisaRace",
+    description:
+      "Tourist and study visa services for global destinations with clear steps and professional file preparation.",
+    contactTitle: "Contact information",
+    address: "📍 Jeddah - Al Salamah District - Madinah Road",
+    phone: "📞 0552525141",
+    hours: "🕒 Daily from 10 AM to 10 PM",
+    linksTitle: "Important links",
+    terms: "Terms and Conditions",
+    privacy: "Privacy Policy",
+    businessTitle: "Business information",
+    cr: "Commercial Registration",
+    license: "License Number",
+    tax: "Tax Number",
+    rights: "© 2026 All rights reserved - VisaRace",
+    termsHref: "/en/terms",
+    privacyHref: "/en/privacy",
+  },
+};
+
+export default function Footer({ locale = "ar" }: FooterProps) {
+  const text = footerText[locale];
+
   return (
     <footer
-      dir="rtl"
+      dir={locale === "ar" ? "rtl" : "ltr"}
       className="relative overflow-hidden bg-[#0d1529] text-white pt-20 pb-10 px-5 md:px-8"
     >
       {/* Glow */}
@@ -19,51 +67,55 @@ export default function Footer() {
 
       <div className="relative max-w-6xl mx-auto">
         {/* Top */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 text-right">
+        <div
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 ${
+            locale === "ar" ? "text-right" : "text-left"
+          }`}
+        >
           
           {/* Brand */}
           <div>
             <h3 className="text-3xl font-black mb-5">
-              رحلتنا للتأشيرات
+              {text.brand}
             </h3>
 
             <p className="text-white/70 leading-8">
-              خدمات التأشيرات السياحية والدراسية لجميع الوجهات العالمية بخطوات واضحة وتجهيز احترافي لملف التأشيرة.
+              {text.description}
             </p>
           </div>
 
           {/* Contact */}
           <div>
             <h4 className="text-xl font-black mb-5 text-orange-400">
-              معلومات التواصل
+              {text.contactTitle}
             </h4>
 
             <div className="space-y-4 text-white/70 leading-8">
-              <p>📍 جدة - حي السلامة - طريق المدينة</p>
-              <p>📞 0552525141</p>
-              <p>🕒 يوميًا من 10 صباحًا حتى 10 مساءً</p>
+              <p>{text.address}</p>
+              <p>{text.phone}</p>
+              <p>{text.hours}</p>
             </div>
           </div>
 
           {/* Legal */}
           <div>
             <h4 className="text-xl font-black mb-5 text-orange-400">
-              روابط مهمة
+              {text.linksTitle}
             </h4>
 
             <div className="flex flex-col gap-4 text-white/70">
               <a
-                href="/terms"
+                href={text.termsHref}
                 className="transition hover:text-orange-400"
               >
-                الشروط والأحكام
+                {text.terms}
               </a>
 
               <a
-                href="/privacy"
+                href={text.privacyHref}
                 className="transition hover:text-orange-400"
               >
-                سياسة الخصوصية
+                {text.privacy}
               </a>
             </div>
           </div>
@@ -71,24 +123,24 @@ export default function Footer() {
           {/* Business Info */}
           <div>
             <h4 className="text-xl font-black mb-5 text-orange-400">
-              معلومات المنشأة
+              {text.businessTitle}
             </h4>
 
             <div className="space-y-4 text-white/70 leading-8">
               <p>
-                ✓ السجل التجاري:{" "}
+                ✓ {text.cr}:{" "}
                 <span dir="ltr" className="inline-block font-semibold text-white/85">
                   4030228793
                 </span>
               </p>
               <p>
-                ✓ رقم الرخصة:{" "}
+                ✓ {text.license}:{" "}
                 <span dir="ltr" className="inline-block font-semibold text-white/85">
                   73104015
                 </span>
               </p>
               <p>
-                ✓ الرقم الضريبي:{" "}
+                ✓ {text.tax}:{" "}
                 <span dir="ltr" className="inline-block font-semibold text-white/85">
                   30201661700003
                 </span>
@@ -141,7 +193,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-14 border-t border-white/10 pt-6 text-center">
           <p className="text-sm text-white/40">
-            © 2026 جميع الحقوق محفوظة - رحلتنا للتأشيرات
+            {text.rights}
           </p>
         </div>
       </div>

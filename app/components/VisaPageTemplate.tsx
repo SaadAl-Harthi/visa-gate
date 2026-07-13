@@ -1,23 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import type { Faq, VisaPageData, VisaPageVariant } from "../data/visas";
+import type { Faq, Locale, VisaPageData, VisaPageVariant } from "../data/visas";
+import { getTranslations } from "../i18n/translations";
+import LanguageSwitcher from "./LanguageSwitcher";
 import VisaWhatsAppCTA from "./VisaWhatsAppCTA";
 
 type VisaPageTemplateProps = {
   data: VisaPageData;
+  locale?: Locale;
 };
 
-export default function VisaPageTemplate({ data }: VisaPageTemplateProps) {
+export default function VisaPageTemplate({
+  data,
+  locale = "ar",
+}: VisaPageTemplateProps) {
   const [selectedVisa, setSelectedVisa] = useState<VisaPageVariant>(
     data.variants[0]
   );
 
   const hasSelector = data.variants.length > 1;
+  const t = getTranslations(locale);
 
   return (
-    <main dir="rtl" className="bg-white text-black overflow-hidden">
-      <HeroSection data={data} />
+    <main
+      dir={locale === "ar" ? "rtl" : "ltr"}
+      className="bg-white text-black overflow-hidden"
+    >
+      <HeroSection data={data} locale={locale} />
 
       {hasSelector ? (
         <section className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8">
@@ -54,11 +64,11 @@ export default function VisaPageTemplate({ data }: VisaPageTemplateProps) {
                   <button
                     key={visa.id}
                     onClick={() => setSelectedVisa(visa)}
-                    className={`rounded-2xl border p-4 text-right font-bold transition duration-300 hover:-translate-y-1 ${
+                    className={`rounded-2xl border p-4 font-bold transition duration-300 hover:-translate-y-1 ${
                       selectedVisa.id === visa.id
                         ? "border-orange-500 bg-orange-50 text-orange-600 shadow-md"
                         : "border-orange-100 bg-white hover:border-orange-300 hover:shadow-lg"
-                    }`}
+                    } ${locale === "ar" ? "text-right" : "text-left"}`}
                   >
                     <span className="ml-2 text-2xl">{visa.icon}</span>
                     {visa.name}
@@ -73,7 +83,11 @@ export default function VisaPageTemplate({ data }: VisaPageTemplateProps) {
             </aside>
 
             <div className="lg:col-span-2">
-              <VisaDetailsCard data={data} selectedVisa={selectedVisa} />
+              <VisaDetailsCard
+                data={data}
+                selectedVisa={selectedVisa}
+                locale={locale}
+              />
             </div>
           </div>
         </section>
@@ -90,30 +104,38 @@ export default function VisaPageTemplate({ data }: VisaPageTemplateProps) {
                   />
                 ))}
 
-                <InfoCard
-                  label="السعر"
-                  value={selectedVisa.price}
-                  accent
-                />
+                <InfoCard label={t.visaPage.price} value={selectedVisa.price} accent />
               </div>
             </div>
           </section>
 
           <section className="px-5 md:px-8 pb-20">
             <div className="mx-auto max-w-5xl rounded-[34px] border border-orange-100 bg-white/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
-              <VisaRequirements data={data} selectedVisa={selectedVisa} />
+              <VisaRequirements
+                data={data}
+                selectedVisa={selectedVisa}
+                locale={locale}
+              />
             </div>
           </section>
         </>
       )}
 
-      <FaqSection faqs={selectedVisa.faqs} />
-      <RelatedVisas relatedVisas={data.relatedVisas} />
+      <FaqSection faqs={selectedVisa.faqs} locale={locale} />
+      <RelatedVisas relatedVisas={data.relatedVisas} locale={locale} />
     </main>
   );
 }
 
-function HeroSection({ data }: { data: VisaPageData }) {
+function HeroSection({
+  data,
+  locale,
+}: {
+  data: VisaPageData;
+  locale: Locale;
+}) {
+  const t = getTranslations(locale);
+
   return (
     <section className="relative overflow-hidden px-5 md:px-8 pt-24 pb-20 bg-white">
       <div className="absolute inset-0 pointer-events-none">
@@ -123,12 +145,21 @@ function HeroSection({ data }: { data: VisaPageData }) {
       </div>
 
       <a
-        href="/"
-        className="absolute right-5 top-6 z-20 inline-flex items-center gap-3 rounded-full border border-orange-100 bg-white/80 px-5 py-3 text-sm font-bold text-[#101b32] shadow-xl backdrop-blur-xl transition hover:text-orange-500 md:right-8 md:px-7 md:py-4 md:text-base"
+        href={locale === "ar" ? "/" : "/en"}
+        className={`absolute top-6 z-20 inline-flex items-center gap-3 rounded-full border border-orange-100 bg-white/80 px-5 py-3 text-sm font-bold text-[#101b32] shadow-xl backdrop-blur-xl transition hover:text-orange-500 md:px-7 md:py-4 md:text-base ${
+          locale === "ar" ? "right-5 md:right-8" : "left-5 md:left-8"
+        }`}
       >
-        <span>→</span>
-        الرئيسية
+        <span>{locale === "ar" ? "→" : "←"}</span>
+        {t.buttons.backHome}
       </a>
+
+      <LanguageSwitcher
+        locale={locale}
+        className={`absolute top-6 z-20 inline-flex items-center rounded-full border border-orange-100 bg-white/80 px-5 py-3 text-sm font-bold text-[#101b32] shadow-xl backdrop-blur-xl transition hover:text-orange-500 md:px-7 md:py-4 md:text-base ${
+          locale === "ar" ? "left-5 md:left-8" : "right-5 md:right-8"
+        }`}
+      />
 
       <div className="relative z-10 mx-auto max-w-5xl text-center">
         <h1 className="mb-6 text-4xl font-black text-[#101b32] md:text-7xl">
@@ -146,7 +177,11 @@ function HeroSection({ data }: { data: VisaPageData }) {
               {data.heroIcon}
             </div>
 
-            <div className="flex-1 text-center md:text-right">
+            <div
+              className={`flex-1 text-center ${
+                locale === "ar" ? "md:text-right" : "md:text-left"
+              }`}
+            >
               <h2 className="mb-5 text-3xl font-black text-[#101b32] md:text-4xl">
                 {data.aboutTitle}
               </h2>
@@ -169,10 +204,14 @@ function HeroSection({ data }: { data: VisaPageData }) {
 function VisaDetailsCard({
   data,
   selectedVisa,
+  locale,
 }: {
   data: VisaPageData;
   selectedVisa: VisaPageVariant;
+  locale: Locale;
 }) {
+  const t = getTranslations(locale);
+
   return (
     <div className="rounded-[34px] border border-orange-100 bg-white/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center">
@@ -192,17 +231,17 @@ function VisaDetailsCard({
       </div>
 
       <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <InfoCard label="نوع التأشيرة" value={selectedVisa.typeLabel} compact />
+        <InfoCard label={t.visaPage.visaType} value={selectedVisa.typeLabel} compact />
         <InfoCard
-          label="السعر"
+          label={t.visaPage.price}
           value={selectedVisa.price}
           compact
           accent
         />
-        <InfoCard label="المدة" value={selectedVisa.duration} compact />
+        <InfoCard label={t.visaPage.duration} value={selectedVisa.duration} compact />
       </div>
 
-      <VisaRequirements data={data} selectedVisa={selectedVisa} />
+      <VisaRequirements data={data} selectedVisa={selectedVisa} locale={locale} />
     </div>
   );
 }
@@ -210,15 +249,21 @@ function VisaDetailsCard({
 function VisaRequirements({
   data,
   selectedVisa,
+  locale,
 }: {
   data: VisaPageData;
   selectedVisa: VisaPageVariant;
+  locale: Locale;
 }) {
+  const t = getTranslations(locale);
+
   return (
     <>
       {selectedVisa.preApplyNote && (
         <div className="mb-10 rounded-3xl border border-orange-100 bg-orange-50 p-5">
-          <h3 className="mb-2 text-xl font-black">ملاحظة قبل التقديم</h3>
+          <h3 className="mb-2 text-xl font-black">
+            {t.visaPage.preApplyNote}
+          </h3>
           <p className="leading-8 text-gray-700">
             {selectedVisa.preApplyNote}
           </p>
@@ -241,7 +286,7 @@ function VisaRequirements({
       </ul>
 
       <h3 className="mb-5 text-2xl font-black text-[#101b32]">
-        ملاحظات مهمة
+        {t.visaPage.importantNotes}
       </h3>
 
       <ul className="mb-10 space-y-3">
@@ -259,8 +304,9 @@ function VisaRequirements({
         visaName={selectedVisa.whatsappName}
         visaSlug={data.slug}
         message={selectedVisa.whatsappMessage}
+        locale={locale}
       >
-        ابدأ طلب {selectedVisa.title}
+        {t.buttons.startVisaRequest} {selectedVisa.title}
       </VisaWhatsAppCTA>
     </>
   );
@@ -303,12 +349,15 @@ function InfoCard({
   );
 }
 
-function FaqSection({ faqs }: { faqs: Faq[] }) {
+function FaqSection({ faqs, locale }: { faqs: Faq[]; locale: Locale }) {
+  const t = getTranslations(locale);
+
   return (
     <section className="relative bg-white px-5 py-20 md:px-8">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
-          الأسئلة <span className="text-orange-500">الشائعة</span>
+          {t.visaPage.faqPrefix}{" "}
+          <span className="text-orange-500">{t.visaPage.faqHighlight}</span>
         </h2>
 
         <div className="space-y-5">
@@ -331,14 +380,19 @@ function FaqSection({ faqs }: { faqs: Faq[] }) {
 
 function RelatedVisas({
   relatedVisas,
+  locale,
 }: {
   relatedVisas: VisaPageData["relatedVisas"];
+  locale: Locale;
 }) {
+  const t = getTranslations(locale);
+
   return (
     <section className="relative bg-gradient-to-b from-white via-orange-50/20 to-white px-5 py-20 md:px-8">
       <div className="mx-auto max-w-6xl">
         <h2 className="mb-12 text-center text-3xl font-black text-[#101b32] md:text-5xl">
-          تأشيرات قد <span className="text-orange-500">تهمك</span>
+          {t.visaPage.relatedPrefix}{" "}
+          <span className="text-orange-500">{t.visaPage.relatedHighlight}</span>
         </h2>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
@@ -346,7 +400,9 @@ function RelatedVisas({
             <a
               key={visa.href}
               href={visa.href}
-              className="block rounded-[30px] border border-orange-100 bg-white p-8 text-right shadow-lg transition duration-300 hover:-translate-y-2 hover:border-orange-200 hover:shadow-2xl"
+              className={`block rounded-[30px] border border-orange-100 bg-white p-8 shadow-lg transition duration-300 hover:-translate-y-2 hover:border-orange-200 hover:shadow-2xl ${
+                locale === "ar" ? "text-right" : "text-left"
+              }`}
             >
               <div className="mb-5 text-5xl">{visa.flag}</div>
               <h3 className="mb-3 text-2xl font-black text-[#101b32]">

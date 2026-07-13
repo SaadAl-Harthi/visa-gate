@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import JsonLd from "../components/JsonLd";
-import VisaPageTemplate from "../components/VisaPageTemplate";
-import { getVisaPageBySlug, publicVisaPages } from "../data/visas";
+import JsonLd from "../../../components/JsonLd";
+import VisaPageTemplate from "../../../components/VisaPageTemplate";
+import { getVisaPageBySlug, publicVisaPages } from "../../../data/visas";
 
-type VisaSlugPageProps = {
+type EnglishVisaPageProps = {
   params: Promise<{
     visaSlug: string;
   }>;
@@ -20,9 +20,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: VisaSlugPageProps): Promise<Metadata> {
+}: EnglishVisaPageProps): Promise<Metadata> {
   const { visaSlug } = await params;
-  const visa = getVisaPageBySlug(visaSlug);
+  const visa = getVisaPageBySlug(visaSlug, "en");
 
   if (!visa) {
     return {};
@@ -32,13 +32,19 @@ export async function generateMetadata({
     title: visa.seo.title,
     description: visa.seo.description,
     alternates: {
-      canonical: `/${visa.slug}`,
+      canonical: `/en/${visa.slug}`,
+      languages: {
+        "ar-SA": `/${visa.slug}`,
+        en: `/en/${visa.slug}`,
+      },
     },
     openGraph: {
       title: visa.seo.openGraphTitle,
       description: visa.seo.openGraphDescription,
-      url: `/${visa.slug}`,
+      url: `/en/${visa.slug}`,
       images: [visa.seo.image],
+      locale: "en_US",
+      type: "website",
     },
     twitter: visa.seo.twitterTitle
       ? {
@@ -51,9 +57,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function VisaSlugPage({ params }: VisaSlugPageProps) {
+export default async function EnglishVisaPage({ params }: EnglishVisaPageProps) {
   const { visaSlug } = await params;
-  const visa = getVisaPageBySlug(visaSlug);
+  const visa = getVisaPageBySlug(visaSlug, "en");
 
   if (!visa) {
     notFound();
@@ -75,7 +81,7 @@ export default async function VisaSlugPage({ params }: VisaSlugPageProps) {
   return (
     <>
       <JsonLd data={faqSchema} />
-      <VisaPageTemplate data={visa} />
+      <VisaPageTemplate data={visa} locale="en" />
     </>
   );
 }
